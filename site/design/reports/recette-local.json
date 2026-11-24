@@ -1,6 +1,6 @@
 {
-  "release": "afr-taxi-preview-7b1c8a709baf",
-  "archiveSha256": "c4ca83076d1cb25434b21c10173b8e23d00e286cb1bc7aabbf2f278fa27bf274",
+  "release": "afr-taxi-preview-3166410a9d35",
+  "archiveSha256": "7559c8ed83199b0421f06753bf1c740379752be87db18fbca6f3948cf5e661fc",
   "images": {
     "php": "php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826",
     "nginx": "nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a"
@@ -10,7 +10,7 @@
     "nginx": "nginx version: nginx/1.30.8"
   },
   "browsers": "chromium",
-  "date": "2026-11-24T15:59:48.468Z",
+  "date": "2026-11-24T18:26:48.749Z",
   "proves": "acceptation par une boîte SMTP de capture locale",
   "doesNotProve": [
     "TLS",
@@ -23,12 +23,12 @@
     {
       "check": "archive.sha256",
       "ok": true,
-      "detail": "c4ca83076d1cb254…"
+      "detail": "7559c8ed83199b04…"
     },
     {
       "check": "release.files-match-SHA256SUMS",
       "ok": true,
-      "detail": "247 fichiers"
+      "detail": "259 fichiers"
     },
     {
       "check": "nginx.config-test (nginx -t)",
@@ -231,7 +231,7 @@
       "detail": ""
     },
     {
-      "check": "mail.reply-to-is-submitter",
+      "check": "mail.no-submitter-reply-to-without-email",
       "ok": true,
       "detail": ""
     },
@@ -241,7 +241,12 @@
       "detail": ""
     },
     {
-      "check": "form.email-optional-phone-suffices",
+      "check": "form.minimal-contract-no-extra-field",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.passengers-optional",
       "ok": true,
       "detail": ""
     },
@@ -258,12 +263,12 @@
     {
       "check": "[chromium] nojs.invalid-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=1b1305a63e20"
+      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=b47b16d02522"
     },
     {
       "check": "[chromium] nojs.accepted-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=fbc00f7d91cb"
+      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=08cd049eab0a"
     },
     {
       "check": "[chromium] nojs.honest-wording",
@@ -286,14 +291,14 @@
       "detail": ""
     },
     {
-      "check": "[chromium] js.whatsapp-unavailable-explained",
+      "check": "[chromium] js.whatsapp-primary-visible",
       "ok": true,
       "detail": ""
     },
     {
       "check": "[chromium] js.accepted-message-honest",
       "ok": true,
-      "detail": "Demande acceptée par notre serveur d’envoi (référence 86978ac29d04). Cela ne gar"
+      "detail": "Demande acceptée par notre serveur d’envoi (référence 71e84f976a61). Cela ne gar"
     },
     {
       "check": "[chromium] js.transport-error-keeps-input",

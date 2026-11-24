@@ -1,8 +1,56 @@
-# Registre d'actifs AFR TAXI. Aucun actif autorisé à ce jour.
-# À demander au client : logo original, photos du véhicule actuel (plaque
-# masquée ou non selon sa décision), éventuellement du chauffeur.
-# Les photos de l'ancien site ne sont PAS reprises : leur publication ne
-# démontre pas leur transférabilité au nouvel hébergement.
+# Registre d'actifs AFR TAXI.
 # Les volets `observed` sont écrits par `npm run factory:assets -- scan`.
+# Les photos de l'ancien site ne sont PAS reprises.
+# Encore à demander : logo original.
 schemaVersion: 1
-assets: {}
+assets:
+  taxi-gare:
+    file: files/taxi-gare-saint-rambert.jpg
+    kind: photo
+    depicts: product
+    decorative: false
+    alt:
+      fr: Le taxi AFR TAXI, une berline grise avec lumineux taxi, garé devant la gare
+        de Saint-Rambert-d’Albon
+    declared:
+      source: client-supplied
+      author: null
+      statement: Photo du véhicule réel transmise pour la page d’accueil par le
+        propriétaire du dépôt (message du 2026-11-24).
+      date: '2026-11-24'
+    rights:
+      status: granted
+      scope: Publication sur le site AFR TAXI (toutes pages), recadrage et
+        compression.
+      evidenceRef: message du propriétaire du dépôt, session de réalisation du
+        2026-11-24 (photo transmise avec demande de publication)
+      restrictions:
+        - Plaque d’immatriculation visible — masquage à décider par le
+          propriétaire.
+        - Autorisation écrite de l’auteur de la photo à conserver hors dépôt.
+      expires: null
+    transformations:
+      - {
+          op: crop,
+          note: 'Recadrage d’affichage par CSS (object-fit), fichier source inchangé.'
+        }
+      - { op: resize, note: 'Déclinaisons responsives générées par Astro.' }
+      - { op: format-conversion, note: 'AVIF/WebP générés par Astro.' }
+    status: approved
+    decision:
+      by: propriétaire du dépôt (message du 2026-11-24)
+      on: '2026-11-24'
+      note: « Il faut ajouter la photo en page d’accueil ».
+    observed:
+      sha256: 68860e42d31559976a09826f8603e37ce7ed714dc8f2a4a998924a01569864d2
+      bytes: 479403
+      format: jpeg
+      width: 1500
+      height: 2000
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24

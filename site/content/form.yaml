@@ -1,57 +1,11 @@
 # Demande de trajet AFR TAXI — contrat partagé navigateur / serveur
 # (engine/form/contract.ts, usine 0.2.0). Le serveur fait foi.
 #
-# Champs limités à ce qui sert à organiser un trajet. AUCUNE donnée médicale :
-# ni diagnostic, ni ordonnance, ni numéro de sécurité sociale, ni motif.
-# Les bornes ci-dessous sont des limites de SAISIE, pas une capacité du véhicule
-# (capacité réelle : fait vehicle.capacity, inconnu à ce jour).
-# Délai minimal de 60 min : PROPOSITION à valider avec le chauffeur
-# (pour un départ imminent, le site oriente vers l'appel).
+# Version simplifiée (décision du 2026-11-24) : le strict nécessaire pour que
+# le chauffeur rappelle et organise le trajet. AUCUNE donnée médicale.
+# Bornes = limites de SAISIE, pas une capacité du véhicule.
+# Délai minimal de 60 min : proposition à valider (sinon : appeler).
 fields:
-  - name: pickup
-    kind: text
-    required: true
-    maxLength: 200
-    autocomplete: off
-    label: { fr: Adresse de départ }
-    hint: { fr: 'Adresse, gare ou lieu connu. Exemple : gare de Saint-Rambert-d’Albon.' }
-  - name: dropoff
-    kind: text
-    required: true
-    maxLength: 200
-    autocomplete: off
-    label: { fr: Destination }
-  - name: date
-    kind: date
-    required: true
-    maxLength: 10
-    label: { fr: Date du départ }
-  - name: time
-    kind: time
-    required: true
-    maxLength: 5
-    label: { fr: Heure du départ }
-    hint: { fr: Heure de Paris. }
-  - name: passengers
-    kind: integer
-    required: false
-    maxLength: 2
-    min: 1
-    max: 99
-    label: { fr: Nombre de voyageurs }
-  - name: travel_ref
-    kind: text
-    required: false
-    maxLength: 40
-    autocomplete: off
-    label: { fr: Numéro de train ou de vol }
-    hint: { fr: Utile pour un transfert. }
-  - name: details
-    kind: textarea
-    required: false
-    maxLength: 600
-    label: { fr: Précisions utiles }
-    hint: { fr: 'Bagages, siège enfant, aller-retour… N’indiquez aucune information médicale.' }
   - name: name
     kind: text
     required: true
@@ -63,15 +17,36 @@ fields:
     required: true
     maxLength: 30
     autocomplete: tel
-    label: { fr: Téléphone pour vous rappeler }
-    hint: { fr: 'Numéro français ou international (+…).' }
-  - name: email
-    kind: email
+    label: { fr: Téléphone }
+  - name: pickup
+    kind: text
+    required: true
+    maxLength: 200
+    autocomplete: off
+    label: { fr: Adresse de départ }
+  - name: dropoff
+    kind: text
+    required: true
+    maxLength: 200
+    autocomplete: off
+    label: { fr: Destination }
+  - name: date
+    kind: date
+    required: true
+    maxLength: 10
+    label: { fr: Date }
+  - name: time
+    kind: time
+    required: true
+    maxLength: 5
+    label: { fr: Heure }
+  - name: passengers
+    kind: integer
     required: false
-    maxLength: 254
-    autocomplete: email
-    label: { fr: E-mail }
-    hint: { fr: 'Facultatif : le chauffeur vous rappelle par téléphone.' }
+    maxLength: 2
+    min: 1
+    max: 99
+    label: { fr: Voyageurs }
 rules:
   - kind: datetime-future
     date: date

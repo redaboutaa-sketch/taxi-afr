@@ -128,7 +128,7 @@ try {
   // 4 — endpoint : rejets
   const paris = (d: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
   const inDays = (n: number) => paris(new Date(Date.now() + n * 86_400_000));
-  const valid = { locale: 'fr', pickup: 'Gare de Saint-Rambert-d’Albon', dropoff: 'Aéroport (recette)', date: inDays(3), time: '10:15', passengers: '2', travel_ref: 'TGV 0000', details: 'Deux valises.', name: 'Camille Recette', phone: '+33 6 00 00 00 00', email: 'camille@example.org', website: '' };
+  const valid = { locale: 'fr', name: 'Camille Recette', phone: '+33 6 00 00 00 00', pickup: 'Gare de Saint-Rambert-d’Albon', dropoff: 'Aéroport (recette)', date: inDays(3), time: '10:15', passengers: '2', website: '' };
   const post = (body: Record<string, string>, headers: Record<string, string> = {}) =>
     fetch(`${BASE}/api/contact.php`, { method: 'POST', redirect: 'manual', headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json', Origin: BASE, ...headers }, body: new URLSearchParams(body) });
   const errs = async (r: Response) => ((await r.json()) as { errors?: Array<{ field: string; code: string }> }).errors ?? [];
@@ -146,7 +146,7 @@ try {
   resetRate();
   r = await post(valid, { Origin: 'https://attaquant.example' });
   check('form.foreign-origin-403', r.status === 403);
-  r = await post({ ...valid, details: 'x'.repeat(20_000) });
+  r = await post({ ...valid, pickup: 'x'.repeat(20_000) });
   check('form.oversize-413', r.status === 413, String(r.status));
   r = await post({ ...valid, diagnostic: 'x' });
   check('form.unexpected-field-rejected', r.status === 422 && mails().length === before);
@@ -164,13 +164,14 @@ try {
   try { body = decodeURIComponent(decoded.replace(/%(?![0-9A-F]{2})/g, '%25')); } catch { /* garde la forme brute */ }
   check('mail.envelope-to-capture-recipient', /X-Capture-Envelope-To: <chauffeur@recette\.afr-taxi\.test>/.test(eml));
   check('mail.from-is-sending-identity', /^From: AFR TAXI <demandes@recette\.afr-taxi\.test>/m.test(eml));
-  check('mail.reply-to-is-submitter', /^Reply-To: camille@example\.org/m.test(eml));
-  check('mail.readable-trip', body.includes('Adresse de départ : Gare de Saint-Rambert') && body.includes(`Date du départ : ${valid.date}`) && body.includes('Heure du départ : 10:15') && body.includes('Horaire interprété :') && body.includes('Europe/Paris'), body.slice(0, 0));
+  check('mail.no-submitter-reply-to-without-email', !/^Reply-To: (?!demandes@recette)/m.test(eml));
+  check('mail.readable-trip', body.includes('Adresse de départ : Gare de Saint-Rambert') && body.includes(`Date : ${valid.date}`) && body.includes('Heure : 10:15') && body.includes('Téléphone : +33 6 00 00 00 00') && body.includes('Horaire interprété :') && body.includes('Europe/Paris'), body.slice(0, 0));
+  r = await post({ ...valid, email: 'x@example.org' });
+  check('form.minimal-contract-no-extra-field', r.status === 422 || r.status === 429);
   resetRate();
   before = mails().length;
-  r = await post({ ...valid, email: '' });
-  const mailNoEmail = mails().at(-1);
-  check('form.email-optional-phone-suffices', r.status === 200 && mails().length === before + 1 && !/^Reply-To: camille/m.test(readFileSync(join(mailDir, mailNoEmail!), 'utf8')));
+  r = await post({ ...valid, passengers: '' });
+  check('form.passengers-optional', r.status === 200 && mails().length === before + 1);
 
   // 6 — erreur de transport
   resetRate();
@@ -230,7 +231,7 @@ try {
     await fill(page, { ...valid, date: inDays(-1) });
     await page.click('button[type=submit]');
     check(`[${name}] js.past-date-message`, ((await page.textContent('#date-error')) ?? '').includes('déjà passées'));
-    check(`[${name}] js.whatsapp-unavailable-explained`, (await page.isVisible('[data-whatsapp-unavailable]')) && !(await page.isVisible('[data-whatsapp]')));
+    check(`[${name}] js.whatsapp-primary-visible`, (await page.isVisible('[data-whatsapp]')) && !(await page.isVisible('[data-whatsapp-unavailable]')));
     before = mails().length;
     await page.fill('#date', valid.date);
     await page.click('button[type=submit]');
@@ -257,7 +258,7 @@ try {
   check('form.rate-limit-429-after-5', JSON.stringify(statuses) === JSON.stringify([422, 422, 422, 422, 422, 429]), statuses.join(','));
   const logs = spawnSync('docker', ['logs', 'factory-recipe-php'], { encoding: 'utf8' });
   const logText = `${logs.stdout}${logs.stderr}`;
-  check('logs.no-message-body', logText.includes('[factory-form]') && !logText.includes('Saint-Rambert') && !logText.includes('camille@example.org') && !logText.includes('00 00 00 00'));
+  check('logs.no-message-body', logText.includes('[factory-form]') && !logText.includes('Saint-Rambert') && !logText.includes('Camille Recette') && !logText.includes('00 00 00 00'));
 
   const out = resolve('.generated', 'reports', id);
   mkdirSync(out, { recursive: true });

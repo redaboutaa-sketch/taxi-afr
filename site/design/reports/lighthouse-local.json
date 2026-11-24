@@ -1,5 +1,5 @@
 {
-  "release": "afr-taxi-preview-7b1c8a709baf",
+  "release": "afr-taxi-preview-5469eff25a2b",
   "protocol": {
     "version": "Lighthouse 13.6.0 · HeadlessChrome/158.0.0.0 · mobile, throttling simulate",
     "runsPerPage": 3,
@@ -24,22 +24,22 @@
             "performance": 1,
             "accessibility": 1,
             "best-practices": 0.96,
-            "seo": 0.66
+            "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 750.154,
-            "lcpMs": 750.154,
-            "tbtMs": 0,
+            "fcpMs": 753.144,
+            "lcpMs": 1803.144,
+            "tbtMs": 40,
             "cls": 0,
-            "siMs": 750.154
+            "siMs": 753.144
           },
           "bytes": {
-            "total": 58690,
-            "script": 0,
+            "total": 127924,
+            "script": 3981,
             "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 5607,
+            "image": 60601,
+            "stylesheet": 6316,
+            "document": 9130,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -49,47 +49,47 @@
             "performance": 1,
             "accessibility": 1,
             "best-practices": 0.96,
-            "seo": 0.66
+            "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 750.784,
-            "lcpMs": 750.784,
-            "tbtMs": 0,
+            "fcpMs": 751.141,
+            "lcpMs": 1651.141,
+            "tbtMs": 30,
             "cls": 0,
-            "siMs": 750.784
+            "siMs": 751.141
           },
           "bytes": {
-            "total": 58690,
-            "script": 0,
+            "total": 127924,
+            "script": 3981,
             "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 5607,
+            "image": 60601,
+            "stylesheet": 6316,
+            "document": 9130,
             "inlineScript": 0
           },
           "failedA11y": []
         },
         {
           "score": {
-            "performance": 1,
+            "performance": 0.99,
             "accessibility": 1,
             "best-practices": 0.96,
-            "seo": 0.66
+            "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 751.549,
-            "lcpMs": 751.549,
-            "tbtMs": 0,
+            "fcpMs": 750.243,
+            "lcpMs": 1800.243,
+            "tbtMs": 73,
             "cls": 0,
-            "siMs": 751.549
+            "siMs": 750.243
           },
           "bytes": {
-            "total": 58690,
-            "script": 0,
+            "total": 127924,
+            "script": 3981,
             "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 5607,
+            "image": 60601,
+            "stylesheet": 6316,
+            "document": 9130,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -100,22 +100,22 @@
           "performance": 1,
           "accessibility": 1,
           "best-practices": 0.96,
-          "seo": 0.66
+          "seo": 0.69
         },
         "metrics": {
-          "fcpMs": 750.784,
-          "lcpMs": 750.784,
-          "tbtMs": 0,
+          "fcpMs": 753.144,
+          "lcpMs": 1803.144,
+          "tbtMs": 40,
           "cls": 0,
-          "siMs": 750.784
+          "siMs": 753.144
         },
         "bytes": {
-          "total": 58690,
-          "script": 0,
+          "total": 127924,
+          "script": 3981,
           "font": 47896,
-          "image": 0,
-          "stylesheet": 5187,
-          "document": 5607,
+          "image": 60601,
+          "stylesheet": 6316,
+          "document": 9130,
           "inlineScript": 0
         },
         "failedA11y": []
@@ -132,19 +132,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 751.745,
-            "lcpMs": 751.745,
+            "fcpMs": 751.272,
+            "lcpMs": 751.272,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 751.745
+            "siMs": 751.272
           },
           "bytes": {
-            "total": 63959,
+            "total": 64781,
             "script": 3981,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 6895,
+            "stylesheet": 6316,
+            "document": 6588,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -157,19 +157,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 751.758,
-            "lcpMs": 751.758,
+            "fcpMs": 751.318,
+            "lcpMs": 751.318,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 751.758
+            "siMs": 751.318
           },
           "bytes": {
-            "total": 63959,
+            "total": 64781,
             "script": 3981,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 6895,
+            "stylesheet": 6316,
+            "document": 6588,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -182,19 +182,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 757.979,
-            "lcpMs": 757.979,
+            "fcpMs": 751.051,
+            "lcpMs": 751.051,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 757.979
+            "siMs": 751.051
           },
           "bytes": {
-            "total": 63959,
+            "total": 64781,
             "script": 3981,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 6895,
+            "stylesheet": 6316,
+            "document": 6588,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -208,19 +208,19 @@
           "seo": 0.66
         },
         "metrics": {
-          "fcpMs": 751.758,
-          "lcpMs": 751.758,
+          "fcpMs": 751.318,
+          "lcpMs": 751.318,
           "tbtMs": 0,
           "cls": 0,
-          "siMs": 751.758
+          "siMs": 751.318
         },
         "bytes": {
-          "total": 63959,
+          "total": 64781,
           "script": 3981,
           "font": 47896,
           "image": 0,
-          "stylesheet": 5187,
-          "document": 6895,
+          "stylesheet": 6316,
+          "document": 6588,
           "inlineScript": 0
         },
         "failedA11y": []
@@ -237,19 +237,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 751.213,
-            "lcpMs": 1201.213,
+            "fcpMs": 751.169,
+            "lcpMs": 751.169,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 751.213
+            "siMs": 751.169
           },
           "bytes": {
-            "total": 57001,
+            "total": 58201,
             "script": 0,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 3918,
+            "stylesheet": 6316,
+            "document": 3989,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -262,19 +262,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 752.794,
-            "lcpMs": 752.794,
+            "fcpMs": 751.352,
+            "lcpMs": 751.352,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 752.794
+            "siMs": 751.352
           },
           "bytes": {
-            "total": 57001,
+            "total": 58201,
             "script": 0,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 3918,
+            "stylesheet": 6316,
+            "document": 3989,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -287,19 +287,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 750.893,
-            "lcpMs": 750.893,
+            "fcpMs": 750.947,
+            "lcpMs": 750.947,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 750.893
+            "siMs": 750.947
           },
           "bytes": {
-            "total": 57001,
+            "total": 58201,
             "script": 0,
             "font": 47896,
             "image": 0,
-            "stylesheet": 5187,
-            "document": 3918,
+            "stylesheet": 6316,
+            "document": 3989,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -313,124 +313,19 @@
           "seo": 0.66
         },
         "metrics": {
-          "fcpMs": 752.794,
-          "lcpMs": 752.794,
+          "fcpMs": 751.352,
+          "lcpMs": 751.352,
           "tbtMs": 0,
           "cls": 0,
-          "siMs": 752.794
+          "siMs": 751.352
         },
         "bytes": {
-          "total": 57001,
+          "total": 58201,
           "script": 0,
           "font": 47896,
           "image": 0,
-          "stylesheet": 5187,
-          "document": 3918,
-          "inlineScript": 0
-        },
-        "failedA11y": []
-      }
-    },
-    {
-      "page": "/contact/envoyee/",
-      "runs": [
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 750.926,
-            "lcpMs": 750.926,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 750.926
-          },
-          "bytes": {
-            "total": 56439,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 3356,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        },
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 751.194,
-            "lcpMs": 751.194,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 751.194
-          },
-          "bytes": {
-            "total": 56439,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 3356,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        },
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 750.905,
-            "lcpMs": 750.905,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 750.905
-          },
-          "bytes": {
-            "total": 56439,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 5187,
-            "document": 3356,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        }
-      ],
-      "median": {
-        "score": {
-          "performance": 1,
-          "accessibility": 1,
-          "best-practices": 0.96,
-          "seo": 0.66
-        },
-        "metrics": {
-          "fcpMs": 751.194,
-          "lcpMs": 751.194,
-          "tbtMs": 0,
-          "cls": 0,
-          "siMs": 751.194
-        },
-        "bytes": {
-          "total": 56439,
-          "script": 0,
-          "font": 47896,
-          "image": 0,
-          "stylesheet": 5187,
-          "document": 3356,
+          "stylesheet": 6316,
+          "document": 3989,
           "inlineScript": 0
         },
         "failedA11y": []

@@ -10,7 +10,7 @@ import { factFor } from '@engine/astro';
 import '../styles/base.css';
 import '../../design/directions/bandeau.css';
 import Icon from '../components/Icon.astro';
-import { nav, routes, phone, telHref, email, footerNote, services } from '../content/site.ts';
+import { nav, routes, phone, telHref, email, footerNote, services, whatsappDigits } from '../content/site.ts';
 
 interface Props {
   title: string;
@@ -86,6 +86,9 @@ const ld = ldName && ldPhone
         </nav>
         {telHref && phone && (
           <a class="btn btn-call masthead-call" href={telHref}><Icon name="phone" /><span>{phone.text}</span></a>
+        )}
+        {whatsappDigits && (
+          <a class="btn btn-whatsapp masthead-call" href={`https://wa.me/${whatsappDigits}`} rel="noopener noreferrer"><Icon name="chat" /><span>WhatsApp</span></a>
         )}
       </div>
     </header>

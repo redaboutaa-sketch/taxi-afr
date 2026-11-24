@@ -16,11 +16,11 @@ Registre des faits : `site/brief/brief.yaml` (`facts`). Aucun fait n'est `confir
 9. Chaque service séparément : taxi privé/professionnel, transferts (gares et aéroports desservis), déplacement après incident, **transport conventionné** (convention en vigueur ?).
 10. Expérience (« depuis 2016, à son compte depuis 2020 ») et langues (français, anglais, arabe).
 11. Véhicule : modèle actuel, places, équipement (siège enfant ?).
-12. **WhatsApp** : numéro actif et accord du chauffeur pour ce canal (`contact.whatsapp`). Tant qu'il manque, le site l'indique et propose e-mail et appel.
+12. ~~WhatsApp~~ : numéro +33 6 59 85 57 04 et accord transmis le 2026-11-24 (`contact.whatsapp` confirmé). Reste à tester l'ouverture réelle sur téléphone et WhatsApp Web avec ce compte.
 13. Délai minimal d'une demande en ligne (proposé : 60 min, sinon « appelez ») et horizon (365 jours) — `site/content/form.yaml`.
 
 ## Actifs
-14. Logo original et autorisation d'usage ; photos du véhicule (plaque masquée ou non) et, s'il le souhaite, du chauffeur, avec autorisation écrite. Les fichiers de l'ancien site ne sont pas repris.
+14. Logo original et autorisation d'usage. Photo du véhicule devant la gare : publiée sur instruction du 2026-11-24 — **plaque visible : la masquer ?** ; conserver l'autorisation écrite de l'auteur hors dépôt. Photo du chauffeur : facultative.
 
 ## Hébergement et publication (externe)
 15. Hébergement cible réel (VPS ? mutualisé Apache ? proxy ?), accès, PHP disponible ; domaine et DNS (www / apex).

@@ -7,6 +7,9 @@
 | 2026-11-24 | Profil `vps-nginx` retenu **pour la preview et la recette locale seulement** : seul profil implémenté ; la cible réelle n'est pas constatée | agent (technique) | — |
 | 2026-11-24 | Rendu provisoire en piste A « Ivoire » en attendant le choix | agent (provisoire) | — |
 | 2026-11-24 | **Piste B « Bandeau » retenue** ; piste A et prototypes retirés | propriétaire du dépôt (message) | G2 — choix |
+| 2026-11-24 | Photo du véhicule réel devant la gare en page d’accueil (actif `taxi-gare`, approuvé sur instruction) ; rendu proche de la maquette : photo, texte à gauche, demande à droite | propriétaire du dépôt (message) | — |
+| 2026-11-24 | WhatsApp actif : +33 6 59 85 57 04, accord du chauffeur déclaré ; canal principal de la demande, e-mail en second | propriétaire du dépôt (message) | — |
+| 2026-11-24 | Demande simplifiée : nom, téléphone, départ, destination, date, heure (+ voyageurs facultatif) ; e-mail, n° de train/vol et précisions retirés | propriétaire du dépôt (message) | — |
 | — | Approbation du rendu final (après revue des captures et du site en preview) | client | G2 — rendu |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).

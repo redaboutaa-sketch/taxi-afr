@@ -3,6 +3,8 @@
 > **Décision du 2026-11-24 : piste B « Bandeau » retenue** (propriétaire du dépôt, enregistrée dans `design.selectedDirection`). Le site l'applique à toutes les pages ; la piste A et les prototypes ont été retirés (historique Git : commit `2b0a351`). L'**approbation du rendu final** reste une décision distincte, non prise (`design.renderApproval: null`).
 >
 > Captures du rendu B : `captures/{accueil,contact,transport-medical}-{390,1440}.png`.
+>
+> Mise à jour du 2026-11-24 : la photo réelle du véhicule devant la gare (transmise par le propriétaire) occupe le hero de l'accueil comme sur la maquette — texte à gauche, voiture au centre, carte « Demander un trajet » à droite ; sur mobile, la photo précède le texte puis la carte. Toujours retirés : logo Assurance Maladie, badge CPAM, mentions non confirmées (paiement, « toutes destinations »), photos générées des cartes de services.
 
 Comparaison présentée au moment du choix :
 

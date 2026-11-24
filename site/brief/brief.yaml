@@ -93,7 +93,7 @@ design:
     - Ton de professionnel local soigneux, pas de compagnie de limousines.
     - Respecter le logo existant s'il est fourni et autorisé ; ne pas le redessiner.
   availableResources:
-    - Aucune photographie ni logo autorisés à ce stade (originaux à demander au client).
+    - "Photo du véhicule réel devant la gare de Saint-Rambert-d’Albon, transmise le 2026-11-24 (registre d’actifs, id taxi-gare). Logo original non fourni."
     - Maquette d'accueil transmise par le propriétaire le 2026-11-24 (provenance des images inconnue, référence de composition seulement).
   allowGeneratedIllustrations: false
   selectedDirection:
@@ -141,11 +141,11 @@ facts:
     sourceRefs: [brief-mission-2026-11-24:site-actuel]
     publication: public
   contact.whatsapp:
-    # Numéro WhatsApp actif ET accord du chauffeur pour ce canal : inconnus.
-    # Ne pas déduire un compte WhatsApp du numéro de téléphone publié.
-    value: null
-    status: unknown
-    sourceRefs: []
+    # Numéro et accord du chauffeur pour ce canal transmis par le propriétaire
+    # du dépôt (message du 2026-11-24). Distinct du numéro d'appel.
+    value: '+33659855704'
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-24 : numéro WhatsApp et accord du chauffeur']
     publication: public
   business.locality:
     value: Saint-Rambert-d’Albon (Drôme)

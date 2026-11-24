@@ -7,7 +7,10 @@ import Site from '../layouts/Site.astro';
 import Icon from './Icon.astro';
 import Fact from './Fact.astro';
 import RouteArt from './RouteArt.astro';
-import { routes, services, phone, telHref, locality, hours, fact, PROVISIONAL } from '../content/site.ts';
+import RequestForm from './RequestForm.astro';
+import { Picture } from 'astro:assets';
+import assets from 'virtual:factory/assets';
+import { routes, services, phone, telHref, locality, hours, fact, whatsappDigits, PROVISIONAL } from '../content/site.ts';
 
 interface Props { path?: string; }
 const { path = '/' } = Astro.props;
@@ -15,6 +18,8 @@ const town = locality?.text.split(' (')[0] ?? null;
 const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
 const languages = fact('driver.languages');
+// Photo du véhicule réel : seulement si l'actif est publiable (registre).
+const photo = assets['taxi-gare'];
 ---
 
 <Site
@@ -24,31 +29,33 @@ const languages = fact('driver.languages');
   noindex={path !== '/'}
 >
   <section class="hero" aria-labelledby="hero-title">
+    {photo && (
+      <div class="hero-media">
+        <Picture src={photo.src} alt={photo.alt.fr ?? ''} widths={[480, 768, 1100, 1500]} sizes="(min-width: 62rem) 100vw, 100vw" formats={['avif', 'webp']} loading="eager" fetchpriority="high" decoding="async" class="hero-photo" />
+      </div>
+    )}
     <div class="wrap hero-grid">
-      <div class="stack">
+      <div class="hero-text stack">
         {locality && (
-          <p class="eyebrow"><Icon name="pin" /> Taxi à {locality.text}{locality.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
+          <p class="badge-place"><Icon name="pin" /> Taxi à {locality.text}{locality.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
         )}
         <h1 id="hero-title">{town ? <>Votre taxi à <em>{town}</em></> : 'Votre taxi local'}</h1>
-        <p class="lead">Trajets privés et professionnels, gares et aéroports, transport de patients sur prescription, et déplacement quand votre véhicule est immobilisé.</p>
-        <div class="cta-row">
-          {telHref && phone && (
-            <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>
-          )}
-          <a class="btn btn-ghost" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a>
+        <p class="lead">Déplacements privés et professionnels, transferts gares et aéroports, transport de patients sur prescription et longue distance.</p>
+        <ul class="checklist" role="list">
+          {experience && <li><Icon name="check" /><span>{experience.text}{experience.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+          {hours && <li><Icon name="check" /><span>{hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+          <li><Icon name="check" /><span>Demande simple : en ligne, par WhatsApp ou par téléphone</span></li>
+          <li><Icon name="check" /><span>Le chauffeur confirme chaque trajet</span></li>
+        </ul>
+        <div class="hero-ctas">
+          <a class="btn btn-call" href="#demande"><Icon name="route" /><span>Demander un trajet</span></a>
+          {telHref && phone && <a class="btn btn-outline" href={telHref}><Icon name="phone" /><span>{phone.text}</span></a>}
+          {whatsappDigits && <a class="btn btn-whatsapp" href={`https://wa.me/${whatsappDigits}`} rel="noopener noreferrer"><Icon name="chat" /><span>Écrire sur WhatsApp</span></a>}
         </div>
-        {phone?.provisional && <p class="eyebrow"><span class="provisional">numéro {PROVISIONAL}</span></p>}
       </div>
-      <aside class="trip-panel" aria-labelledby="panel-title">
-        <h2 id="panel-title">Un trajet à prévoir ?</h2>
-        <RouteArt />
-        <ol class="steps" role="list">
-          <li><h3>Décrivez le trajet</h3><p>Départ, destination, date et heure.</p></li>
-          <li><h3>Choisissez l’envoi</h3><p>Par e-mail, ou préparé dans WhatsApp.</p></li>
-          <li><h3>Le chauffeur vous rappelle</h3><p>Il confirme, ou non, la possibilité du trajet.</p></li>
-        </ol>
-        <p><a class="btn btn-primary" href={routes.demande}>Demander un trajet <Icon name="arrow" /></a></p>
-      </aside>
+      <div class="hero-form">
+        <RequestForm />
+      </div>
     </div>
   </section>
 
@@ -75,6 +82,20 @@ const languages = fact('driver.languages');
     </div>
   </section>
 
+  <section class="section section-tight steps-section" aria-labelledby="steps-title">
+    <div class="wrap two-col">
+      <div class="stack">
+        <h2 id="steps-title">Comment ça se passe</h2>
+        <RouteArt />
+      </div>
+      <ol class="steps" role="list">
+        <li><h3>Décrivez le trajet</h3><p>Départ, destination, date et heure : rien d’autre n’est obligatoire.</p></li>
+        <li><h3>Envoyez par WhatsApp ou par e-mail</h3><p>Ou appelez pour un départ dans moins d’une heure.</p></li>
+        <li><h3>Le chauffeur vous recontacte</h3><p>Il confirme, ou non, la possibilité du trajet et vous indique le tarif.</p></li>
+      </ol>
+    </div>
+  </section>
+
   <section class="section section-tight" aria-labelledby="chauffeur-title">
     <div class="wrap two-col">
       <div class="stack">
@@ -86,7 +107,7 @@ const languages = fact('driver.languages');
       <div class="callout">
         <p><strong>Véhicule</strong></p>
         <p><Fact k="vehicle.description" fallback="Modèle, capacité et équipement à confirmer par AFR TAXI." /></p>
-        <p>Les photos du véhicule réel seront ajoutées après autorisation ; aucune image d’illustration ne le remplace.</p>
+        <p>La photo de l’accueil montre le véhicule réel, devant la gare de Saint-Rambert-d’Albon.</p>
       </div>
     </div>
   </section>
@@ -118,7 +139,7 @@ const languages = fact('driver.languages');
       <h2 id="contact-title">Besoin d’un taxi ?</h2>
       <div class="cta-row">
         {telHref && phone && <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>}
-        <a class="btn btn-primary" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a>
+        <a class="btn btn-primary" href="#demande"><Icon name="route" /><span>Demander un trajet</span></a>
       </div>
     </div>
   </section>
