@@ -161,7 +161,7 @@
     "tests/integration/cli.test.ts": "1c71e32985429e19e3d696a7048c7a562f88b87afc9c43808f5c89f2c8c5045f",
     "tests/integration/release.test.ts": "deaa22140f075e11abee7b506a17097b52aec881a03c7c7c908f24bfe32e58de",
     "tests/integration/reuse.test.ts": "3c76bcaf7a51c8c0cfaf366de3223c496f3b91b2deb36f9801de73b44f7a137d",
-    "tests/integration/upgrade.test.ts": "3a6b95fe2b07197cb7f613b04adf76c2ef89f21826be4ff133c18c5801364314",
+    "tests/integration/upgrade.test.ts": "703691baa95853f4e6f680dbfc9d28a9e3542229922f33abb2cca128bb17a37a",
     "tests/integration/verify.test.ts": "ef171beeb503a691ee27467acf3e7405d0d8613bfb1951f8844c64b5ad2c866d",
     "tests/perf/lighthouse.ts": "f7f86b8688e1468fd7978730be706aa8e3efc1513ffd0bba5878340889a512ec",
     "tests/prototype/capture.ts": "30bdba5c1e9e13474b21018f6fadc106feb02b2cdeaa8378dc3e8cd4ea81a925",

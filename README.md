@@ -2,7 +2,7 @@
 
 Template de production de sites vitrines et B2B statiques (Astro), avec moteur actualisable, brief progressif et contrôles bloquants.
 
-> **État : incrément 1 sur 6.** Socle (contrats, configuration, CLI init/validate/doctor/schema, intégration Astro) et prototypes de direction de la démo. Le formulaire PHP, la release, les profils d'hébergement et la mise à jour du moteur ne sont pas encore implémentés : voir `docs/audit-remediation.md`.
+> **État : usine 0.2.0.** Contrats et brief progressif, formulaire PHP (contrat partagé JS/PHP, date/heure/nombre et règles entre champs), release auditée et empreintée, profil `vps-nginx` recetté en conteneurs, bascule/rollback, mise à jour de l'usine, publication attestée. Non implémentés : profils `apache-shared` et `vps-proxy`, SBOM, agrégat `qa`, redirections par chemin. Voir `docs/audit-remediation.md` et `docs/quality-report.md`.
 
 ## Démarrage (commandes vérifiées le 2026-11-24, Node 26.13.1 / npm 11.20.0)
 
@@ -18,7 +18,7 @@ FACTORY_SITE_DIR=examples/fixture-a-services npm run factory:validate -- --mode 
 FACTORY_SITE_DIR=examples/fixture-a-services npm run dev
 ```
 
-Puis ouvrir `/prototypes/planche/`. Pour créer votre propre site à partir d'un brief :
+Puis ouvrir `/prototypes/planche/`. Pour créer votre propre site à partir d'un brief (guide : `docs/nouveau-site.md`) :
 
 ```bash
 npm run factory:init -- --brief chemin/vers/brief.yaml
