@@ -24,8 +24,9 @@ export function checkFormContract(brief: Brief, contract: FormContract | null): 
       if (!f.label[l]) out.push(issue(`content/form.yaml fields.${f.name}.label.${l}`, 'form.label-locale', 'preview', `libellé absent pour « ${l} »`, 'Traduire le libellé.'));
     }
   }
-  if (!contract.fields.some((f) => f.kind === 'email' && f.required)) {
-    out.push(issue('content/form.yaml fields', 'form.reply-address', 'draft', 'aucun champ e-mail obligatoire : impossible de répondre (Reply-To)', 'Ajouter un champ email requis.'));
+  // Il faut au moins un moyen de répondre : e-mail (Reply-To) ou téléphone (rappel).
+  if (!contract.fields.some((f) => (f.kind === 'email' || f.kind === 'tel') && f.required)) {
+    out.push(issue('content/form.yaml fields', 'form.reply-address', 'draft', 'aucun champ e-mail ou téléphone obligatoire : impossible de répondre', 'Rendre obligatoire un champ email ou tel.'));
   }
   return out;
 }

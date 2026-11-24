@@ -163,7 +163,7 @@ export async function assembleRelease(opts: {
       transportKind: e.transport,
     };
     writeFileSync(join(app, 'config', 'runtime.json'), `${JSON.stringify(runtime, null, 2)}\n`);
-    writeFileSync(join(app, 'config', 'form-contract.json'), `${JSON.stringify(serverContract(form), null, 2)}\n`);
+    writeFileSync(join(app, 'config', 'form-contract.json'), `${JSON.stringify(serverContract(form, config.defaultLocale), null, 2)}\n`);
     mkdirSync(join(staging, 'config', 'php-fpm'), { recursive: true });
     writeFileSync(join(staging, 'config', 'php-fpm', 'pool.conf'), renderFpmPool(brief.site.id, secretEnv, profile.varDir));
   }

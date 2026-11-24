@@ -68,15 +68,27 @@ final class Handler
         } catch (\RuntimeException) {
             return $fail(503, 'server_error', 'unavailable');
         }
-        $result = $this->contract->validate($post);
+        $result = $this->contract->validate($post, $now);
         if (!$result['ok']) {
             return $fail(422, 'invalid', 'invalid', ['errors' => $result['errors']]);
         }
         $lines = [];
         foreach ($this->contract->fields() as $f) {
             $v = $result['values'][$f['name']] ?? '';
+            $label = isset($f['label']) && is_string($f['label']) && $f['label'] !== '' ? $f['label'] : $f['name'];
             if ($v !== '') {
-                $lines[] = $f['kind'] === 'textarea' ? "{$f['name']}:\n{$v}\n" : "{$f['name']}: {$v}";
+                $lines[] = $f['kind'] === 'textarea' ? "{$label} :\n{$v}\n" : "{$label} : {$v}";
+            }
+        }
+        // Rappel explicite de l'instant interprété (fuseau déclaré, décalage UTC).
+        foreach ($this->contract->rules() as $r) {
+            if (($r['kind'] ?? '') === 'datetime-future' && ($result['values'][$r['date']] ?? '') !== '' && ($result['values'][$r['time']] ?? '') !== '') {
+                $instants = Contract::localToInstants($result['values'][$r['date']], $result['values'][$r['time']], (string) $r['timeZone']);
+                if (count($instants) === 1) {
+                    $local = (new \DateTimeImmutable('@' . $instants[0]))->setTimezone(new \DateTimeZone((string) $r['timeZone']));
+                    $lines[] = '';
+                    $lines[] = 'Horaire interprété : ' . $local->format('Y-m-d H:i') . ' (' . $r['timeZone'] . ', UTC' . $local->format('P') . ')';
+                }
             }
         }
         $lines[] = '';

@@ -95,7 +95,7 @@ function factoryIntegration(dir: string, brief: Brief, config: ResolvedConfig, f
                   if (id === RESOLVED_VIRTUAL_ID) return `export default ${JSON.stringify(config)};`;
                   if (id === RESOLVED_FORM_ID) {
                     // Contrat public : libellés, règles, pages de résultat. Aucune adresse.
-                    const value = form ? { endpoint: FORM_ENDPOINT, contract: form, server: serverContract(form) } : null;
+                    const value = form ? { endpoint: FORM_ENDPOINT, contract: form, server: serverContract(form, config.defaultLocale) } : null;
                     return `export default ${JSON.stringify(value)};`;
                   }
                   if (id === RESOLVED_ASSETS_ID) return virtualAssetsModule(dir, registry, publishableIds);
