@@ -1,0 +1,129 @@
+---
+/**
+ * Gabarit AFR TAXI. Lit uniquement la configuration résolue (faits projetés).
+ * Navigation MPA, aucun script global : l'appel et la navigation fonctionnent
+ * sans JavaScript et sans traceur.
+ */
+import { Font } from 'astro:assets';
+import config from 'virtual:factory/config';
+import { factFor } from '@engine/astro';
+import '../styles/base.css';
+import '../../design/directions/ivoire.css';
+import '../../design/directions/bandeau.css';
+import Icon from '../components/Icon.astro';
+import { DIRECTION, type Direction, nav, routes, phone, telHref, email, footerNote, services } from '../content/site.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Chemin canonique de la page (avec barre finale). */
+  path: string;
+  noindex?: boolean;
+  direction?: Direction;
+  /** Masque la barre d'action mobile (pages où elle ferait doublon). */
+  bar?: boolean;
+}
+const { title, description, path, noindex = false, direction = DIRECTION, bar = true } = Astro.props;
+const abs = (p: string) => new URL(p, config.origin).href;
+const current = (href: string) => (path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined);
+
+// Données structurées : uniquement des faits CONFIRMÉS autorisés sur la surface JSON-LD.
+const confirmed = (k: string) => (config.facts[k] && !config.facts[k].provisional ? factFor(config, k, 'jsonld') : undefined);
+const ldPhone = confirmed('contact.phoneE164');
+const ldName = confirmed('legal.name');
+const ld = ldName && ldPhone
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'LocalBusiness',
+      name: ldName,
+      url: config.canonicalOrigin + '/',
+      telephone: ldPhone,
+      ...(confirmed('contact.email') ? { email: confirmed('contact.email') } : {}),
+      ...(confirmed('business.serviceArea') ? { areaServed: confirmed('business.serviceArea') } : {}),
+    }
+  : null;
+---
+
+<!doctype html>
+<html lang="fr" class={`dir-${direction}`}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content={config.indexable && !noindex ? 'index, follow' : 'noindex, nofollow'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content={abs(path)} />
+    <link rel="canonical" href={abs(path)} />
+    <meta name="theme-color" content={direction === 'bandeau' ? '#15191f' : '#fbf8f1'} />
+    <Font cssVariable="--font-public-sans" preload={[{ weight: '100 900', style: 'normal' }]} />
+    {direction === 'bandeau' && <Font cssVariable="--font-plex-condensed" preload />}
+    {direction !== 'bandeau' && <Font cssVariable="--font-plex-condensed" />}
+    {ld && <script type="application/ld+json" is:inline set:html={JSON.stringify(ld)} />}
+  </head>
+  <body>
+    <a class="skip" href="#contenu">Aller au contenu</a>
+    {config.target === 'preview' && (
+      <p class="preview-banner">Préversion non publiée : les mentions « à confirmer » attendent la validation d’AFR TAXI.</p>
+    )}
+    <header class="masthead">
+      <div class="wrap masthead-inner">
+        <a class="brand" href={routes.home} aria-label="AFR TAXI, accueil">
+          <span class="brand-mark">AFR</span><span class="brand-word">TAXI</span>
+        </a>
+        <details class="menu">
+          <summary><span class="menu-label">Menu</span></summary>
+          <nav aria-label="Navigation principale">
+            <ul>
+              {nav.map((n) => <li><a href={n.href} aria-current={current(n.href)}>{n.label}</a></li>)}
+            </ul>
+          </nav>
+        </details>
+        <nav class="nav-wide" aria-label="Navigation principale">
+          <ul>
+            {nav.map((n) => <li><a href={n.href} aria-current={current(n.href)}>{n.label}</a></li>)}
+          </ul>
+        </nav>
+        {telHref && phone && (
+          <a class="btn btn-call masthead-call" href={telHref}><Icon name="phone" /><span>{phone.text}</span></a>
+        )}
+      </div>
+    </header>
+
+    <main id="contenu"><slot /></main>
+
+    <footer class="footer">
+      <div class="wrap footer-grid">
+        <div>
+          <p class="footer-brand">AFR TAXI</p>
+          {telHref && phone && <p><a href={telHref}>{phone.text}</a>{phone.provisional && <span class="provisional">à confirmer</span>}</p>}
+          {email && <p><a href={`mailto:${email.text}`}>{email.text}</a>{email.provisional && <span class="provisional">à confirmer</span>}</p>}
+        </div>
+        <nav aria-label="Services">
+          <p class="footer-title">Services</p>
+          <ul>{services.map((s) => <li><a href={s.href}>{s.title}</a></li>)}</ul>
+        </nav>
+        <nav aria-label="Informations">
+          <p class="footer-title">Informations</p>
+          <ul>
+            <li><a href={routes.apropos}>Le chauffeur</a></li>
+            <li><a href={routes.contact}>Contact et demande de trajet</a></li>
+            <li><a href={routes.mentions}>Mentions légales</a></li>
+            <li><a href={routes.vie}>Vie privée</a></li>
+          </ul>
+        </nav>
+      </div>
+      {config.target === 'preview' && <p class="wrap footer-note">{footerNote}</p>}
+    </footer>
+
+    {bar && (
+      <nav class="action-bar" aria-label="Actions rapides">
+        {telHref && <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler</span></a>}
+        <a class="btn btn-primary" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a>
+      </nav>
+    )}
+  </body>
+</html>

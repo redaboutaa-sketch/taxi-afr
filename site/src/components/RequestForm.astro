@@ -1,0 +1,128 @@
+---
+/**
+ * Formulaire de demande de trajet. Une seule saisie, deux envois au choix :
+ *  - e-mail : POST classique vers l'endpoint du moteur (fonctionne SANS
+ *    JavaScript : page de résultat) ; le script ajoute la validation immédiate
+ *    et l'envoi sans rechargement ;
+ *  - WhatsApp : bouton (script) qui valide AVEC LES MÊMES RÈGLES, affiche un
+ *    récapitulatif, puis propose un lien de conversation construit au clic.
+ *    Aucune requête vers notre serveur dans ce cas.
+ */
+import form from 'virtual:factory/form';
+import Icon from './Icon.astro';
+import { request as t } from '../content/request.ts';
+import { whatsappDigits, telHref, phone } from '../content/site.ts';
+
+if (!form) throw new Error('contrat de formulaire requis (site/content/form.yaml)');
+const fields = form.contract.fields;
+const tripNames = ['pickup', 'dropoff', 'date', 'time', 'passengers', 'travel_ref', 'details'];
+const groups = [
+  { legend: t.formTitle, items: fields.filter((f) => tripNames.includes(f.name)) },
+  { legend: t.contactTitle, items: fields.filter((f) => !tripNames.includes(f.name)) },
+];
+const wide = new Set(['pickup', 'dropoff', 'details']);
+const clientData = JSON.stringify({
+  contract: form.server,
+  endpoint: form.endpoint,
+  whatsapp: whatsappDigits,
+  messages: {
+    errors: t.errors, accepted: t.accepted, unavailable: t.unavailable, network: t.network, summary: t.summary,
+    sending: t.sending, submit: t.submitEmail, copied: t.recapCopied, copyFailed: t.recapCopyFailed,
+  },
+});
+const types = { tel: 'tel', email: 'email', date: 'date', time: 'time', integer: 'number' } as const;
+const inputType = (kind: string): 'tel' | 'email' | 'date' | 'time' | 'number' | 'text' => types[kind as keyof typeof types] ?? 'text';
+---
+
+<div class="status" data-form-status role="status" aria-live="polite" tabindex="-1" hidden></div>
+<form class="request" id="demande" method="post" action={form.endpoint} novalidate data-request-form data-client={clientData} aria-describedby="request-notice">
+  <div class="summary-box" data-form-summary tabindex="-1" hidden>
+    <h2>{t.summary}</h2>
+    <ul data-form-summary-list></ul>
+  </div>
+  <input type="hidden" name="locale" value="fr" />
+  {groups.map((g) => (
+    <fieldset>
+      <legend>{g.legend}</legend>
+      <div class="fields">
+        {g.items.map((f) => {
+          const hintId = f.hint ? `${f.name}-hint` : undefined;
+          const errId = `${f.name}-error`;
+          const describedBy = [hintId, errId].filter(Boolean).join(' ');
+          return (
+            <div class:list={['field', { 'field-wide': wide.has(f.name) }]}>
+              <label for={f.name}>{f.label.fr} {!f.required && <span class="optional">{t.optional}</span>}</label>
+              {f.hint?.fr && <p class="hint" id={hintId}>{f.hint.fr}</p>}
+              {f.kind === 'textarea' ? (
+                <textarea id={f.name} name={f.name} required={f.required} maxlength={f.maxLength} aria-describedby={describedBy} />
+              ) : (
+                <input
+                  id={f.name}
+                  name={f.name}
+                  type={inputType(f.kind)}
+                  required={f.required}
+                  maxlength={f.kind === 'integer' || f.kind === 'date' || f.kind === 'time' ? undefined : f.maxLength}
+                  min={f.kind === 'integer' ? f.min : undefined}
+                  max={f.kind === 'integer' ? f.max : undefined}
+                  step={f.kind === 'integer' ? 1 : undefined}
+                  inputmode={f.kind === 'integer' ? 'numeric' : undefined}
+                  autocomplete={f.autocomplete}
+                  aria-describedby={describedBy}
+                  spellcheck={f.kind === 'email' || f.kind === 'tel' ? 'false' : undefined}
+                />
+              )}
+              <p class="error" id={errId} data-error-for={f.name}></p>
+            </div>
+          );
+        })}
+      </div>
+    </fieldset>
+  ))}
+  <div class="trap" aria-hidden="true">
+    <label for={form.contract.honeypot}>Ne pas remplir</label>
+    <input id={form.contract.honeypot} name={form.contract.honeypot} type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <div class="notice" id="request-notice">
+    <strong>{t.notice}</strong>
+    <p>{t.noticeDetail}</p>
+  </div>
+
+  <div class="actions">
+    <div>
+      <button class="btn btn-primary" type="submit" data-submit><Icon name="mail" /><span data-submit-label>{t.submitEmail}</span></button>
+      <p class="action-help">{t.submitEmailHelp}</p>
+    </div>
+    <div>
+      {whatsappDigits ? (
+        <>
+          <button class="btn btn-whatsapp" type="button" data-whatsapp hidden><Icon name="chat" /><span>{t.whatsapp}</span></button>
+          <p class="action-help" data-whatsapp-help hidden>{t.whatsappHelp}</p>
+          <noscript>
+            <p><a class="btn btn-whatsapp" href={`https://wa.me/${whatsappDigits}`} rel="noopener noreferrer">Écrire sur WhatsApp (sans message préparé)</a></p>
+          </noscript>
+        </>
+      ) : (
+        <p class="action-help" data-whatsapp-unavailable>{t.whatsappUnavailable}</p>
+      )}
+    </div>
+  </div>
+
+  <section class="recap" data-recap tabindex="-1" aria-labelledby="recap-title" hidden>
+    <h2 id="recap-title">{t.recapTitle}</h2>
+    <p>{t.recapIntro}</p>
+    <pre data-recap-text></pre>
+    <div class="cta-row">
+      <a class="btn btn-whatsapp" data-recap-open href="#demande" target="_blank" rel="noopener noreferrer"><Icon name="chat" /><span>{t.recapOpen}</span></a>
+      <button class="btn btn-ghost" type="button" data-recap-copy>{t.recapCopy}</button>
+    </div>
+    <p data-recap-copy-status role="status" aria-live="polite"></p>
+    <p>{t.recapAfter}</p>
+    {telHref && phone && <p><a href={telHref}>Appeler le {phone.text}</a></p>}
+  </section>
+</form>
+
+<script>
+  import { initRequestForm } from '../scripts/request-form.ts';
+  initRequestForm();
+</script>

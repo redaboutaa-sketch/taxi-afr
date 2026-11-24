@@ -1,0 +1,31 @@
+---
+/**
+ * Ancienne URL /assistance : elle mélangeait transport médical et déplacement
+ * après un incident. Page d'orientation conservée (pas de redirection
+ * arbitraire) vers les deux pages séparées.
+ */
+import Site from '../layouts/Site.astro';
+import Icon from '../components/Icon.astro';
+import { routes } from '../content/site.ts';
+---
+<Site title="Transport médical ou assistance après un incident — AFR TAXI" description="Deux besoins différents : transport de patients en taxi conventionné, ou transport des personnes après une panne ou un accident." path="/assistance/">
+  <div class="wrap page-head stack">
+    <h1>Transport médical ou déplacement après un incident ?</h1>
+    <p class="lead">Ce sont deux services distincts, avec leurs propres conditions. Choisissez celui qui correspond à votre situation.</p>
+  </div>
+  <div class="wrap orient">
+    <section class="orient-card" aria-labelledby="o-med">
+      <Icon name="cross" />
+      <h2 id="o-med">Transport de patients</h2>
+      <p>Trajet vers un rendez-vous médical, une hospitalisation ou des soins, en taxi conventionné sur prescription.</p>
+      <a class="btn btn-primary" href={routes.medical}>Conditions et organisation <Icon name="arrow" /></a>
+    </section>
+    <section class="orient-card" aria-labelledby="o-inc">
+      <Icon name="road" />
+      <h2 id="o-inc">Après une panne ou un accident</h2>
+      <p>Votre véhicule est immobilisé : transport des personnes jusqu’à leur destination. Pas de remorquage ni de secours.</p>
+      <a class="btn btn-primary" href={routes.incident}>Comment ça se passe <Icon name="arrow" /></a>
+    </section>
+  </div>
+  <p class="wrap section-tight">En cas d’urgence médicale ou d’accident avec blessé, appelez le 15 ou le 112.</p>
+</Site>

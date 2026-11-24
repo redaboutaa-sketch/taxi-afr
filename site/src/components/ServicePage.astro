@@ -1,0 +1,30 @@
+---
+/**
+ * Gabarit des pages de service : titre court, statut du service (fait du
+ * brief), contenu, puis les deux actions (appel, demande).
+ */
+import Site from '../layouts/Site.astro';
+import Icon from './Icon.astro';
+import { fact, routes, phone, telHref, PROVISIONAL } from '../content/site.ts';
+interface Props { title: string; description: string; path: string; h1: string; lead: string; factKey?: string; requestCta?: boolean; }
+const { title, description, path, h1, lead, factKey, requestCta = true } = Astro.props;
+const service = factKey ? fact(factKey) : null;
+---
+<Site title={title} description={description} path={path}>
+  <div class="wrap page-head stack">
+    <p class="eyebrow"><a href={routes.home}>Accueil</a> / {h1}</p>
+    <h1>{h1}</h1>
+    <p class="lead">{lead}</p>
+    {factKey && !service && <p class="callout">Ce service reste à confirmer par AFR TAXI : appelez pour vérifier.</p>}
+    {service?.provisional && <p><span class="provisional">service {PROVISIONAL}</span></p>}
+  </div>
+  <div class="wrap two-col">
+    <div class="prose"><slot /></div>
+    <aside class="callout stack" aria-label="Contacter AFR TAXI">
+      <h2>Organiser ce trajet</h2>
+      {telHref && phone && <p><a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a></p>}
+      {requestCta && <p><a class="btn btn-primary" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a></p>}
+      <slot name="aside" />
+    </aside>
+  </div>
+</Site>

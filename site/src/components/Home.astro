@@ -1,0 +1,135 @@
+---
+/**
+ * Accueil : hero → besoins/services → organisation en trois étapes →
+ * chauffeur et véhicule → secteur → réponses utiles → contact.
+ * La composition varie selon la direction (prototypes A/B), le contenu non.
+ */
+import Site from '../layouts/Site.astro';
+import Icon from './Icon.astro';
+import Fact from './Fact.astro';
+import RouteArt from './RouteArt.astro';
+import { type Direction, DIRECTION, routes, services, phone, telHref, locality, hours, fact, PROVISIONAL } from '../content/site.ts';
+
+interface Props { direction?: Direction; path?: string; }
+const { direction = DIRECTION, path = '/' } = Astro.props;
+const town = locality?.text.split(' (')[0] ?? null;
+const visible = services.filter((s) => fact(s.key));
+const experience = fact('driver.experience');
+const languages = fact('driver.languages');
+---
+
+<Site
+  title={town ? `AFR TAXI — Votre taxi à ${town}` : 'AFR TAXI — Taxi local'}
+  description="Taxi privé, transferts vers les gares et aéroports, transport de patients conventionné et déplacement après un incident. Appel direct ou demande de trajet en ligne."
+  path={path}
+  direction={direction}
+  noindex={path !== '/'}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div class="stack">
+        {locality && (
+          <p class="eyebrow"><Icon name="pin" /> Taxi à {locality.text}{locality.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
+        )}
+        <h1 id="hero-title">{town ? <>Votre taxi à <em>{town}</em></> : 'Votre taxi local'}</h1>
+        <p class="lead">Trajets privés et professionnels, gares et aéroports, transport de patients sur prescription, et déplacement quand votre véhicule est immobilisé.</p>
+        <div class="cta-row">
+          {telHref && phone && (
+            <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>
+          )}
+          <a class="btn btn-ghost" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a>
+        </div>
+        {phone?.provisional && <p class="eyebrow"><span class="provisional">numéro {PROVISIONAL}</span></p>}
+      </div>
+      <aside class="trip-panel" aria-labelledby="panel-title">
+        <h2 id="panel-title">Un trajet à prévoir ?</h2>
+        <RouteArt />
+        <ol class="steps" role="list">
+          <li><h3>Décrivez le trajet</h3><p>Départ, destination, date et heure.</p></li>
+          <li><h3>Choisissez l’envoi</h3><p>Par e-mail, ou préparé dans WhatsApp.</p></li>
+          <li><h3>Le chauffeur vous rappelle</h3><p>Il confirme, ou non, la possibilité du trajet.</p></li>
+        </ol>
+        <p><a class="btn btn-primary" href={routes.demande}>Demander un trajet <Icon name="arrow" /></a></p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="facts-strip" aria-label="Repères">
+    <ul class="wrap" role="list">
+      {hours && <li><Icon name="clock" /><span><strong>Disponibilité annoncée</strong><br />{hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+      <li><Icon name="phone" /><span><strong>Appel direct</strong><br />pour un départ imminent</span></li>
+      <li><Icon name="route" /><span><strong>Demande en ligne</strong><br />pour un trajet planifié</span></li>
+      {languages && <li><Icon name="chat" /><span><strong>Langues parlées</strong><br />{languages.text}{languages.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+    </ul>
+  </section>
+
+  <section class="section" aria-labelledby="services-title">
+    <div class="wrap stack-lg">
+      <div class="stack">
+        <h2 id="services-title">Quel est votre besoin ?</h2>
+        <p class="lead">Chaque service a sa page : ce qui est proposé, comment l’organiser, ce qui n’est pas promis.</p>
+      </div>
+      {direction === 'bandeau' ? (
+        <ul class="services-cards" role="list">
+          {visible.map((s) => (
+            <li><a href={s.href}><span class="badge"><Icon name={s.icon} /></span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></a></li>
+          ))}
+        </ul>
+      ) : (
+        <ul class="service-list" role="list">
+          {visible.map((s) => (
+            <li><a href={s.href}><Icon name={s.icon} /><span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></span><span class="go"><Icon name="arrow" /></span></a></li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="chauffeur-title">
+    <div class="wrap two-col">
+      <div class="stack">
+        <h2 id="chauffeur-title">Un chauffeur indépendant, joignable directement</h2>
+        {experience && <p>{experience.text}{experience.provisional && <span class="provisional">{PROVISIONAL}</span>}.</p>}
+        <p>Vous parlez à la personne qui conduit : elle vous indique si le trajet est possible, à quelle heure partir et ce qu’il faut prévoir.</p>
+        <p><a class="solo" href={routes.apropos}>En savoir plus sur le chauffeur et le véhicule</a></p>
+      </div>
+      <div class="callout">
+        <p><strong>Véhicule</strong></p>
+        <p><Fact k="vehicle.description" fallback="Modèle, capacité et équipement à confirmer par AFR TAXI." /></p>
+        <p>Les photos du véhicule réel seront ajoutées après autorisation ; aucune image d’illustration ne le remplace.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="faq-title">
+    <div class="wrap faq stack">
+      <h2 id="faq-title">Réponses utiles</h2>
+      <details>
+        <summary>Ma demande en ligne vaut-elle réservation ?</summary>
+        <p>Non. Elle transmet votre trajet au chauffeur, qui vous rappelle pour confirmer ou non sa possibilité. Pour un départ imminent, appelez directement.</p>
+      </details>
+      <details>
+        <summary>Quel est le prix d’un trajet ?</summary>
+        <p>Le tarif dépend du trajet et de l’horaire. Demandez-le au chauffeur lors de l’appel ou de sa réponse ; aucun tarif n’est affiché tant qu’il n’a pas été validé.</p>
+      </details>
+      <details>
+        <summary>Le transport de patients est-il pris en charge ?</summary>
+        <p>Cela dépend de votre prescription et de votre situation auprès de l’Assurance Maladie. <a href={routes.medical}>Voir les conditions et ce qu’il faut prévoir</a>.</p>
+      </details>
+      <details>
+        <summary>Et si je n’utilise pas WhatsApp ?</summary>
+        <p>Envoyez la demande par e-mail depuis le formulaire, ou appelez : les deux restent disponibles.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="contact-title">
+    <div class="wrap callout stack">
+      <h2 id="contact-title">Besoin d’un taxi ?</h2>
+      <div class="cta-row">
+        {telHref && phone && <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>}
+        <a class="btn btn-primary" href={routes.demande}><Icon name="route" /><span>Demander un trajet</span></a>
+      </div>
+    </div>
+  </section>
+</Site>

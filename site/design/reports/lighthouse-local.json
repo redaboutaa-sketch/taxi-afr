@@ -1,0 +1,441 @@
+{
+  "release": "afr-taxi-preview-b7d83c7f00d9",
+  "protocol": {
+    "version": "Lighthouse 13.6.0 · HeadlessChrome/158.0.0.0 · mobile, throttling simulate",
+    "runsPerPage": 3,
+    "median": "exécution de score de performance médian",
+    "server": "nginx (nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a), configuration générée de la release",
+    "budgets": {
+      "performance": 0.95,
+      "jsBytes": 61440,
+      "homeBytes": 1048576
+    }
+  },
+  "notes": [
+    "Preview locale en HTTP et noindex : les audits HTTPS (bonnes pratiques) et indexabilité (SEO) échouent par construction, ils ne sont pas des budgets.",
+    "Laboratoire uniquement : aucune donnée terrain (INP, LCP p75)."
+  ],
+  "results": [
+    {
+      "page": "/",
+      "runs": [
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 750.737,
+            "lcpMs": 750.737,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 750.737
+          },
+          "bytes": {
+            "total": 38589,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 5637,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.126,
+            "lcpMs": 751.126,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.126
+          },
+          "bytes": {
+            "total": 38589,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 5637,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.079,
+            "lcpMs": 751.079,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.079
+          },
+          "bytes": {
+            "total": 38589,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 5637,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        }
+      ],
+      "median": {
+        "score": {
+          "performance": 1,
+          "accessibility": 1,
+          "best-practices": 0.96,
+          "seo": 0.66
+        },
+        "metrics": {
+          "fcpMs": 751.126,
+          "lcpMs": 751.126,
+          "tbtMs": 0,
+          "cls": 0,
+          "siMs": 751.126
+        },
+        "bytes": {
+          "total": 38589,
+          "script": 0,
+          "font": 27456,
+          "image": 0,
+          "stylesheet": 5496,
+          "document": 5637,
+          "inlineScript": 0
+        },
+        "failedA11y": []
+      }
+    },
+    {
+      "page": "/contact/",
+      "runs": [
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.339,
+            "lcpMs": 751.339,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.339
+          },
+          "bytes": {
+            "total": 43826,
+            "script": 3981,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 6893,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.58,
+            "lcpMs": 751.58,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.58
+          },
+          "bytes": {
+            "total": 43826,
+            "script": 3981,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 6893,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.834,
+            "lcpMs": 751.834,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.834
+          },
+          "bytes": {
+            "total": 43826,
+            "script": 3981,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 6893,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        }
+      ],
+      "median": {
+        "score": {
+          "performance": 1,
+          "accessibility": 1,
+          "best-practices": 0.96,
+          "seo": 0.66
+        },
+        "metrics": {
+          "fcpMs": 751.58,
+          "lcpMs": 751.58,
+          "tbtMs": 0,
+          "cls": 0,
+          "siMs": 751.58
+        },
+        "bytes": {
+          "total": 43826,
+          "script": 3981,
+          "font": 27456,
+          "image": 0,
+          "stylesheet": 5496,
+          "document": 6893,
+          "inlineScript": 0
+        },
+        "failedA11y": []
+      }
+    },
+    {
+      "page": "/transport-medical/",
+      "runs": [
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 752.724,
+            "lcpMs": 752.724,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 752.724
+          },
+          "bytes": {
+            "total": 36861,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3909,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.027,
+            "lcpMs": 751.027,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.027
+          },
+          "bytes": {
+            "total": 36861,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3909,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.62,
+            "lcpMs": 751.62,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.62
+          },
+          "bytes": {
+            "total": 36861,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3909,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        }
+      ],
+      "median": {
+        "score": {
+          "performance": 1,
+          "accessibility": 1,
+          "best-practices": 0.96,
+          "seo": 0.66
+        },
+        "metrics": {
+          "fcpMs": 751.027,
+          "lcpMs": 751.027,
+          "tbtMs": 0,
+          "cls": 0,
+          "siMs": 751.027
+        },
+        "bytes": {
+          "total": 36861,
+          "script": 0,
+          "font": 27456,
+          "image": 0,
+          "stylesheet": 5496,
+          "document": 3909,
+          "inlineScript": 0
+        },
+        "failedA11y": []
+      }
+    },
+    {
+      "page": "/contact/envoyee/",
+      "runs": [
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 751.229,
+            "lcpMs": 751.229,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 751.229
+          },
+          "bytes": {
+            "total": 36306,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3354,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 750.937,
+            "lcpMs": 750.937,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 750.937
+          },
+          "bytes": {
+            "total": 36306,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3354,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        },
+        {
+          "score": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "fcpMs": 750.939,
+            "lcpMs": 750.939,
+            "tbtMs": 0,
+            "cls": 0,
+            "siMs": 750.939
+          },
+          "bytes": {
+            "total": 36306,
+            "script": 0,
+            "font": 27456,
+            "image": 0,
+            "stylesheet": 5496,
+            "document": 3354,
+            "inlineScript": 0
+          },
+          "failedA11y": []
+        }
+      ],
+      "median": {
+        "score": {
+          "performance": 1,
+          "accessibility": 1,
+          "best-practices": 0.96,
+          "seo": 0.66
+        },
+        "metrics": {
+          "fcpMs": 750.937,
+          "lcpMs": 750.937,
+          "tbtMs": 0,
+          "cls": 0,
+          "siMs": 750.937
+        },
+        "bytes": {
+          "total": 36306,
+          "script": 0,
+          "font": 27456,
+          "image": 0,
+          "stylesheet": 5496,
+          "document": 3354,
+          "inlineScript": 0
+        },
+        "failedA11y": []
+      }
+    }
+  ],
+  "problems": []
+}

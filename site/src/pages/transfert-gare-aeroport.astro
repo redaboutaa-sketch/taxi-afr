@@ -1,0 +1,24 @@
+---
+import ServicePage from '../components/ServicePage.astro';
+import Fact from '../components/Fact.astro';
+---
+<ServicePage
+  title="Transferts gares et aéroports — AFR TAXI"
+  description="Taxi vers ou depuis une gare ou un aéroport : indiquez l’horaire et le numéro de train ou de vol, le chauffeur organise la prise en charge."
+  path="/transfert-gare-aeroport/"
+  h1="Transferts gares et aéroports"
+  lead="Un train ou un avion à prendre, ou quelqu’un à aller chercher : donnez l’horaire et la référence, le chauffeur prévoit la marge utile."
+  factKey="service.transfers"
+>
+  <h2>Destinations</h2>
+  <p><Fact k="service.transferDestinations" fallback="Liste des gares et aéroports desservis à confirmer par AFR TAXI. Indiquez votre destination dans la demande." /></p>
+  <h2>Ce qu’il faut indiquer</h2>
+  <ul>
+    <li>L’adresse de départ et la gare ou l’aéroport.</li>
+    <li>La date et l’heure souhaitées de départ (heure de Paris).</li>
+    <li>Le numéro de train ou de vol, pour suivre un éventuel retard à l’arrivée.</li>
+    <li>Le nombre de voyageurs et les bagages encombrants.</li>
+  </ul>
+  <h2>Retard de train ou de vol</h2>
+  <p>Les conditions en cas de retard (attente, report) se conviennent avec le chauffeur lors de la confirmation.</p>
+</ServicePage>

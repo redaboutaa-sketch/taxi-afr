@@ -1,0 +1,324 @@
+{
+  "release": "afr-taxi-preview-b7d83c7f00d9",
+  "archiveSha256": "e6a016d352911fc3499163de13d3a134236cb30fe1a7e1aa8aeff767a2581da4",
+  "images": {
+    "php": "php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826",
+    "nginx": "nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a"
+  },
+  "versions": {
+    "php": "8.4.28",
+    "nginx": "nginx version: nginx/1.30.8"
+  },
+  "browsers": "chromium",
+  "date": "2026-11-24T15:32:59.032Z",
+  "proves": "acceptation par une boîte SMTP de capture locale",
+  "doesNotProve": [
+    "TLS",
+    "DNS / SPF / DKIM / DMARC",
+    "réception dans la boîte du chauffeur",
+    "serveur de production",
+    "ouverture réelle de WhatsApp"
+  ],
+  "checks": [
+    {
+      "check": "archive.sha256",
+      "ok": true,
+      "detail": "e6a016d352911fc3…"
+    },
+    {
+      "check": "release.files-match-SHA256SUMS",
+      "ok": true,
+      "detail": "249 fichiers"
+    },
+    {
+      "check": "nginx.config-test (nginx -t)",
+      "ok": true,
+      "detail": "nginx: configuration file /etc/nginx/nginx.conf test is successful"
+    },
+    {
+      "check": "http.home-200",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "http.header-csp",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "http.meta-csp-no-unsafe",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "http.noindex-header",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "call.tel-link-without-js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "http.no-third-party-request-in-html",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "route /taxi-prive/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/taxi-prive/"
+    },
+    {
+      "check": "route /transfert-gare-aeroport/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/transfert-gare-aeroport/"
+    },
+    {
+      "check": "route /a-propos/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/a-propos/"
+    },
+    {
+      "check": "route /contact/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/contact/"
+    },
+    {
+      "check": "route /assistance/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/assistance/"
+    },
+    {
+      "check": "route /transport-medical/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/transport-medical/"
+    },
+    {
+      "check": "route /assistance-deplacement/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/assistance-deplacement/"
+    },
+    {
+      "check": "route /mentions-legales/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/mentions-legales/"
+    },
+    {
+      "check": "route /vie-privee/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/vie-privee/"
+    },
+    {
+      "check": "route /privacy/",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/privacy/"
+    },
+    {
+      "check": "route /taxi-prive",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/taxi-prive/"
+    },
+    {
+      "check": "route /contact",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/contact/"
+    },
+    {
+      "check": "route /assistance",
+      "ok": true,
+      "detail": "200 http://127.0.0.1:8088/assistance/"
+    },
+    {
+      "check": "http.404-page",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "http.not-served /app/config/runtime.json",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.not-served /.git/config",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.not-served /api/autre.php",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.not-served /SHA256SUMS",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.not-served /release.json",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.not-served /config/nginx/site.conf",
+      "ok": true,
+      "detail": "404"
+    },
+    {
+      "check": "http.no-internal-data-served",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.no-medical-field",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.not-a-booking-notice",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.past-date-rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.impossible-date-rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.ambiguous-dst-time-rejected",
+      "ok": true,
+      "detail": "[{\"field\":\"time\",\"code\":\"ambiguous_time\"}]"
+    },
+    {
+      "check": "form.header-injection-rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.foreign-origin-403",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.oversize-413",
+      "ok": true,
+      "detail": "413"
+    },
+    {
+      "check": "form.unexpected-field-rejected",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.accepted-by-smtp-capture",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "mail.envelope-to-capture-recipient",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "mail.from-is-sending-identity",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "mail.reply-to-is-submitter",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "mail.readable-trip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.email-optional-phone-suffices",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.transport-error-502",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] nojs.call-link",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] nojs.invalid-to-result-page",
+      "ok": true,
+      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=c0ebdf7fce6c"
+    },
+    {
+      "check": "[chromium] nojs.accepted-to-result-page",
+      "ok": true,
+      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=8d1dc635cb97"
+    },
+    {
+      "check": "[chromium] nojs.honest-wording",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] nojs.no-form-data-in-url",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.summary-focused",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.past-date-message",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.whatsapp-unavailable-explained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.accepted-message-honest",
+      "ok": true,
+      "detail": "Demande acceptée par notre serveur d’envoi (référence b626f513433d). Cela ne gar"
+    },
+    {
+      "check": "[chromium] js.transport-error-keeps-input",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.no-csp-violation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "[chromium] js.no-external-request",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "form.rate-limit-429-after-5",
+      "ok": true,
+      "detail": "422,422,422,422,422,429"
+    },
+    {
+      "check": "logs.no-message-body",
+      "ok": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+/*
+ * Piste B « Bandeau » — mobilité contemporaine, issue de la maquette transmise
+ * le 2026-11-24 : en-tête graphite, hero pleine largeur avec carte de demande,
+ * bandeau de repères, services en cartes. Corrigée : aucun logo d'organisme,
+ * aucune promesse non confirmée, aucune photo générée ; jaune taxi limité aux
+ * actions et repères ; titres condensés courts.
+ */
+@layer direction {
+  html.dir-bandeau {
+    --font-display: var(--font-plex-condensed), 'Arial Narrow', Arial, sans-serif;
+    --bg: #f6f5f2;
+    --surface: #ffffff;
+    --surface-2: #ebe9e4;
+    --ink: #15191f;
+    --ink-soft: #4b5059;
+    --line: #d6d3cc;
+    --accent: #f5c518;
+    --accent-ink: #15191f;
+    --primary: #1d4ed8;
+    --primary-ink: #ffffff;
+    --head-bg: #15191f;
+    --head-ink: #f4f2ec;
+    --head-line: #15191f;
+    --foot-bg: #15191f;
+    --foot-ink: #e9e6df;
+  }
+  .dir-bandeau h1, .dir-bandeau h2, .dir-bandeau h3 { font-weight: 600; letter-spacing: 0; }
+  .dir-bandeau .masthead :focus-visible, .dir-bandeau .footer :focus-visible { outline-color: #8ab4ff; }
+
+  .dir-bandeau .hero { background: #15191f; color: #f4f2ec; padding-block: var(--space-5) var(--space-6); }
+  .dir-bandeau .hero h1, .dir-bandeau .hero h2 { color: inherit; }
+  .dir-bandeau .hero .eyebrow, .dir-bandeau .hero .lead { color: #cfcbc2; }
+  .dir-bandeau .hero-grid { display: grid; gap: var(--space-5); align-items: center; }
+  @media (min-width: 56rem) { html.dir-bandeau .hero-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); } }
+  .dir-bandeau .hero h1 { font-size: clamp(2.3rem, 1.6rem + 3.4vw, 4rem); max-width: 14ch; text-transform: uppercase; line-height: 1.02; }
+  .dir-bandeau .hero h1 em { font-style: normal; color: var(--accent); }
+  .dir-bandeau .hero .btn-ghost { color: #f4f2ec; }
+  .dir-bandeau .trip-panel { background: #fff; color: var(--ink); border-radius: 0.75rem; padding: var(--space-4); border-top: 6px solid var(--accent); }
+  .dir-bandeau .trip-panel h2 { color: var(--ink); font-size: var(--step-2); }
+  .dir-bandeau .route-art { color: var(--ink); margin-block: var(--space-3); }
+
+  .dir-bandeau .facts-strip { background: #232831; color: #f4f2ec; }
+  .dir-bandeau .facts-strip ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--space-3) var(--space-4); padding-block: var(--space-4); }
+  .dir-bandeau .facts-strip li { display: flex; gap: 0.6rem; align-items: flex-start; }
+  .dir-bandeau .facts-strip li + li { border-inline-start: 0; }
+  .dir-bandeau .facts-strip .icon { color: var(--accent); margin-block-start: 0.15rem; }
+
+  .dir-bandeau .service-list { display: none; }
+  .dir-bandeau .services-cards { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .dir-bandeau .services-cards li { container-type: inline-size; }
+  .dir-bandeau .services-cards a { display: flex; flex-direction: column; gap: var(--space-2); height: 100%; padding: var(--space-4); background: #fff; border: 1px solid var(--line); border-radius: 0.75rem; text-decoration: none; }
+  .dir-bandeau .services-cards .badge { width: 3rem; height: 3rem; border-radius: 50%; display: grid; place-items: center; background: var(--accent); }
+  .dir-bandeau .services-cards p { color: var(--ink-soft); }
+  .dir-bandeau .services-cards a:hover { border-color: var(--ink); }
+  .dir-bandeau .steps li::before { border-radius: 0.3rem; }
+}

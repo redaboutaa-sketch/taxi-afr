@@ -1,0 +1,21 @@
+---
+/** Page de résultat du parcours SANS JavaScript (303 du serveur). Jamais indexée. */
+import Site from '../layouts/Site.astro';
+import Icon from './Icon.astro';
+import { results } from '../content/request.ts';
+import { routes, telHref, phone } from '../content/site.ts';
+interface Props { kind: keyof typeof results; path: string; }
+const { kind, path } = Astro.props;
+const r = results[kind];
+---
+<Site title={r.title} description={r.h1} path={path} noindex>
+  <div class="wrap page-head stack">
+    <h1>{r.h1}</h1>
+    {r.body.map((p) => <p class="lead">{p}</p>)}
+    <div class="cta-row">
+      {telHref && phone && <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>}
+      {kind !== 'accepted' && <a class="btn btn-primary" href={routes.demande}>Revenir au formulaire</a>}
+      <a class="btn btn-ghost" href={routes.home}>Retour à l’accueil</a>
+    </div>
+  </div>
+</Site>

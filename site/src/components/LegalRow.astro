@@ -1,0 +1,8 @@
+---
+/** Ligne de mentions légales : valeur publique confirmée, ou manque signalé (bloquant en release). */
+import { fact, PROVISIONAL } from '../content/site.ts';
+interface Props { label: string; k: string; }
+const { label, k } = Astro.props;
+const f = fact(k);
+---
+<div><dt>{label}</dt><dd>{f ? <>{f.text}{f.provisional && <span class="provisional">{PROVISIONAL}</span>}</> : <span class="unknown">Non renseigné — à fournir par AFR TAXI avant publication.</span>}</dd></div>

@@ -1,0 +1,262 @@
+# yaml-language-server: $schema=../../engine/contracts/brief.schema.json
+#
+# AFR TAXI — refonte de https://www.afr-taxi.fr/ (site client RÉEL).
+#
+# Provenance des valeurs : tableau « Faits : préremplir, puis confirmer » du
+# brief de mission du 2026-11-24, lui-même issu du site actuel. Le site actuel
+# n'a PAS pu être relu depuis cette session (hôte hors réseau autorisé) :
+# toutes les valeurs sont `proposed` au mieux. Aucun agent ne passe un fait
+# en `confirmed` : c'est une décision du client (AGENTS.md, invariant 4).
+#
+# Identités e-mail : adresses de CAPTURE de recette sur un domaine réservé
+# (.test, RFC 2606). Elles ne désignent aucune boîte réelle ; le transport
+# `capture` est refusé en release pour un site réel (règle email.capture-in-release).
+schemaVersion: 1
+mode: preview
+
+site:
+  id: afr-taxi
+
+identity:
+  brand: AFR TAXI
+  fictional: false
+  establishmentCountry: FR
+
+market:
+  audience: >-
+    Particuliers, professionnels et voyageurs autour de Saint-Rambert-d'Albon
+    (Drôme) qui ont besoin d'un taxi pour un trajet local, un transfert vers une
+    gare ou un aéroport, ou un déplacement planifié.
+  targetCountries: [FR]
+  objectives:
+    - Permettre d'appeler facilement, depuis un téléphone, sans dépendance à un script.
+    - Permettre de décrire un trajet planifié sans échange inutile (départ, destination, date, heure, rappel).
+    - Expliquer les services et leurs conditions sans confusion (médical et assistance séparés).
+    - Montrer un professionnel local réel et ses preuves autorisées.
+    - Préserver les URL utiles du site actuel.
+  differentiationFacts: [business.locality, business.hours]
+  primaryCta:
+    kind: phone
+    label:
+      fr: Appeler
+
+offer:
+  kind: services
+  categories:
+    - id: taxi-prive
+      label: { fr: Taxi privé et professionnel }
+    - id: transferts
+      label: { fr: Transferts gares et aéroports }
+    - id: assistance-deplacement
+      label: { fr: Déplacement après un incident }
+    - id: transport-medical
+      label: { fr: Transport de patients conventionné }
+  exclusions:
+    - Pas de réservation instantanément confirmée ni de disponibilité en temps réel.
+    - Pas de paiement en ligne, de compte client ni de tarification automatique (hors V1).
+    - Pas de remorquage, d'ambulance ni de secours (le service d'assistance transporte des personnes).
+  pricingFact: offer.pricing
+  availabilityFact: business.hours
+
+network:
+  canonicalOrigin: https://www.afr-taxi.fr
+  # Domaines secondaires non vérifiés : à constater (DNS) avant de les déclarer.
+  redirectDomains: []
+  previewOrigin: null
+
+email:
+  publicContactFact: contact.email
+  recipient: chauffeur@recette.afr-taxi.test
+  from: demandes@recette.afr-taxi.test
+  sendingDomain: recette.afr-taxi.test
+  replyTo: submitter
+  transport: capture
+
+form:
+  enabled: true
+
+i18n:
+  defaultLocale: fr
+  locales: [fr]
+  missingTranslation: omit
+
+design:
+  references:
+    - url: https://www.afr-taxi.fr/
+      note: Site actuel à refondre (contenus et URL à préserver ; ambiance sombre et longs titres à ne pas reproduire).
+  antiReferences:
+    - Ambiance sombre, faible hiérarchie et titres longs du site actuel.
+    - Faux avis, badges, logos d'organismes ou partenariats non confirmés.
+    - Photos de véhicules plus haut de gamme ou générées présentées comme le taxi du client.
+    - Hero centré + trois cartes identiques sur toutes les pages.
+  brandConstraints:
+    - Ton de professionnel local soigneux, pas de compagnie de limousines.
+    - Respecter le logo existant s'il est fourni et autorisé ; ne pas le redessiner.
+  availableResources:
+    - Aucune photographie ni logo autorisés à ce stade (originaux à demander au client).
+    - Maquette d'accueil transmise par le propriétaire le 2026-11-24 (provenance des images inconnue, référence de composition seulement).
+  allowGeneratedIllustrations: false
+  selectedDirection: null
+  renderApproval: null
+
+hosting:
+  profile: vps-nginx
+  phpVersion: '8.4'
+  notes:
+    - Cible réelle d'hébergement NON constatée ; vps-nginx est le seul profil implémenté et recetté (conteneurs). Un mutualisé Apache n'est pas couvert.
+
+privacy:
+  processing:
+    - purpose: Transmettre au chauffeur une demande de trajet saisie dans le formulaire (canal e-mail) pour qu'il rappelle et confirme ou non la course.
+      recipients: [AFR TAXI (chauffeur)]
+      retentionFact: privacy.requestRetention
+  thirdPartyTools:
+    - WhatsApp (Meta) — seulement si le visiteur choisit ce canal ; lien sortant au clic, aucun widget chargé.
+  analytics: none
+
+delivery:
+  scope:
+    - "Site français : accueil, taxi privé, transferts, à propos, contact (demande e-mail ou WhatsApp), assistance (orientation), transport médical et assistance déplacement (conditionnels), mentions légales, vie privée, 404."
+  reviewer: null
+  publicationAuthorization: null
+
+facts:
+  contact.phone:
+    value: 06 14 33 93 41
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  contact.phoneE164:
+    value: '+33614339341'
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  contact.email:
+    value: afr.taxi26@gmail.com
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  contact.whatsapp:
+    # Numéro WhatsApp actif ET accord du chauffeur pour ce canal : inconnus.
+    # Ne pas déduire un compte WhatsApp du numéro de téléphone publié.
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  business.locality:
+    value: Saint-Rambert-d’Albon (Drôme)
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  business.serviceArea:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  business.hours:
+    value: 24 h/24, 7 j/7, sur réservation
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  service.privateAndBusiness:
+    value: Taxi privé et professionnel
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  service.transfers:
+    value: Transferts vers les gares et aéroports
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  service.transferDestinations:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  service.assistance:
+    value: Transport de personnes après une panne ou un accident
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  service.medicalConventionne:
+    value: Taxi conventionné pour le transport de patients sur prescription
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  driver.experience:
+    value: Chauffeur de taxi depuis 2016, à son compte depuis 2020
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  driver.languages:
+    value: français, anglais, arabe
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  vehicle.description:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  vehicle.capacity:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  offer.pricing:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: internal
+  offer.responseDelay:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: internal
+  privacy.requestRetention:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  legal.name:
+    value: AFR TAXI
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: public
+  legal.publisher:
+    # Identité déclarée sur l'ancien site, à vérifier : non publiée tant qu'elle n'est pas confirmée.
+    value: M ALI FIGMIR
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: internal
+  legal.form:
+    value: Entreprise individuelle
+    status: proposed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    publication: internal
+  legal.address:
+    # Seule la commune du siège est connue (Saint-Vallier) ; adresse complète à fournir.
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: internal
+  legal.registration:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  legal.vatId:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  legal.hostingProvider:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  legal.mediator:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public

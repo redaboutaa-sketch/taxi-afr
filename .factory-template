@@ -1,4 +1,0 @@
-Ce fichier marque le dépôt-template de Premium Website Factory.
-Dans une copie client, le supprimer : la CI cesse alors d'exiger que
-factory.manifest.json corresponde aux fichiers locaux (les modifications
-locales de fichiers gérés sont signalées par factory:upgrade, pas bloquées).

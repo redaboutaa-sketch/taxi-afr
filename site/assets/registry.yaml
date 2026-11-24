@@ -1,0 +1,8 @@
+# Registre d'actifs AFR TAXI. Aucun actif autorisé à ce jour.
+# À demander au client : logo original, photos du véhicule actuel (plaque
+# masquée ou non selon sa décision), éventuellement du chauffeur.
+# Les photos de l'ancien site ne sont PAS reprises : leur publication ne
+# démontre pas leur transférabilité au nouvel hébergement.
+# Les volets `observed` sont écrits par `npm run factory:assets -- scan`.
+schemaVersion: 1
+assets: {}

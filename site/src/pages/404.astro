@@ -1,0 +1,16 @@
+---
+import Site from '../layouts/Site.astro';
+import Icon from '../components/Icon.astro';
+import { routes, telHref, phone } from '../content/site.ts';
+---
+<Site title="Page introuvable — AFR TAXI" description="Cette page n’existe pas ou a changé d’adresse." path="/404/" noindex>
+  <div class="wrap page-head stack">
+    <h1>Page introuvable</h1>
+    <p class="lead">Cette page n’existe pas ou a changé d’adresse.</p>
+    <div class="cta-row">
+      {telHref && phone && <a class="btn btn-call" href={telHref}><Icon name="phone" /><span>Appeler le {phone.text}</span></a>}
+      <a class="btn btn-primary" href={routes.demande}>Demander un trajet</a>
+      <a class="btn btn-ghost" href={routes.home}>Accueil</a>
+    </div>
+  </div>
+</Site>

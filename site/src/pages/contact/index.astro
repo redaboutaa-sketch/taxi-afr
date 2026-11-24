@@ -1,0 +1,39 @@
+---
+import Site from '../../layouts/Site.astro';
+import Icon from '../../components/Icon.astro';
+import RequestForm from '../../components/RequestForm.astro';
+import { request as t } from '../../content/request.ts';
+import { phone, telHref, email, hours, routes, PROVISIONAL } from '../../content/site.ts';
+---
+<Site title={t.title} description={t.description} path="/contact/" bar={false}>
+  <div class="wrap page-head stack">
+    <h1>{t.h1}</h1>
+    <p class="lead">{t.intro}</p>
+  </div>
+  <div class="wrap two-col">
+    <div>
+      <RequestForm />
+    </div>
+    <aside class="stack-lg" aria-label="Autres moyens de contact">
+      <div class="callout stack">
+        <h2>Appeler</h2>
+        {telHref && phone ? (
+          <p><a class="btn btn-call" href={telHref}><Icon name="phone" /><span>{phone.text}</span></a>{phone.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
+        ) : <p class="unknown">Numéro à confirmer.</p>}
+        <p>Recommandé pour un départ dans moins d’une heure.</p>
+        {hours && <p>Disponibilité annoncée : {hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}. Le site n’indique pas la disponibilité en temps réel.</p>}
+      </div>
+      {email && (
+        <div class="stack">
+          <h2>Écrire</h2>
+          <p><a class="solo" href={`mailto:${email.text}`}>{email.text}</a>{email.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
+        </div>
+      )}
+      <div class="stack">
+        <h2>{t.privacyTitle}</h2>
+        <p>{t.privacy}</p>
+        <ul class="cta-row" role="list"><li><a class="solo" href={routes.vie}>Vie privée</a></li><li><a class="solo" href={routes.medical}>Transport de patients</a></li></ul>
+      </div>
+    </aside>
+  </div>
+</Site>

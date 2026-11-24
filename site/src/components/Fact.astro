@@ -1,0 +1,8 @@
+---
+/** Affiche un fait public et signale s'il est encore à confirmer (preview). */
+import { fact, PROVISIONAL } from '../content/site.ts';
+interface Props { k: string; fallback?: string; }
+const { k, fallback } = Astro.props;
+const f = fact(k);
+---
+{f ? <>{f.text}{f.provisional && <> <span class="provisional">{PROVISIONAL}</span></>}</> : fallback ? <span class="unknown">{fallback}</span> : null}

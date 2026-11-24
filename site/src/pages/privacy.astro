@@ -1,0 +1,15 @@
+---
+/**
+ * Ancienne URL /privacy. Le moteur ne génère pas encore de redirection par
+ * chemin (profil vps-nginx) : page informative non indexée vers /vie-privee/.
+ * Une redirection 301 unique est préférable dès que le générateur la permet.
+ */
+import Site from '../layouts/Site.astro';
+import { routes } from '../content/site.ts';
+---
+<Site title="Vie privée — AFR TAXI" description="La politique de vie privée d’AFR TAXI a changé d’adresse." path="/privacy/" noindex>
+  <div class="wrap page-head stack">
+    <h1>Cette page a changé d’adresse</h1>
+    <p class="lead">Les informations sur vos données sont désormais sur la page <a href={routes.vie}>Vie privée</a>.</p>
+  </div>
+</Site>

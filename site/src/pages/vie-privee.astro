@@ -1,0 +1,26 @@
+---
+import Site from '../layouts/Site.astro';
+import Fact from '../components/Fact.astro';
+import { routes } from '../content/site.ts';
+---
+<Site title="Vie privée — AFR TAXI" description="Quelles données le site AFR TAXI traite, pourquoi, et ce que vous pouvez demander." path="/vie-privee/">
+  <div class="wrap page-head stack">
+    <h1>Vie privée</h1>
+    <p class="lead">Le site ne dépose aucun cookie de mesure d’audience ou de publicité et ne charge aucun service tiers à l’ouverture des pages.</p>
+  </div>
+  <div class="wrap prose">
+    <h2>Demande de trajet par e-mail</h2>
+    <p>Quand vous envoyez une demande par e-mail, les informations saisies (départ, destination, date et heure, nombre de voyageurs, référence de train ou de vol, précisions, nom, téléphone, e-mail facultatif) sont transmises au chauffeur d’AFR TAXI pour organiser le trajet et vous rappeler. Elles ne servent pas à de la prospection.</p>
+    <p>Durée de conservation : <Fact k="privacy.requestRetention" fallback="à définir par AFR TAXI avant publication." /></p>
+    <h2>Demande préparée dans WhatsApp</h2>
+    <p>Si vous choisissez WhatsApp, le site ne transmet rien à son serveur : il prépare un message dans WhatsApp, que vous envoyez vous-même. Le texte du message et le numéro du chauffeur sont alors transmis à WhatsApp (Meta), selon ses propres règles. Ce message ne contient ni votre e-mail ni vos précisions libres.</p>
+    <h2>Appel téléphonique</h2>
+    <p>Le lien d’appel ouvre l’application téléphone de votre appareil ; le site n’en garde aucune trace.</p>
+    <h2>Journaux techniques</h2>
+    <p>Le serveur conserve des journaux techniques (adresse IP, date, page demandée, issue d’un envoi sans son contenu) pour la sécurité et la limitation des abus. Le contenu des demandes n’y est pas écrit.</p>
+    <h2>Données de santé</h2>
+    <p>N’envoyez aucune information médicale par le site, par e-mail ou par WhatsApp. Pour un <a href={routes.medical}>transport de patients</a>, appelez.</p>
+    <h2>Vos droits</h2>
+    <p>Vous pouvez demander l’accès, la rectification ou l’effacement de vos données en contactant AFR TAXI (<a href={routes.contact}>coordonnées</a>), et saisir la CNIL si vous estimez que vos droits ne sont pas respectés.</p>
+  </div>
+</Site>

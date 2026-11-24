@@ -1,0 +1,28 @@
+---
+import Site from '../layouts/Site.astro';
+import Fact from '../components/Fact.astro';
+import { routes } from '../content/site.ts';
+---
+<Site title="Le chauffeur et le véhicule — AFR TAXI" description="AFR TAXI, taxi indépendant : qui conduit, avec quel véhicule, et comment le joindre." path="/a-propos/">
+  <div class="wrap page-head stack">
+    <h1>Le chauffeur et le véhicule</h1>
+    <p class="lead">AFR TAXI est une activité de taxi indépendante : la personne qui répond au téléphone est celle qui conduit.</p>
+  </div>
+  <div class="wrap two-col">
+    <div class="prose">
+      <h2>Expérience</h2>
+      <p><Fact k="driver.experience" fallback="Parcours du chauffeur à confirmer." /></p>
+      <h2>Langues parlées</h2>
+      <p><Fact k="driver.languages" fallback="À confirmer." /> Le site est rédigé en français.</p>
+      <h2>Le véhicule</h2>
+      <p><Fact k="vehicle.description" fallback="Modèle, nombre de places et équipement à confirmer par AFR TAXI." /></p>
+      <h2>Secteur</h2>
+      <p>Activité basée à <Fact k="business.locality" fallback="(commune à confirmer)" />. <Fact k="business.serviceArea" fallback="Secteur desservi à préciser." /></p>
+    </div>
+    <aside class="callout stack">
+      <h2>Photos</h2>
+      <p>Les photos du véhicule et, s’il le souhaite, du chauffeur seront publiées après autorisation écrite. Aucune image générée ou d’un autre véhicule ne les remplace.</p>
+      <p><a class="solo" href={routes.contact}>Contacter AFR TAXI</a></p>
+    </aside>
+  </div>
+</Site>

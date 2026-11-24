@@ -1,0 +1,33 @@
+---
+/**
+ * Mentions légales. Aucune valeur écrite ici : faits du brief uniquement.
+ * Les identifiants juridiques non confirmés ne sont pas publiés ; la release
+ * est bloquée tant qu'ils manquent (règles fact.required / fact.public-unconfirmed).
+ */
+import Site from '../layouts/Site.astro';
+import LegalRow from '../components/LegalRow.astro';
+---
+<Site title="Mentions légales — AFR TAXI" description="Éditeur, hébergeur et médiation de la consommation du site AFR TAXI." path="/mentions-legales/">
+  <div class="wrap page-head stack">
+    <h1>Mentions légales</h1>
+  </div>
+  <div class="wrap prose">
+    <h2>Éditeur du site</h2>
+    <dl class="legal">
+      <LegalRow label="Nom commercial" k="legal.name" />
+      <LegalRow label="Responsable de la publication" k="legal.publisher" />
+      <LegalRow label="Forme juridique" k="legal.form" />
+      <LegalRow label="Adresse du siège" k="legal.address" />
+      <LegalRow label="Immatriculation (SIRET)" k="legal.registration" />
+      <LegalRow label="TVA intracommunautaire" k="legal.vatId" />
+      <LegalRow label="Téléphone" k="contact.phone" />
+      <LegalRow label="E-mail" k="contact.email" />
+    </dl>
+    <h2>Hébergement</h2>
+    <dl class="legal"><LegalRow label="Hébergeur" k="legal.hostingProvider" /></dl>
+    <h2>Médiation de la consommation</h2>
+    <dl class="legal"><LegalRow label="Médiateur" k="legal.mediator" /></dl>
+    <h2>Contenus</h2>
+    <p>Textes rédigés pour AFR TAXI. Aucune photographie n’est publiée à ce jour ; les pictogrammes et le schéma de trajet ont été dessinés pour ce site.</p>
+  </div>
+</Site>
