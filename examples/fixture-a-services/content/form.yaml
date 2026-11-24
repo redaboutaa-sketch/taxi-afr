@@ -1,0 +1,47 @@
+# Formulaire de contact de la démo (fictive). Contrat partagé JS/PHP :
+# voir engine/form/contract.ts. Champs limités à ce qui sert à répondre.
+fields:
+  - name: name
+    kind: text
+    required: true
+    maxLength: 120
+    autocomplete: name
+    label: { fr: Nom et prénom, en: Full name }
+  - name: company
+    kind: text
+    required: true
+    maxLength: 160
+    autocomplete: organization
+    label: { fr: Entreprise, en: Company }
+  - name: email
+    kind: email
+    required: true
+    maxLength: 254
+    autocomplete: email
+    label: { fr: Adresse e-mail professionnelle, en: Work email }
+    hint: { fr: 'Pour vous répondre, rien d’autre.', en: Only used to reply to you. }
+  - name: size
+    kind: select
+    required: false
+    maxLength: 20
+    label: { fr: Effectif, en: Headcount }
+    options:
+      - { value: under_50, label: { fr: Moins de 50, en: Under 50 } }
+      - { value: from_50_to_200, label: { fr: 50 à 200, en: 50 to 200 } }
+      - { value: from_200_to_500, label: { fr: 200 à 500, en: 200 to 500 } }
+      - { value: over_500, label: { fr: Plus de 500, en: Over 500 } }
+  - name: message
+    kind: textarea
+    required: true
+    maxLength: 4000
+    label: { fr: Votre situation, en: Your situation }
+    hint:
+      fr: Ce que vous achetez, ce qui vous préoccupe. Quelques lignes suffisent.
+      en: What you buy and what concerns you. A few lines are enough.
+honeypot: website
+results:
+  fr: { accepted: /contact/envoye/, invalid: /contact/a-corriger/, unavailable: /contact/indisponible/ }
+  en: { accepted: /en/contact/sent/, invalid: /en/contact/check/, unavailable: /en/contact/unavailable/ }
+subject:
+  fr: Demande via le site
+  en: Website enquiry

@@ -1,0 +1,10 @@
+---
+import { paths, t } from '../../content/catalog.ts';
+import Catalog from '../../layouts/Catalog.astro';
+const l = t.en;
+---
+<Catalog title={l.notesTitle} locale="en" page="notes">
+  <h1>{l.notesTitle}</h1>
+  <p class="lead">{l.notesBody}</p>
+  <p><a href={paths.range.en}>{l.back}</a></p>
+</Catalog>

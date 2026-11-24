@@ -1,0 +1,117 @@
+# Validation (pull request et branches de travail). Aucune publication :
+# lecture seule du dépôt, aucun secret de production. La publication sera un
+# workflow séparé, déclenché sur release approuvée (incrément 5).
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'claude/**']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+  FACTORY_REQUIRE_PHP: '1'
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        # 26.x : référence de l'usine (.nvmrc). 24.x : compatibilité maintenue.
+        node: ['26.13.1', '24.22.3']
+    steps:
+      # actions/checkout v7.0.1 — SHA relevé par git ls-remote le 2026-11-24
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      # actions/setup-node v7.1.0 — SHA relevé par git ls-remote le 2026-11-24
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm install --global npm@11.20.0
+      - run: npm ci
+      - run: php --version && composer --version
+      - run: npm run check
+        env:
+          FACTORY_SITE_DIR: examples/fixture-a-services
+      # Dépôt-template uniquement (marqueur .factory-template) : le manifeste doit
+      # décrire exactement les fichiers publiés. Dans une copie client, un fichier
+      # géré modifié localement est légitime ; factory:upgrade le traitera en conflit.
+      - name: Manifeste de l'usine à jour
+        if: hashFiles('.factory-template') != ''
+        run: node engine/cli/main.ts manifest --check
+      - run: npm test
+      - name: Build fixture A (preview)
+        run: npm run build
+        env:
+          FACTORY_SITE_DIR: examples/fixture-a-services
+      - name: Build fixture B (preview, moteur inchangé)
+        run: npm run build
+        env:
+          FACTORY_SITE_DIR: examples/fixture-b-catalog
+          FACTORY_OUT_DIR: dist-b
+
+  recipe:
+    # Recette de référence : release assemblée → nginx + PHP-FPM 8.4 (conteneurs,
+    # images épinglées par digest) → parcours Chromium, Firefox, WebKit dans la
+    # révision exacte de Playwright verrouillée.
+    needs: validate
+    runs-on: ubuntu-24.04
+    env:
+      FACTORY_SITE_DIR: examples/fixture-a-services
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26.13.1'
+          cache: npm
+      - run: npm install --global npm@11.20.0
+      - run: npm ci
+      - name: Navigateurs de la version Playwright verrouillée
+        run: npx playwright install --with-deps chromium firefox webkit
+      - name: Images épinglées
+        run: |
+          docker pull php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826
+          docker pull nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a
+      - name: Parité JS / PHP sur PHP 8.4 (image du profil)
+        run: npx vitest run engine/tests/form-parity.test.ts
+        env:
+          FACTORY_PARITY_PHP_IMAGE: php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826
+      - name: Release (assemblage + audit + empreintes)
+        run: npm run release -- --profile vps-nginx --target preview --profile-json tests/recipe/profile.json
+      - name: Ré-audit de la release
+        run: npm run qa:release -- --release "$(ls -d .generated/releases/*/ | head -1)"
+      - name: Recette nginx + PHP-FPM, trois moteurs
+        run: npm run qa:recipe -- --release "$(ls -d .generated/releases/*/ | head -1)" --browsers chromium,firefox,webkit
+      - name: Bascule, rollback et refus d'intégrité (nginx + PHP-FPM, sous trafic)
+        run: npm run qa:deploy
+      - name: Lighthouse sur la release servie par nginx (médiane de 3, mobile)
+        run: npm run qa:perf -- --release "$(ls -d .generated/releases/*/ | head -1)" --pages /,/prestations/diagnostic-achats/,/contact/,/en/services/procurement-review/,/contact/envoye/
+      - name: Revue visuelle outillée et texte agrandi à 200 % (Chromium verrouillé)
+        run: |
+          npm run build
+          node tests/visual/review.ts --pages /,/prestations/diagnostic-achats/,/contact/,/en/,/en/services/procurement-review/,/contact/envoye/ --out .generated/review
+          node tests/visual/text-zoom.ts --pages /,/prestations/diagnostic-achats/,/prestations/panel-fournisseurs/,/prestations/appel-d-offres/,/contact/,/contact/envoye/,/en/,/en/services/procurement-review/,/en/contact/ --out .generated/review/zoom
+      - name: Rapports
+        if: always()
+        # actions/upload-artifact v7.0.2 — SHA relevé par git ls-remote le 2026-11-24
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: recette-${{ github.sha }}
+          path: |
+            .generated/reports/
+            .generated/deploy-recipe/deploy.log.copy
+            .generated/review/
+          if-no-files-found: warn
+          retention-days: 14

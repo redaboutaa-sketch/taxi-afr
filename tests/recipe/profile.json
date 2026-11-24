@@ -1,0 +1,9 @@
+{
+  "releaseRoot": "/srv/site/current",
+  "varDir": "/srv/site/var",
+  "fastcgiPass": "127.0.0.1:9000",
+  "listen": 8088,
+  "tls": null,
+  "capture": { "host": "127.0.0.1", "port": 2525 },
+  "localPreviewOrigin": "http://127.0.0.1:8088"
+}

@@ -1,0 +1,179 @@
+# yaml-language-server: $schema=../../../engine/contracts/brief.schema.json
+#
+# DÉMONSTRATION FICTIVE — « Ostral Conseil » n'existe pas.
+# Aucun nom, numéro ou adresse de ce fichier ne désigne une entreprise réelle.
+# Domaines réservés uniquement (RFC 2606).
+schemaVersion: 1
+mode: preview
+
+site:
+  id: ostral-demo
+
+identity:
+  brand: Ostral Conseil
+  fictional: true
+  establishmentCountry: FR
+
+market:
+  audience: >-
+    Dirigeants et responsables d'exploitation de PME industrielles (50 à 500 salariés)
+    dont les achats sont gérés sans fonction dédiée.
+  targetCountries: [FR, BE, CH]
+  objectives:
+    - Obtenir des demandes de premier échange qualifiées (taille, secteur, enjeu).
+    - Faire comprendre en une page ce que contient un diagnostic achats.
+  differentiationFacts: [offer.diagnosticDuration, offer.deliverable]
+  primaryCta:
+    kind: contact-form
+    label:
+      fr: Décrire votre situation
+      en: Describe your situation
+
+offer:
+  kind: services
+  categories:
+    - id: diagnostic
+      label: { fr: Diagnostic des achats, en: Procurement review }
+    - id: panel
+      label: { fr: Structuration du panel fournisseurs, en: Supplier base structuring }
+    - id: appel-offres
+      label: { fr: Conduite d'appel d'offres, en: Tender management }
+  exclusions:
+    - Pas de recrutement ni de délégation d'acheteurs à temps plein.
+    - Pas de prestation pour les marchés publics côté acheteur public.
+  pricingFact: offer.pricing
+
+network:
+  canonicalOrigin: https://www.example.com
+  redirectDomains: [example.com]
+  previewOrigin: null
+
+email:
+  publicContactFact: contact.email
+  recipient: demandes@example.com
+  from: formulaire@mail.example.com
+  sendingDomain: mail.example.com
+  replyTo: submitter
+  transport: capture
+
+form:
+  enabled: true
+
+i18n:
+  defaultLocale: fr
+  locales: [fr, en]
+  missingTranslation: omit
+
+design:
+  references:
+    - url: https://design-system.service.gov.uk/patterns/start-using-a-service/
+      note: Clarté de l'entrée de service (hors secteur).
+    - url: https://www.vitsoe.com/gb/about
+      note: Composition éditoriale et ton factuel (hors secteur).
+    - url: https://www.forvismazars.com/fr/fr/services/conseil/gagner-en-efficacite-operationnelle
+      note: Page d'offre d'un cabinet de conseil (secteur).
+    - url: https://www.gep.com/fr-fr/strategy/procurement-consulting
+      note: Offre de conseil achats (secteur).
+  antiReferences:
+    - Hero centré + trois cartes identiques + témoignages anonymes.
+    - Photos de stock de poignées de main ou de réunions.
+    - Chiffres d'économies promis sans source.
+  brandConstraints:
+    - Ton sobre et précis ; aucune promesse de gain chiffrée.
+  availableResources:
+    - Aucune photographie autorisée à ce stade.
+  selectedDirection:
+    id: a-registre
+    decidedBy: propriétaire du dépôt (message du 2026-11-24)
+    decidedOn: '2026-11-24'
+    note: Choix de l'orientation A pour cette fixture uniquement ; le rendu final reste à approuver.
+  renderApproval: null
+
+hosting:
+  profile: vps-nginx
+  phpVersion: '8.4'
+
+privacy:
+  processing:
+    - purpose: Répondre aux demandes envoyées par le formulaire de contact.
+      recipients: [Équipe Ostral (fictive)]
+      retentionFact: privacy.contactRetention
+  thirdPartyTools: []
+  analytics: none
+
+delivery:
+  scope:
+    - Accueil, page d'offre, contact, 404, pages légales de démonstration, FR et EN.
+  reviewer: null
+  publicationAuthorization: null
+
+facts:
+  contact.email:
+    value: contact@example.com
+    status: confirmed
+    sourceRefs: [fixture:ostral-demo]
+    publication: public
+  offer.diagnosticDuration:
+    value: Diagnostic restitué en 15 jours ouvrés
+    status: proposed
+    sourceRefs: []
+    publication: public
+  offer.deliverable:
+    value: Cartographie des dépenses et plan d'action priorisé
+    status: proposed
+    sourceRefs: []
+    publication: public
+  offer.pricing:
+    value: Tarif journalier interne de démonstration 1150 EUR HT
+    status: confirmed
+    sourceRefs: [fixture:ostral-demo]
+    publication: withheld
+  company.foundingYear:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: internal
+  privacy.contactRetention:
+    value: Trois ans après le dernier échange
+    status: proposed
+    sourceRefs: []
+    publication: public
+  legal.name:
+    value: Ostral Conseil (entreprise fictive)
+    status: confirmed
+    sourceRefs: [fixture:ostral-demo]
+    publication: public
+  legal.form:
+    value: null
+    status: not_applicable
+    sourceRefs: []
+    publication: internal
+    justification: Entreprise fictive de démonstration, sans forme juridique.
+  legal.address:
+    value: null
+    status: not_applicable
+    sourceRefs: []
+    publication: internal
+    justification: Entreprise fictive de démonstration, sans établissement.
+  legal.publisher:
+    value: Équipe de démonstration Premium Website Factory
+    status: confirmed
+    sourceRefs: [fixture:ostral-demo]
+    publication: public
+  legal.hostingProvider:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  legal.registration:
+    value: null
+    status: not_applicable
+    sourceRefs: []
+    publication: internal
+    justification: Entreprise fictive de démonstration, aucun numéro d'immatriculation.
+  legal.vatId:
+    value: null
+    status: not_applicable
+    sourceRefs: []
+    publication: internal
+    justification: Entreprise fictive de démonstration, non assujettie.

@@ -1,0 +1,8 @@
+# Le moteur, les contrats, les générateurs et la CI exigent une revue du
+# mainteneur de l'usine. À activer avec une règle de protection de branche
+# (non configurée par ce dépôt : dépend du plan GitHub et des droits).
+/engine/            @redaboutaa-sketch
+/.github/           @redaboutaa-sketch
+/astro.config.ts    @redaboutaa-sketch
+/package.json       @redaboutaa-sketch
+/package-lock.json  @redaboutaa-sketch

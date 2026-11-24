@@ -1,0 +1,230 @@
+---
+/**
+ * PROTOTYPE — Piste A « Registre ». Non publiable : injecté uniquement hors
+ * production par l'intégration de l'usine. Sert à juger la direction sur un
+ * contenu réel, pas à livrer la page finale.
+ */
+import { Font } from 'astro:assets';
+import config from 'virtual:factory/config';
+import '../directions/registre.css';
+import { demoNotice, exclusions, hero, services, steps } from './_content.ts';
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Prototype A — Registre · {config.brand}</title>
+    <Font cssVariable="--font-newsreader" preload={[{ weight: '200 800', style: 'normal' }]} />
+    <Font cssVariable="--font-public-sans" />
+  </head>
+  <body class="dir-registre">
+    <p class="demo">{demoNotice} <span>Prototype de direction A — contenu représentatif, non validé.</span></p>
+
+    <header class="masthead">
+      <a class="wordmark" href="#top" aria-label="Ostral Conseil — haut de page">Ostral<span>Conseil</span></a>
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#offre">Offre</a></li>
+          <li><a href="#methode">Méthode</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero grid" aria-labelledby="hero-title">
+        <p class="margin-note" aria-hidden="true">§ 1</p>
+        <div class="hero-body">
+          <p class="kicker">{hero.kicker}</p>
+          <h1 id="hero-title">Reprendre la main sur vos achats, <em>sans créer de service achats.</em></h1>
+          <p class="lead">{hero.lead}</p>
+          <p class="actions">
+            <a class="button" href="#contact">{hero.cta}</a>
+            <a class="text-link" href="#offre">{hero.secondary}<span aria-hidden="true"> →</span></a>
+          </p>
+        </div>
+        <aside class="index" aria-label="Sommaire des prestations">
+          <p class="index-title">Registre des prestations</p>
+          <ol>
+            {services.map((s) => (
+              <li><a href={`#${s.id}`}><span class="num">{s.n}</span>{s.title}</a></li>
+            ))}
+          </ol>
+        </aside>
+      </section>
+
+      <section id="offre" class="section grid" aria-labelledby="offre-title">
+        <p class="margin-note" aria-hidden="true">§ 2</p>
+        <div class="section-head">
+          <h2 id="offre-title">Trois prestations, une seule question de départ : où part votre argent ?</h2>
+        </div>
+        <ol class="register">
+          <li class="register-head" aria-hidden="true">
+            <span>Prestation</span><span>Pour vous si…</span><span>Vous obtenez</span><span>Durée</span>
+          </li>
+          {services.map((s) => (
+            <li id={s.id} class="register-row">
+              <h3><span class="num">{s.n}</span>{s.title}</h3>
+              <p><span class="label">Pour vous si…</span>{s.for}</p>
+              <p><span class="label">Vous obtenez</span>{s.get}</p>
+              <p>
+                <span class="label">Durée</span>{s.duration}
+                {s.provisional && config.target === 'preview' && <span class="provisional">à confirmer</span>}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section id="methode" class="section grid" aria-labelledby="methode-title">
+        <p class="margin-note" aria-hidden="true">§ 3</p>
+        <div class="section-head">
+          <h2 id="methode-title">Comment se déroule un diagnostic</h2>
+        </div>
+        <ol class="steps">
+          {steps.map((s, i) => (
+            <li><span class="step-n">{['i', 'ii', 'iii', 'iv'][i]}</span><h3>{s.title}</h3><p>{s.text}</p></li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="section grid" aria-labelledby="exclusions-title">
+        <p class="margin-note" aria-hidden="true">§ 4</p>
+        <div class="section-head">
+          <h2 id="exclusions-title">Ce que nous ne faisons pas</h2>
+        </div>
+        <ul class="exclusions">{exclusions.map((e) => <li>{e}</li>)}</ul>
+      </section>
+
+      <section id="contact" class="closing" aria-labelledby="contact-title">
+        <div class="grid"><div class="closing-body">
+          <h2 id="contact-title">Décrivez votre situation en quelques lignes. Nous vous dirons si nous pouvons aider.</h2>
+          <p class="actions"><a class="button" href="#contact">{hero.cta}</a> <a class="text-link" href={`mailto:contact@example.com`}>contact@example.com</a></p>
+        </div></div>
+      </section>
+    </main>
+
+    <footer class="footer grid"><p>Ostral Conseil — entreprise fictive de démonstration.</p></footer>
+  </body>
+</html>
+
+<style>
+  @layer reset, base, layout, components;
+
+  @layer reset {
+    :global(*, *::before, *::after) { box-sizing: border-box; }
+    :global(body, h1, h2, h3, p, ol, ul) { margin: 0; }
+    :global(ol, ul) { padding: 0; list-style: none; }
+  }
+
+  @layer base {
+    :global(body.dir-registre) {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-text);
+      font-size: var(--step-0);
+      line-height: 1.55;
+      -webkit-text-size-adjust: 100%;
+    }
+    a { color: inherit; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+    a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 400; text-wrap: balance; }
+  }
+
+  @layer layout {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--space-m);
+      max-width: var(--page);
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 4vw, 3rem);
+    }
+    /* Pas de règle `.grid > *` : la portée d'Astro y ajoute un attribut et
+       sa spécificité écraserait le placement par colonnes ci-dessous. */
+    .margin-note, .hero-body, .index, .section-head, .register, .steps, .exclusions, .closing-body, .footer > p { grid-column: 1 / -1; }
+    .margin-note { font-family: var(--font-display); font-style: italic; color: var(--accent); font-size: var(--step-1); }
+    @media (min-width: 60rem) {
+      .margin-note { grid-column: 1 / span 1; padding-top: 0.35em; }
+      .hero-body { grid-column: 2 / span 7; }
+      .index { grid-column: 10 / span 3; align-self: end; }
+      .section-head { grid-column: 2 / span 8; }
+      .register, .steps, .exclusions { grid-column: 2 / -1; }
+      .closing-body { grid-column: 2 / span 9; }
+    }
+  }
+
+  @layer components {
+    .demo { background: var(--paper-deep); font-size: var(--step--1); padding: 0.5rem clamp(1rem, 4vw, 3rem); border-bottom: 1px solid var(--rule); }
+    .demo span { color: var(--ink-muted); }
+
+    .masthead {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+      max-width: var(--page); margin-inline: auto; padding: var(--space-m) clamp(1rem, 4vw, 3rem);
+      border-bottom: 1px solid var(--ink);
+    }
+    .wordmark { font-family: var(--font-display); font-size: var(--step-2); text-decoration: none; letter-spacing: -0.01em; }
+    .wordmark span { font-family: var(--font-text); font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; margin-left: 0.5em; color: var(--ink-muted); }
+    nav ul { display: flex; gap: clamp(0.75rem, 2vw, 2rem); }
+    nav a { text-decoration: none; display: inline-block; padding-block: 0.6rem; min-height: 44px; }
+    nav a:hover { text-decoration: underline; }
+    .nav-cta { color: var(--accent); font-weight: 600; }
+
+    .hero { padding-block: var(--space-l); row-gap: var(--space-m); }
+    .kicker { font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: var(--space-s); }
+    h1 { font-size: var(--step-4); line-height: 1.02; letter-spacing: -0.02em; font-variation-settings: 'opsz' 72; }
+    h1 em { color: var(--accent); }
+    .lead { font-size: var(--step-1); max-width: 38ch; margin-top: var(--space-m); line-height: 1.45; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-s) var(--space-m); margin-top: var(--space-m); }
+    .button {
+      display: inline-flex; align-items: center; min-height: 48px; padding: 0.7rem 1.3rem;
+      background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600;
+    }
+    .button:hover { background: var(--ink); }
+    .text-link { min-height: 44px; display: inline-flex; align-items: center; }
+
+    .index { border-top: 1px solid var(--ink); padding-top: var(--space-s); }
+    .index-title { font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
+    .index li { border-bottom: 1px solid var(--rule); }
+    .index a { display: flex; gap: 0.75rem; padding: 0.7rem 0; text-decoration: none; font-family: var(--font-display); font-size: var(--step-1); }
+    .index a:hover { color: var(--accent); }
+    .num { font-family: var(--font-text); font-size: var(--step--1); color: var(--accent); font-variant-numeric: tabular-nums; padding-top: 0.3em; margin-right: 0.75rem; }
+
+    .section { padding-block: var(--space-l); border-top: 1px solid var(--rule); row-gap: var(--space-m); }
+    h2 { font-size: var(--step-2); line-height: 1.15; max-width: 30ch; }
+
+    .register { display: grid; grid-template-columns: 1.3fr 1.4fr 1.4fr 1fr; column-gap: var(--space-m); }
+    .register > li { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; padding-block: var(--space-s); border-bottom: 1px solid var(--rule); }
+    .register-head { font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); border-bottom-color: var(--ink) !important; }
+    .register h3 { font-size: var(--step-1); display: flex; align-items: baseline; }
+    .label { display: none; }
+    .provisional { display: inline-block; margin-left: 0.5em; font-size: var(--step--1); border: 1px dashed var(--accent); color: var(--accent); padding: 0 0.35em; }
+    @media (max-width: 59.99rem) {
+      .register { display: block; }
+      .register-head { display: none !important; }
+      .register > li { display: block; padding-block: var(--space-m); }
+      .register p { margin-top: 0.6rem; max-width: var(--measure); }
+      .label { display: block; font-size: var(--step--1); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+    }
+
+    .steps { display: grid; gap: var(--space-m); counter-reset: s; }
+    @media (min-width: 48rem) { .steps { grid-template-columns: repeat(4, 1fr); } }
+    .steps li { border-top: 2px solid var(--ink); padding-top: var(--space-s); }
+    .step-n { font-family: var(--font-display); font-style: italic; color: var(--accent); font-size: var(--step-2); line-height: 1; }
+    .steps h3 { font-family: var(--font-text); font-weight: 600; font-size: var(--step-0); margin-top: 0.5rem; }
+    .steps p { color: var(--ink-muted); margin-top: 0.35rem; max-width: 34ch; }
+
+    .exclusions li { font-family: var(--font-display); font-size: var(--step-1); padding-block: 0.5rem; }
+    .exclusions li::before { content: '— '; color: var(--accent); }
+
+    .closing { background: var(--ink); color: var(--paper); padding-block: var(--space-l); }
+    .closing h2 { font-size: var(--step-2); max-width: 26ch; }
+    .closing .button { background: var(--paper); color: var(--ink); }
+    .closing .button:hover { background: var(--accent); color: var(--accent-ink); }
+    .closing a:focus-visible { outline-color: var(--paper); }
+    .footer { padding-block: var(--space-m); font-size: var(--step--1); color: var(--ink-muted); }
+  }
+</style>

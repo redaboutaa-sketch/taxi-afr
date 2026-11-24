@@ -1,0 +1,79 @@
+/** Textes du parcours de contact (fictif). Honnêtes sur le niveau de preuve. */
+import type { ErrorCode } from '@engine/form-client';
+import type { Locale } from './pages.ts';
+
+export const contact = {
+  fr: {
+    title: 'Contact — Ostral Conseil (démonstration)',
+    description: 'Décrire votre situation d’achats en quelques lignes.',
+    h1: 'Décrire votre situation',
+    intro: 'Quelques lignes suffisent. Nous répondons par e-mail, y compris pour dire que nous ne sommes pas le bon interlocuteur.',
+    optional: '(facultatif)',
+    submit: 'Envoyer la demande',
+    sending: 'Envoi en cours…',
+    summary: 'La demande n’a pas été envoyée. À corriger :',
+    choose: 'Choisir…',
+    errors: {
+      required: 'Ce champ est obligatoire.',
+      too_long: 'Ce texte est trop long.',
+      invalid_email: 'Cette adresse e-mail n’est pas valide.',
+      invalid_tel: 'Ce numéro n’est pas valide.',
+      invalid_option: 'Choisissez une valeur de la liste.',
+      invalid_chars: 'Ce champ contient des caractères non acceptés.',
+      unexpected_field: 'Champ inattendu.',
+      not_a_string: 'Valeur non acceptée.',
+    } satisfies Record<ErrorCode, string>,
+    accepted: 'Votre demande a été acceptée par notre serveur d’envoi (référence {ref}). Cela ne garantit pas encore sa réception : sans réponse de notre part, écrivez-nous directement.',
+    unavailable: 'L’envoi est momentanément impossible. Vos saisies sont conservées : réessayez plus tard, ou écrivez-nous directement.',
+    network: 'La connexion a échoué. Vos saisies sont conservées : réessayez, ou écrivez-nous directement.',
+    directTitle: 'Écrire directement',
+    privacyTitle: 'Vos données',
+    privacy: 'Les informations de ce formulaire servent uniquement à répondre à votre demande. Elles ne sont ni revendues ni utilisées pour de la prospection.',
+    retention: 'Durée de conservation :',
+  },
+  en: {
+    title: 'Contact — Ostral Conseil (demo)',
+    description: 'Describe your purchasing situation in a few lines.',
+    h1: 'Describe your situation',
+    intro: 'A few lines are enough. We reply by email, including to tell you if we are not the right fit.',
+    optional: '(optional)',
+    submit: 'Send the request',
+    sending: 'Sending…',
+    summary: 'The request was not sent. Please fix:',
+    choose: 'Choose…',
+    errors: {
+      required: 'This field is required.',
+      too_long: 'This text is too long.',
+      invalid_email: 'This email address is not valid.',
+      invalid_tel: 'This number is not valid.',
+      invalid_option: 'Choose a value from the list.',
+      invalid_chars: 'This field contains characters that are not accepted.',
+      unexpected_field: 'Unexpected field.',
+      not_a_string: 'Value not accepted.',
+    } satisfies Record<ErrorCode, string>,
+    accepted: 'Your request was accepted by our mail server (reference {ref}). This does not yet guarantee delivery: if you do not hear from us, write to us directly.',
+    unavailable: 'Sending is temporarily impossible. Your entries are kept: try again later, or write to us directly.',
+    network: 'The connection failed. Your entries are kept: try again, or write to us directly.',
+    directTitle: 'Write directly',
+    privacyTitle: 'Your data',
+    privacy: 'The information in this form is only used to answer your request. It is neither sold nor used for marketing.',
+    retention: 'Retention period:',
+  },
+} as const;
+
+export const results = {
+  fr: {
+    accepted: { title: 'Demande transmise', h1: 'Demande transmise à notre serveur d’envoi', body: ['Votre message a été accepté par notre serveur d’envoi. Cela ne garantit pas encore sa réception.', 'Sans réponse de notre part, écrivez-nous directement.'] },
+    invalid: { title: 'Demande à corriger', h1: 'Certaines informations n’ont pas été acceptées', body: ['Un champ obligatoire est vide, trop long, ou une adresse e-mail n’est pas valide. Rien n’a été envoyé.', 'Revenez à la page précédente : votre navigateur conserve généralement vos saisies.'] },
+    unavailable: { title: 'Envoi impossible', h1: 'L’envoi est momentanément impossible', body: ['Votre demande n’a pas pu être transmise. Rien n’a été envoyé.', 'Réessayez plus tard, ou écrivez-nous directement.'] },
+    back: 'Revenir au formulaire',
+    home: 'Retour à l’accueil',
+  },
+  en: {
+    accepted: { title: 'Request sent', h1: 'Request handed to our mail server', body: ['Your message was accepted by our mail server. This does not yet guarantee delivery.', 'If you do not hear from us, write to us directly.'] },
+    invalid: { title: 'Request to fix', h1: 'Some information was not accepted', body: ['A required field is empty or too long, or an email address is not valid. Nothing was sent.', 'Go back to the previous page: your browser usually keeps what you typed.'] },
+    unavailable: { title: 'Sending impossible', h1: 'Sending is temporarily impossible', body: ['Your request could not be handed over. Nothing was sent.', 'Try again later, or write to us directly.'] },
+    back: 'Back to the form',
+    home: 'Back to the home page',
+  },
+} as const satisfies Record<Locale, unknown>;

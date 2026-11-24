@@ -1,0 +1,10 @@
+---
+import ServiceDetail from '../../../components/ServiceDetail.astro';
+import { services, type ServiceId } from '../../../content/services.ts';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug.en }, props: { id: s.id } }));
+}
+const { id } = Astro.props as { id: ServiceId };
+---
+<ServiceDetail id={id} locale="en" />

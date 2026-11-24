@@ -1,0 +1,32 @@
+/* Piste A — « Registre ». Source unique des couleurs de la piste :
+   la planche mesure les contrastes en lisant CE fichier. */
+.dir-registre {
+  --paper: #f5f1e8;
+  --paper-deep: #ebe5d8;
+  --ink: #1c1b18;
+  --ink-muted: #5a554b;
+  --rule: #b9b1a1;
+  --accent: #8f2a1d;
+  --accent-ink: #fbf8f2;
+  --focus: #1d4f91;
+  --field: #fffdf8;
+
+  --font-display: var(--font-newsreader);
+  --font-text: var(--font-public-sans);
+
+  --step--1: clamp(0.875rem, 0.85rem + 0.12vw, 0.94rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.4rem, 1.25rem + 0.75vw, 1.9rem);
+  --step-3: clamp(1.65rem, 1.35rem + 1.5vw, 2.6rem);
+  --step-4: clamp(2.3rem, 1.6rem + 3.4vw, 4.6rem);
+  --step-5: clamp(2.45rem, 1.55rem + 4.4vw, 5.4rem);
+
+  --space-s: clamp(0.75rem, 0.7rem + 0.3vw, 1rem);
+  --space-m: clamp(1.25rem, 1rem + 1vw, 2rem);
+  --space-l: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+  --space-xl: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --measure: 64ch;
+  --page: 78rem;
+}

@@ -1,0 +1,38 @@
+---
+import config from 'virtual:factory/config';
+import { asset } from 'virtual:factory/assets';
+import { paths, t, type Locale } from '../content/catalog.ts';
+import Catalog from '../layouts/Catalog.astro';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const l = t[locale];
+/** Schéma par catégorie : l'actif doit être publiable (registre), sinon le build échoue. */
+const drawing = { bolts: 'schema-vis', nuts: 'schema-ecrou', washers: 'schema-rondelle' } as Record<string, string>;
+---
+
+<Catalog title={l.homeTitle} locale={locale} page="home">
+  <h1>{l.homeTitle}</h1>
+  <p class="lead">{l.homeLead}</p>
+  <ul class="cats">
+    {config.offer.categories.map((c) => {
+      const a = asset(drawing[c.id]!);
+      return (
+        <li>
+          <a href={`${paths.range[locale]}#${c.id}`}>
+            <img src={a.src.src} width={a.src.width} height={a.src.height} alt={a.decorative ? '' : a.alt[locale]} loading="lazy" decoding="async" />
+            <span>{c.label[locale]}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</Catalog>
+
+<style>
+  .cats { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); max-width: 40rem; }
+  @media (min-width: 40rem) { .cats { grid-template-columns: repeat(3, 1fr); } }
+  .cats a { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; min-height: 4.5rem; padding: 1rem; background: var(--white); font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+  .cats img { width: 100%; max-width: 10rem; height: auto; }
+  .cats a:hover { background: var(--leaf); }
+</style>

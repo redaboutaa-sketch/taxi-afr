@@ -1,0 +1,77 @@
+---
+/**
+ * Aperçu de livrable : matrice de priorisation en SVG, données INVENTÉES.
+ * Alternative textuelle complète : <title>/<desc> + tableau des données.
+ * Aucune bibliothèque ; aucun style inline (compatible CSP).
+ */
+import { matrix, type Locale } from '../content/pages.ts';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = matrix[locale];
+/** Deux géométries : large (≥ 48rem) et compacte, pour que les libellés restent lisibles sur mobile. */
+const layouts = [
+  { key: 'wide', W: 640, H: 420, L: 64, R: 16, T: 24, B: 56, fs: 16, qs: 13 },
+  { key: 'compact', W: 340, H: 440, L: 34, R: 8, T: 30, B: 44, fs: 15, qs: 11 },
+] as const;
+const geo = (g: (typeof layouts)[number]) => ({
+  px: (x: number) => g.L + (x / 100) * (g.W - g.L - g.R),
+  py: (y: number) => g.T + (1 - y / 100) * (g.H - g.T - g.B),
+});
+const quadrant = (x: number, y: number) => (y >= 50 ? (x >= 50 ? t.quadrants.tr : t.quadrants.tl) : x >= 50 ? t.quadrants.br : t.quadrants.bl);
+const id = `matrix-${locale}`;
+---
+
+<figure>
+  {layouts.map((g) => {
+    const { px, py } = geo(g);
+    const sid = `${id}-${g.key}`;
+    return (
+      <svg viewBox={`0 0 ${g.W} ${g.H}`} role="img" aria-labelledby={`${sid}-t ${sid}-d`} class={`matrix matrix-${g.key}`}>
+        <title id={`${sid}-t`}>{t.title}</title>
+        <desc id={`${sid}-d`}>{t.desc}</desc>
+        <rect x={g.L} y={g.T} width={g.W - g.L - g.R} height={g.H - g.T - g.B} fill="none" stroke="currentColor" stroke-width="1" />
+        <line x1={px(50)} y1={g.T} x2={px(50)} y2={g.H - g.B} stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" />
+        <line x1={g.L} y1={py(50)} x2={g.W - g.R} y2={py(50)} stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" />
+        <g class="m-quadrants" font-size={g.qs} letter-spacing="1">
+          <text x={g.L + 8} y={g.T + 18}>{t.quadrants.tl.toUpperCase()}</text>
+          <text x={g.W - g.R - 8} y={g.T + 18} text-anchor="end">{t.quadrants.tr.toUpperCase()}</text>
+          <text x={g.L + 8} y={g.H - g.B - 10}>{t.quadrants.bl.toUpperCase()}</text>
+          <text x={g.W - g.R - 8} y={g.H - g.B - 10} text-anchor="end">{t.quadrants.br.toUpperCase()}</text>
+        </g>
+        {matrix.points.map((p) => (
+          <g class="m-point">
+            <circle cx={px(p.x)} cy={py(p.y)} r="6" />
+            <text x={px(p.x) + (p.x > 60 ? -10 : 10)} y={py(p.y) + 5} text-anchor={p.x > 60 ? 'end' : 'start'} font-size={g.fs}>{p[locale]}</text>
+          </g>
+        ))}
+        <text x={(g.L + g.W - g.R) / 2} y={g.H - 14} text-anchor="middle" font-size={g.qs + 1}>{t.x} →</text>
+        <text transform={`translate(${g.L / 2 + 2} ${(g.T + g.H - g.B) / 2}) rotate(-90)`} text-anchor="middle" font-size={g.qs + 1}>{t.y} →</text>
+      </svg>
+    );
+  })}
+  <figcaption>{t.caption}</figcaption>
+  <details>
+    <summary>{t.tableSummary}</summary>
+    <div class="table-scroll" role="region" tabindex="0" aria-label={t.tableSummary}>
+    <table class="data-table">
+      <thead><tr>{t.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+      <tbody>
+        {matrix.points.map((p) => (
+          <tr><th scope="row">{p[locale]}</th><td>{t.level(p.x)}</td><td>{t.level(p.y)}</td><td>{quadrant(p.x, p.y)}</td></tr>
+        ))}
+      </tbody>
+    </table>
+    </div>
+  </details>
+</figure>
+
+<style>
+  .matrix { color: var(--ink); font-family: var(--font-text); }
+  .matrix-wide { display: none; }
+  @media (min-width: 48rem) { .matrix-wide { display: block; } .matrix-compact { display: none; } }
+  .m-quadrants text { fill: var(--ink-muted); }
+  .m-point circle { fill: var(--accent); }
+  .m-point text { fill: var(--ink); font-family: var(--font-display); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; stroke-linejoin: round; }
+  text { fill: var(--ink); }
+</style>

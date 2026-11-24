@@ -1,0 +1,17 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "engine/**/*", "examples/**/*", "site/**/*", "tests/**/*", "*.ts"],
+  "exclude": ["dist", "node_modules", ".generated"],
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "types": ["node"],
+    "paths": {
+      "@engine/*": ["./engine/*/index.ts"]
+    }
+  }
+}

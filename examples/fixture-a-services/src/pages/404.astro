@@ -1,0 +1,15 @@
+---
+import Site from '../layouts/Site.astro';
+import { routes } from '../content/pages.ts';
+---
+
+<Site title="Page introuvable — Ostral" description="Page introuvable" locale="fr" alternates={{}} noindex>
+  <div class="wrap">
+    <div class="result">
+      <h1>Page introuvable</h1>
+      <p>Cette adresse ne correspond à aucune page du site.</p>
+      <p class="actions"><a class="button" href={routes.home.fr}>Retour à l’accueil</a><a class="text-link" href={routes.contact.fr}>Nous contacter</a></p>
+      <p lang="en">This address does not match any page. <a href={routes.home.en}>English home page</a>.</p>
+    </div>
+  </div>
+</Site>

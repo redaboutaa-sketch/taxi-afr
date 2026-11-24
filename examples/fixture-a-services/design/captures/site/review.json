@@ -1,0 +1,295 @@
+{
+  "browser": "chromium (voir sortie)",
+  "date": "2026-11-24T12:51:51.888Z",
+  "report": [
+    {
+      "page": "/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "home-360.png"
+    },
+    {
+      "page": "/prestations/diagnostic-achats/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "prestations_diagnostic-achats-360.png"
+    },
+    {
+      "page": "/contact/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact-360.png"
+    },
+    {
+      "page": "/en/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en-360.png"
+    },
+    {
+      "page": "/en/services/procurement-review/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en_services_procurement-review-360.png"
+    },
+    {
+      "page": "/contact/envoye/",
+      "viewport": "360",
+      "overflow": 0,
+      "small": [],
+      "body": 16.08,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact_envoye-360.png"
+    },
+    {
+      "page": "/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "home-390.png"
+    },
+    {
+      "page": "/prestations/diagnostic-achats/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "prestations_diagnostic-achats-390.png"
+    },
+    {
+      "page": "/contact/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact-390.png"
+    },
+    {
+      "page": "/en/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en-390.png"
+    },
+    {
+      "page": "/en/services/procurement-review/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en_services_procurement-review-390.png"
+    },
+    {
+      "page": "/contact/envoye/",
+      "viewport": "390",
+      "overflow": 0,
+      "small": [],
+      "body": 16.14,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact_envoye-390.png"
+    },
+    {
+      "page": "/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "home-768.png"
+    },
+    {
+      "page": "/prestations/diagnostic-achats/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "prestations_diagnostic-achats-768.png"
+    },
+    {
+      "page": "/contact/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact-768.png"
+    },
+    {
+      "page": "/en/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en-768.png"
+    },
+    {
+      "page": "/en/services/procurement-review/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en_services_procurement-review-768.png"
+    },
+    {
+      "page": "/contact/envoye/",
+      "viewport": "768",
+      "overflow": 0,
+      "small": [],
+      "body": 16.896,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact_envoye-768.png"
+    },
+    {
+      "page": "/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "home-1440.png"
+    },
+    {
+      "page": "/prestations/diagnostic-achats/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "prestations_diagnostic-achats-1440.png"
+    },
+    {
+      "page": "/contact/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact-1440.png"
+    },
+    {
+      "page": "/en/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en-1440.png"
+    },
+    {
+      "page": "/en/services/procurement-review/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "en_services_procurement-review-1440.png"
+    },
+    {
+      "page": "/contact/envoye/",
+      "viewport": "1440",
+      "overflow": 0,
+      "small": [],
+      "body": 17.6,
+      "fonts": [
+        "Newsreader",
+        "Public Sans"
+      ],
+      "capture": "contact_envoye-1440.png"
+    }
+  ],
+  "problems": []
+}

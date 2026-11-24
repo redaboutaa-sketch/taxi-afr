@@ -1,0 +1,49 @@
+---
+import { items, paths, t, type Locale } from '../content/catalog.ts';
+import Catalog from '../layouts/Catalog.astro';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const l = t[locale];
+const cats = ['bolts', 'nuts', 'washers'] as const;
+---
+
+<Catalog title={l.rangeTitle} locale={locale} page="range">
+  <h1>{l.rangeTitle}</h1>
+  <p class="lead">{l.rangeLead}</p>
+  <div class="layout">
+    <nav class="rail" aria-label={l.rangeTitle}>
+      <ul>{cats.map((c) => <li><a href={`#${c}`}>{l.cats[c]}</a></li>)}</ul>
+      <p><a href={paths.notes.en} hreflang="en">{l.notes}</a></p>
+    </nav>
+    <div>
+      {cats.map((c) => (
+        <section id={c} aria-labelledby={`h-${c}`}>
+          <h2 id={`h-${c}`}>{l.cats[c]}</h2>
+          <div class="scroll" role="region" aria-labelledby={`h-${c}`} tabindex="0">
+            <table>
+              <thead><tr>{l.head.map((h) => <th scope="col">{h}</th>)}</tr></thead>
+              <tbody>
+                {items.filter((i) => i.cat === c).map((i) => (
+                  <tr><th scope="row"><code>{i.ref}</code></th><td>{l.cats[i.cat]}</td><td>{i.material}</td><td>{i.sizes}</td><td>{i.standard}</td></tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</Catalog>
+
+<style>
+  .layout { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+  @media (min-width: 52rem) { .layout { grid-template-columns: 13rem 1fr; } .rail { position: sticky; top: 1rem; align-self: start; } }
+  .rail ul { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--green); }
+  .rail a { display: inline-flex; align-items: center; min-height: 44px; padding-left: 0.75rem; }
+  h2 { font-size: 1.25rem; margin: 1.5rem 0 0.5rem; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 34rem; }
+  th, td { text-align: left; padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 2px solid var(--green); }
+</style>

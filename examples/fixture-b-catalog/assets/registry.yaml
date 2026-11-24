@@ -1,0 +1,182 @@
+# Registre d'actifs — fixture B (fictive). Les volets `observed` sont écrits
+# par `npm run factory:assets -- scan`, jamais à la main.
+#
+# Les décisions ci-dessous sont des DONNÉES DE TEST de la fixture : elles ne
+# représentent la décision d'aucun client réel.
+schemaVersion: 1
+assets:
+  schema-vis:
+    file: files/bolt.svg
+    kind: diagram
+    depicts: product
+    alt:
+      en: Line drawing of a hex head bolt, side view
+      de: Strichzeichnung einer Sechskantschraube, Seitenansicht
+      nl: Lijntekening van een zeskantbout, zijaanzicht
+    declared:
+      {
+        source: created-by-factory,
+        author: Équipe Premium Website Factory,
+        statement: 'Schéma technique original, non photographique.',
+        date: '2026-11-24'
+      }
+    rights:
+      {
+        status: not_required,
+        scope: Œuvre originale dessinée pour la fixture ; aucun tiers titulaire.
+      }
+    status: approved
+    decision:
+      {
+        by: données de test de la fixture B,
+        on: '2026-11-24',
+        note: Pas une décision client.
+      }
+    observed:
+      sha256: 781dea53afd93a7cab482aec7234a9f78a0b186a9a166c155648f0bc6bac0956
+      bytes: 433
+      format: svg
+      width: 160
+      height: 120
+      alpha: null
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24
+  schema-ecrou:
+    file: files/nut.svg
+    kind: diagram
+    depicts: product
+    alt:
+      en: Line drawing of a hex nut, top view
+      de: Strichzeichnung einer Sechskantmutter, Draufsicht
+      nl: Lijntekening van een zeskantmoer, bovenaanzicht
+    declared:
+      {
+        source: created-by-factory,
+        author: Équipe Premium Website Factory,
+        statement: 'Schéma technique original, non photographique.',
+        date: '2026-11-24'
+      }
+    rights:
+      {
+        status: not_required,
+        scope: Œuvre originale dessinée pour la fixture ; aucun tiers titulaire.
+      }
+    status: approved
+    decision:
+      {
+        by: données de test de la fixture B,
+        on: '2026-11-24',
+        note: Pas une décision client.
+      }
+    observed:
+      sha256: 99350789f3541055689e49b4dae43ad1aa474fe78b598bd30c0d2a994634b4e2
+      bytes: 353
+      format: svg
+      width: 160
+      height: 120
+      alpha: null
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24
+  schema-rondelle:
+    file: files/washer.svg
+    kind: diagram
+    depicts: product
+    alt:
+      en: Line drawing of a flat washer, top view
+      de: Strichzeichnung einer flachen Unterlegscheibe, Draufsicht
+      nl: Lijntekening van een vlakke sluitring, bovenaanzicht
+    declared:
+      {
+        source: created-by-factory,
+        author: Équipe Premium Website Factory,
+        statement: 'Schéma technique original, non photographique.',
+        date: '2026-11-24'
+      }
+    rights:
+      {
+        status: not_required,
+        scope: Œuvre originale dessinée pour la fixture ; aucun tiers titulaire.
+      }
+    status: approved
+    decision:
+      {
+        by: données de test de la fixture B,
+        on: '2026-11-24',
+        note: Pas une décision client.
+      }
+    observed:
+      sha256: ff1da2b1af690b1b4a7a9465019610f0f225e03105851cd217de8254cd18bf79
+      bytes: 244
+      format: svg
+      width: 160
+      height: 120
+      alpha: null
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24
+  # Vecteur de test : capture de benchmark, jamais publiable.
+  capture-benchmark:
+    file: files/tests/benchmark-capture.png
+    kind: photo
+    depicts: brand
+    decorative: true
+    declared:
+      {
+        source: benchmark,
+        statement: Capture d'un site de référence (fichier synthétique de test).
+      }
+    rights: { status: unknown }
+    status: excluded
+    observed:
+      sha256: c7080c8eeda2577ba1c7f04b54fd2f19d50f0d13b503ed3e08d801aed24c8591
+      bytes: 155
+      format: png
+      width: 64
+      height: 64
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24
+  # Vecteur de test SYNTHÉTIQUE : déclaré « photo fournie par le client », mais le
+  # fichier porte un digitalSourceType IPTC « trainedAlgorithmicMedia » (XMP).
+  # Conflit consigné : approbation bloquée tant qu'il n'est pas résolu.
+  photo-atelier:
+    file: files/tests/atelier-declare-photo.png
+    kind: photo
+    depicts: place
+    alt: { en: Workshop, de: Werkstatt, nl: Werkplaats }
+    declared:
+      {
+        source: client-supplied,
+        author: Fournisseur fictif,
+        statement: Photo de l'atelier prise par le client.
+      }
+    rights: { status: requested }
+    status: candidate
+    observed:
+      sha256: 93d2a116f5354388f39cc2dc624fb2a4e613c79636889ecdd36a2addb678c807
+      bytes: 533
+      format: png
+      width: 80
+      height: 48
+      alpha: true
+      metadata:
+        exif: false
+        xmp: true
+        c2paMarker: false
+        digitalSourceType: trainedAlgorithmicMedia
+      scannedOn: 2026-11-24

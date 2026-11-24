@@ -1,0 +1,129 @@
+---
+/**
+ * Gabarit de détail d'une prestation — composition propre (fiche, déroulé,
+ * livrables / prérequis, orientation), distincte de l'accueil.
+ */
+import config from 'virtual:factory/config';
+import Site from '../layouts/Site.astro';
+import PriorityMatrix from './PriorityMatrix.astro';
+import { chrome, routes, type Locale } from '../content/pages.ts';
+import { detailLabels, servicePath, services, type ServiceId } from '../content/services.ts';
+
+interface Props { id: ServiceId; locale: Locale; }
+const { id, locale } = Astro.props;
+const index = services.findIndex((s) => s.id === id);
+const service = services[index]!;
+const c = service.content[locale];
+const l = detailLabels[locale];
+const roman = ['i', 'ii', 'iii', 'iv', 'v', 'vi'];
+
+// Durée : seulement depuis un fait projeté, jamais traduite à la volée.
+let duration: { text: string; provisional: boolean } | null = c.duration ? { text: c.duration, provisional: false } : null;
+if (service.durationFact) {
+  const f = config.facts[service.durationFact];
+  duration = f && typeof f.value === 'string' && locale === config.defaultLocale ? { text: f.value, provisional: f.provisional } : null;
+}
+const others = services.filter((s) => s.id !== id);
+const other = services.find((s) => s.id === c.notThis.other)!;
+const abs = (p: string) => new URL(p, config.origin).href;
+const legalName = config.facts['legal.name'];
+const jsonld = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: c.title,
+      description: c.summary,
+      url: abs(servicePath(id, locale)),
+      ...(legalName && legalName.surfaces.includes('jsonld') && typeof legalName.value === 'string' ? { provider: { '@type': 'Organization', name: legalName.value } } : {}),
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: l.home, item: abs(routes.home[locale]) },
+        { '@type': 'ListItem', position: 2, name: c.title, item: abs(servicePath(id, locale)) },
+      ],
+    },
+  ],
+});
+---
+
+<Site title={`${c.title} — Ostral Conseil${config.fictional ? (locale === 'fr' ? ' (démonstration)' : ' (demo)') : ''}`} description={c.summary} locale={locale} alternates={{ fr: servicePath(id, 'fr'), en: servicePath(id, 'en') }}>
+  <script type="application/ld+json" set:html={jsonld} slot="head" />
+  <nav class="wrap crumbs" aria-label={l.breadcrumb}>
+    <ol>
+      <li><a href={routes.home[locale]}>{l.home}</a></li>
+      <li><a href={`${routes.home[locale]}#offre`}>{l.services}</a></li>
+      <li aria-current="page">{c.title}</li>
+    </ol>
+  </nav>
+
+  <header class="wrap grid detail-head">
+    <p class="note" aria-hidden="true">§ 0{index + 1}</p>
+    <div class="main-col">
+      <h1>{c.title}</h1>
+      <p class="lead">{c.summary}</p>
+      <p class="actions"><a class="button" href={routes.contact[locale]}>{l.cta}</a></p>
+    </div>
+    <aside class="side-col sheet" aria-labelledby="h-sheet">
+      <h2 id="h-sheet" class="kicker">{l.sheet}</h2>
+      <dl>
+        <div><dt>{l.forYou}</dt><dd>{c.forYou}</dd></div>
+        <div><dt>{l.deliverable}</dt><dd>{c.deliverable}</dd></div>
+        <div><dt>{l.duration}</dt><dd>{duration ? duration.text : '—'}{duration?.provisional && <span class="provisional">{chrome[locale].provisional}</span>}</dd></div>
+        <div><dt>{l.format}</dt><dd>{c.format}</dd></div>
+        <div><dt>{l.prerequisites}</dt><dd>{c.prerequisites}</dd></div>
+      </dl>
+    </aside>
+  </header>
+
+  <section class="band" aria-labelledby="h-steps">
+    <div class="wrap grid section">
+      <h2 id="h-steps" class="main-col">{l.steps}</h2>
+      <ol class="wide-col detail-steps">
+        {c.steps.map((s, i) => <li><span class="step-n" aria-hidden="true">{roman[i]}</span><div><h3>{s.title}</h3><p>{s.text}</p></div></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="wrap grid section" aria-label={`${l.receive} · ${l.needs}`}>
+    <div class="wide-col pair">
+      <div>
+        <h2>{l.receive}</h2>
+        <ul class="ticks">{c.receive.map((r) => <li>{r}</li>)}</ul>
+      </div>
+      <div>
+        <h2>{l.needs}</h2>
+        <ul class="ticks">{c.needs.map((r) => <li>{r}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  {service.showMatrix && (
+    <section class="band" aria-label={locale === 'fr' ? 'Exemple fictif de livrable' : 'Fictional deliverable example'}>
+      <div class="wrap grid section">
+        <div class="wide-col exhibit-solo"><PriorityMatrix locale={locale} /></div>
+      </div>
+    </section>
+  )}
+
+  <section class="wrap grid section" aria-labelledby="h-orient">
+    <div class="main-col orient">
+      <h2 id="h-orient">{l.notThis}</h2>
+      <p>{c.notThis.text} <a href={servicePath(other.id, locale)}>{l.see}{locale === 'fr' ? '\u202f:' : ':'} {other.content[locale].title}</a></p>
+    </div>
+    <nav class="side-col others" aria-labelledby="h-others">
+      <p id="h-others" class="kicker">{l.others}</p>
+      <ul>{others.map((o) => <li><a href={servicePath(o.id, locale)}>{o.content[locale].title}</a></li>)}</ul>
+    </nav>
+  </section>
+
+  <section class="closing" aria-labelledby="h-close">
+    <div class="wrap grid">
+      <div class="main-col">
+        <h2 id="h-close">{l.ctaText}</h2>
+        <p class="actions"><a class="button" href={routes.contact[locale]}>{l.cta}</a></p>
+      </div>
+    </div>
+  </section>
+</Site>

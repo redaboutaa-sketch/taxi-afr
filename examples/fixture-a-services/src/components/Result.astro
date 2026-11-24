@@ -1,0 +1,27 @@
+---
+/** Page de résultat du parcours SANS JavaScript. Statique : le niveau de preuve est celui du serveur. */
+import config from 'virtual:factory/config';
+import Site from '../layouts/Site.astro';
+import { routes, type Locale } from '../content/pages.ts';
+import { results } from '../content/contact.ts';
+
+interface Props { locale: Locale; kind: 'accepted' | 'invalid' | 'unavailable'; }
+const { locale, kind } = Astro.props;
+const t = results[locale];
+const page = t[kind];
+const email = config.facts['contact.email'];
+---
+
+<Site title={`${page.title} — Ostral`} description={page.h1} locale={locale} alternates={{ [locale]: Astro.url.pathname }} noindex>
+  <div class="wrap">
+    <div class="result" role={kind === 'accepted' ? 'status' : 'alert'}>
+      <h1>{page.h1}</h1>
+      {page.body.map((p) => <p>{p}</p>)}
+      {kind !== 'invalid' && typeof email?.value === 'string' && <p><a class="text-link" href={`mailto:${email.value}`}>{email.value}</a></p>}
+      <p class="actions">
+        {kind !== 'accepted' && <a class="button" href={routes.contact[locale]}>{t.back}</a>}
+        <a class="text-link" href={routes.home[locale]}>{t.home}</a>
+      </p>
+    </div>
+  </div>
+</Site>

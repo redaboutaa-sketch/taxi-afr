@@ -1,0 +1,162 @@
+---
+/**
+ * PLANCHE DE DIRECTION — comparaison des deux pistes. Les contrastes sont
+ * CALCULÉS au build depuis les fichiers de tokens (directions/*.css) pour les
+ * associations réellement employées dans les prototypes : aucune valeur n'est
+ * recopiée à la main.
+ */
+import { Font } from 'astro:assets';
+import { evaluate, type Pairing } from '@engine/design';
+import registreCss from '../directions/registre.css?raw';
+import atelierCss from '../directions/atelier.css?raw';
+import '../directions/registre.css';
+import '../directions/atelier.css';
+import { demoNotice } from './_content.ts';
+
+const tokens = (css: string) =>
+  Object.fromEntries([...css.matchAll(/--([\w-]+):\s*(#[0-9a-fA-F]{6})/g)].map((m) => [m[1] as string, m[2] as string]));
+const A = tokens(registreCss);
+const B = tokens(atelierCss);
+
+const pair = (t: Record<string, string>, fg: string, bg: string, use: string, kind: Pairing['kind']) => {
+  const p = { fg: t[fg] ?? '', bg: t[bg] ?? '', use, kind };
+  return { fgName: fg, bgName: bg, ...p, ...evaluate(p) };
+};
+
+const directions = [
+  {
+    id: 'a',
+    cls: 'dir-registre',
+    name: 'A — Registre',
+    intent: 'Un document de cabinet : la page se lit comme un registre annoté. Sérieux, posé, centré sur le texte.',
+    grid: '12 colonnes, marge de notes à gauche (§), contenu décalé ; asymétrie assumée.',
+    density: 'Aérée. Une idée par section, filets fins, beaucoup de papier.',
+    type: 'Newsreader (titres, optique variable) + Public Sans (texte).',
+    images: 'Aucune image. Signature : sommaire « Registre des prestations » et numérotation en italique.',
+    offer: 'Tableau-registre comparatif aligné en sous-grille (prestation / pour vous si / livrable / durée).',
+    cta: 'Bouton plein rouge de correction + lien texte ; clôture sur fond encre.',
+    swatches: Object.entries(A),
+    pairs: [
+      pair(A, 'ink', 'paper', 'Texte courant', 'text'),
+      pair(A, 'ink-muted', 'paper', 'Texte secondaire', 'text'),
+      pair(A, 'ink-muted', 'paper-deep', 'Bandeau de démonstration', 'text'),
+      pair(A, 'accent', 'paper', 'Numéros, titre en italique, lien CTA', 'text'),
+      pair(A, 'accent-ink', 'accent', 'Libellé du bouton principal', 'text'),
+      pair(A, 'paper', 'ink', 'Clôture sur fond encre', 'text'),
+      pair(A, 'focus', 'paper', 'Contour de focus', 'ui'),
+      pair(A, 'rule', 'paper', 'Filets (décoratifs, non porteurs d’information)', 'ui'),
+    ],
+  },
+  {
+    id: 'b',
+    cls: 'dir-atelier',
+    name: 'B — Plan d’atelier',
+    intent: 'Une fiche technique : l’offre est spécifiée comme un équipement. Direct, dense, orienté exploitation.',
+    grid: 'Trame visible de 4 rem sur l’en-tête ; bandes 3/9 ; modules à bordures partagées.',
+    density: 'Plus dense. Données en mono, libellés en capitales, fiche de spécification dès le premier écran.',
+    type: 'IBM Plex Sans Condensed (titres et texte) + IBM Plex Mono (données, repères).',
+    images: 'Aucune image. Signature : fiche « 01 / Diagnostic » et schéma de flux numéroté.',
+    offer: 'Trois modules juxtaposés avec livrable et durée en lignes de spécification.',
+    cta: 'Bande pleine largeur jaune signal, bouton ardoise.',
+    swatches: Object.entries(B),
+    pairs: [
+      pair(B, 'ink', 'chalk', 'Texte courant (fond craie)', 'text'),
+      pair(B, 'ink-muted', 'chalk', 'Texte secondaire', 'text'),
+      pair(B, 'ink-muted', 'white', 'Texte secondaire des modules', 'text'),
+      pair(B, 'text-on-slate', 'slate', 'Texte sur ardoise', 'text'),
+      pair(B, 'muted-on-slate', 'slate', 'Repères mono sur ardoise', 'text'),
+      pair(B, 'muted-on-slate', 'slate-2', 'Libellés de la fiche', 'text'),
+      pair(B, 'signal', 'slate', 'Accroche jaune sur ardoise', 'text'),
+      pair(B, 'signal-ink', 'signal', 'Bande CTA et bouton jaune', 'text'),
+      pair(B, 'white', 'slate', 'Bouton ardoise / titre', 'text'),
+      pair(B, 'focus', 'slate', 'Focus sur ardoise', 'ui'),
+      pair(B, 'focus-on-light', 'chalk', 'Focus sur fond clair', 'ui'),
+      pair(B, 'line-on-slate', 'slate', 'Trame (décorative)', 'ui'),
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Planche de direction — Ostral (démonstration)</title>
+    <Font cssVariable="--font-newsreader" />
+    <Font cssVariable="--font-public-sans" />
+    <Font cssVariable="--font-plex-condensed" />
+    <Font cssVariable="--font-plex-mono" />
+  </head>
+  <body>
+    <header class="top">
+      <p>{demoNotice}</p>
+      <h1>Planche de direction — deux pistes</h1>
+      <p>Même contenu, deux compositions. Prototypes : <a href="/prototypes/direction-a/">piste A</a> · <a href="/prototypes/direction-b/">piste B</a>. Choix à faire par le propriétaire (porte G2).</p>
+    </header>
+    <main class="cols">
+      {directions.map((d) => (
+        <section class={`sheet ${d.cls}`} aria-labelledby={`t-${d.id}`}>
+          <h2 id={`t-${d.id}`}>{d.name}</h2>
+          <dl class="facts">
+            <div><dt>Intention</dt><dd>{d.intent}</dd></div>
+            <div><dt>Grille</dt><dd>{d.grid}</dd></div>
+            <div><dt>Densité</dt><dd>{d.density}</dd></div>
+            <div><dt>Typographie</dt><dd>{d.type}</dd></div>
+            <div><dt>Offre</dt><dd>{d.offer}</dd></div>
+            <div><dt>CTA</dt><dd>{d.cta}</dd></div>
+            <div><dt>Images</dt><dd>{d.images}</dd></div>
+          </dl>
+          <div class="specimen">
+            <p class="display">Reprendre la main sur vos achats — œuvre, déjà « juste ».</p>
+            <p class="text">Texte courant : nous aidons les PME industrielles à voir où part leur argent. Procurement review, supplier base structuring.</p>
+          </div>
+          <h3>Couleurs et contrastes mesurés (WCAG 2.2, sRGB)</h3>
+          <ul class="swatches">
+            {d.swatches.map(([name, hex]) => <li><svg class="chip" width="16" height="16" aria-hidden="true"><rect width="16" height="16" fill={hex} /></svg><code>--{name}</code> {hex}</li>)}
+          </ul>
+          <table>
+            <thead><tr><th scope="col">Usage</th><th scope="col">Texte / fond</th><th scope="col">Ratio</th><th scope="col">Seuil</th><th scope="col">Résultat</th></tr></thead>
+            <tbody>
+              {d.pairs.map((p) => (
+                <tr>
+                  <td>{p.use}</td>
+                  <td><code>{p.fgName}</code> / <code>{p.bgName}</code></td>
+                  <td>{p.ratio.toFixed(2)}:1</td>
+                  <td>{p.required}:1</td>
+                  <td class={p.pass ? 'ok' : 'ko'}>{p.pass ? 'conforme' : p.use.includes('décorati') ? 'décoratif — non requis' : 'NON CONFORME'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      ))}
+    </main>
+  </body>
+</html>
+
+<style>
+  :global(body) { margin: 0; font-family: system-ui, sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.5; }
+  .top { padding: 1.5rem clamp(1rem, 4vw, 3rem); border-bottom: 1px solid #ccc; }
+  .top h1 { margin: 0.25rem 0; font-size: 1.6rem; }
+  .cols { display: grid; gap: 2rem; padding: 2rem clamp(1rem, 4vw, 3rem); }
+  @media (min-width: 70rem) { .cols { grid-template-columns: 1fr 1fr; } }
+  .sheet { border: 1px solid #ccc; padding: 1.5rem; background: #fff; min-width: 0; }
+  .facts > div { display: grid; grid-template-columns: 7rem 1fr; gap: 0.75rem; border-top: 1px solid #e3e3e3; padding: 0.4rem 0; }
+  .facts dt { font-weight: 600; }
+  .facts dd { margin: 0; }
+  .specimen { margin: 1.5rem 0; padding: 1.25rem; }
+  .dir-registre .specimen { background: var(--paper); color: var(--ink); }
+  .dir-registre .display { font-family: var(--font-newsreader); font-size: 2.2rem; line-height: 1.05; margin: 0; }
+  .dir-registre .text { font-family: var(--font-public-sans); }
+  .dir-atelier .specimen { background: var(--slate); color: var(--text-on-slate); }
+  .dir-atelier .display { font-family: var(--font-plex-condensed); font-weight: 600; font-size: 2rem; line-height: 1.05; margin: 0; color: var(--white); }
+  .dir-atelier .text { font-family: var(--font-plex-condensed); }
+  .swatches { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 0.25rem 1rem; font-size: 0.85rem; }
+  .chip { vertical-align: -0.2rem; margin-right: 0.4rem; outline: 1px solid #999; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 1rem; display: block; overflow-x: auto; }
+  th, td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid #e3e3e3; vertical-align: top; }
+  .ok { color: #1d6b32; font-weight: 600; }
+  .ko { color: #a1261b; font-weight: 600; }
+</style>

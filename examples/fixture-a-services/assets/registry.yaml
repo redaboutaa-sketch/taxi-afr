@@ -1,0 +1,43 @@
+# Registre d'actifs — Ostral Conseil (démonstration fictive).
+# `observed` est écrit par `npm run factory:assets -- scan`.
+schemaVersion: 1
+assets:
+  # Image de partage (OpenGraph), composée avec la typographie du site et
+  # capturée par Chromium : aucune photo, aucun élément de tiers.
+  # EN ATTENTE de la décision du propriétaire (status candidate, decision null) :
+  # tant qu'elle n'est pas approuvée, aucune page ne l'émet.
+  partage-defaut:
+    file: files/partage-defaut.png
+    kind: social-image
+    depicts: none
+    alt:
+      fr: 'Ostral Conseil : des achats pilotés, sans service achats. Démonstration
+        fictive.'
+      en: 'Ostral Conseil: purchasing under control, without a purchasing team.
+        Fictional demo.'
+    declared:
+      source: created-by-factory
+      author: Équipe Premium Website Factory
+      statement: Composition typographique générée depuis le gabarit du site
+        (Newsreader, Public Sans, OFL).
+      date: '2026-11-24'
+    rights:
+      status: not_required
+      scope: Composition originale ; polices sous licence SIL OFL 1.1 (voir
+        docs/licences-polices.md).
+    transformations: []
+    status: candidate
+    decision: null
+    observed:
+      sha256: 5bf543f439e8d939c0334c25eb3aced899dd6d1a79489689544378f664d94523
+      bytes: 51834
+      format: png
+      width: 1200
+      height: 630
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-24

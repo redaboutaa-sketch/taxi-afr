@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+.generated/
+test-results/
+playwright-report/
+# Secrets : jamais dans le dépôt (les briefs n'en contiennent que des références env:)
+.env
+.env.*
+!.env.example
+*.local.php
+# Répertoires temporaires de init
+*.init-*/
+engine/form/php/vendor/

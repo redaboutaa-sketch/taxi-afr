@@ -1,0 +1,74 @@
+---
+/**
+ * Gabarit du site de démonstration — direction A « Registre ».
+ * Lit uniquement la configuration résolue (virtual:factory/config).
+ */
+import { Font } from 'astro:assets';
+import config from 'virtual:factory/config';
+import assets from 'virtual:factory/assets';
+import '../../design/directions/registre.css';
+import '../styles/site.css';
+import { chrome, routes, type Locale } from '../content/pages.ts';
+
+interface Props {
+  title: string;
+  description: string;
+  locale: Locale;
+  /** Chemins de la même page dans chaque langue où elle existe. */
+  alternates: Partial<Record<Locale, string>>;
+  current?: 'home' | 'contact';
+  /** Pages utilitaires (résultats du formulaire, 404) : jamais indexées. */
+  noindex?: boolean;
+}
+const { title, description, locale, alternates, current, noindex = false } = Astro.props;
+const t = chrome[locale];
+const self = alternates[locale];
+const abs = (p: string) => new URL(p, config.origin).href;
+const other = t.other.lang as Locale;
+const otherPath = alternates[other];
+// Image de partage : seulement si l'actif est publiable (approuvé, droits, scan, décision).
+const share = assets['partage-defaut'];
+---
+
+<!doctype html>
+<html lang={locale} class="dir-registre">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content={config.indexable && !noindex ? 'index, follow' : 'noindex, nofollow'} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={locale === 'fr' ? 'fr_FR' : 'en_GB'} />
+    {self && <meta property="og:url" content={abs(self)} />}
+    {share && <meta property="og:image" content={abs(share.src.src)} />}
+    {share && <meta property="og:image:alt" content={share.alt[locale]} />}
+    {self && <link rel="canonical" href={abs(self)} />}
+    {Object.entries(alternates).map(([l, p]) => <link rel="alternate" hreflang={l} href={abs(p)} />)}
+    {alternates[config.defaultLocale as Locale] && <link rel="alternate" hreflang="x-default" href={abs(alternates[config.defaultLocale as Locale]!)} />}
+    <Font cssVariable="--font-newsreader" preload={[{ weight: '200 800', style: 'normal' }]} />
+    <Font cssVariable="--font-public-sans" preload={[{ weight: '100 900', style: 'normal' }]} />
+    <slot name="head" />
+  </head>
+  <body class="dir-registre">
+    <a class="visually-hidden skip" href="#contenu">{t.skip}</a>
+    {config.fictional && <div class="demo"><p><strong>{t.demo}</strong> — {t.demoDetail}</p></div>}
+    <div class="wrap">
+      <header class="masthead">
+        <a class="wordmark" href={routes.home[locale]}>Ostral<small>Conseil</small></a>
+        <nav class="nav" aria-label={locale === 'fr' ? 'Navigation principale' : 'Main navigation'}>
+          <ul>
+            <li><a href={`${routes.home[locale]}#offre`}>{t.nav.offer}</a></li>
+            <li><a href={`${routes.home[locale]}#methode`}>{t.nav.method}</a></li>
+            <li><a class="nav-cta" href={routes.contact[locale]} aria-current={current === 'contact' ? 'page' : undefined}>{t.nav.contact}</a></li>
+            {otherPath && <li><a class="lang" href={otherPath} hreflang={other} lang={other}>{t.other.label}</a></li>}
+          </ul>
+        </nav>
+      </header>
+    </div>
+    <main id="contenu"><slot /></main>
+    <footer class="wrap footer">{t.footer.map((l) => <p>{l}</p>)}</footer>
+  </body>
+</html>

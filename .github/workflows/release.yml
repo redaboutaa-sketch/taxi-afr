@@ -1,0 +1,142 @@
+# Publication d'une release ATTESTÉE. Ne déploie rien sur un serveur.
+#
+# Déclenchement manuel uniquement (personnes ayant le droit d'écriture) :
+# jamais sur pull request, jamais sur push. Deux jobs séparés :
+#   build   — assemble, audite, calcule l'empreinte, ATTESTE la provenance
+#             (identité OIDC de ce workflow, commit, dépôt) ;
+#   publish — dans l'environnement « release » (règles de protection à
+#             activer dans Settings > Environments : relecteurs requis),
+#             revérifie empreinte ET attestation, puis crée une release
+#             GitHub en BROUILLON avec l'archive et son empreinte.
+# L'opérateur vérifie de nouveau l'attestation avant tout déploiement
+# (npm run release:verify), puis transmet l'empreinte à factory-deploy.
+name: release
+
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: 'Répertoire du site (site ou examples/<fixture>)'
+        required: true
+        default: site
+        type: string
+      target:
+        description: 'Cible du build'
+        required: true
+        default: production
+        type: choice
+        options: [production, preview]
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}-${{ inputs.site }}
+  cancel-in-progress: false
+
+env:
+  ASTRO_TELEMETRY_DISABLED: '1'
+  FACTORY_REQUIRE_PHP: '1'
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write      # jeton OIDC pour signer l'attestation (Sigstore)
+      attestations: write  # enregistrement de l'attestation dans le dépôt
+    outputs:
+      id: ${{ steps.meta.outputs.id }}
+      sha256: ${{ steps.meta.outputs.sha256 }}
+    steps:
+      # Entrées validées AVANT tout usage, et passées par variables d'environnement
+      # (jamais interpolées dans un script) : pas d'injection de commande.
+      - name: Valider les entrées
+        env:
+          SITE: ${{ inputs.site }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          [[ "$SITE" =~ ^(site|examples/[a-z0-9-]{1,60})$ ]] || { echo "::error::site invalide"; exit 1; }
+          [[ "$TARGET" =~ ^(production|preview)$ ]] || { echo "::error::cible invalide"; exit 1; }
+      # actions/checkout v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      # actions/setup-node v7.1.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '26.13.1'
+          cache: npm
+      - run: npm install --global npm@11.20.0
+      - run: npm ci
+      - name: Assembler et auditer la release
+        env:
+          FACTORY_SITE_DIR: ${{ inputs.site }}
+          TARGET: ${{ inputs.target }}
+        run: npm run release -- --profile vps-nginx --target "$TARGET" --out .generated/releases
+      - name: Identité et empreinte
+        id: meta
+        env:
+          FACTORY_SITE_DIR: ${{ inputs.site }}
+        run: |
+          dir="$(ls -d .generated/releases/*/ | head -1)"; dir="${dir%/}"
+          id="$(basename "$dir")"
+          npm run qa:release -- --release "$dir"
+          sha="$(sha256sum "$dir.tar.gz" | cut -d' ' -f1)"
+          [ "$sha" = "$(cut -d' ' -f1 "$dir.tar.gz.sha256")" ] || { echo "::error::empreinte incohérente"; exit 1; }
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "sha256=$sha" >> "$GITHUB_OUTPUT"
+          mkdir -p out && cp "$dir.tar.gz" "$dir.tar.gz.sha256" "$dir/release.json" out/
+          {
+            echo "### Release $id"
+            echo ""
+            echo "- sha256 : \`$sha\`"
+            echo "- commit : \`$GITHUB_SHA\`"
+            echo "- rien n'a été déployé"
+          } >> "$GITHUB_STEP_SUMMARY"
+      # actions/attest-build-provenance v4.2.2 — SHA relevé par git ls-remote le 2026-11-24
+      - name: Attester la provenance de l'archive
+        uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8
+        with:
+          subject-path: out/*.tar.gz
+      # actions/upload-artifact v7.0.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: release-${{ steps.meta.outputs.id }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment: release
+    permissions:
+      contents: write      # création de la release (brouillon)
+      attestations: read   # vérification de l'attestation
+    steps:
+      # actions/download-artifact v8.0.2 — SHA relevé par git ls-remote le 2026-11-24
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
+        with:
+          name: release-${{ needs.build.outputs.id }}
+          path: out
+      - name: Revérifier empreinte et attestation
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ID: ${{ needs.build.outputs.id }}
+          EXPECTED: ${{ needs.build.outputs.sha256 }}
+        run: |
+          [[ "$ID" =~ ^[a-z0-9][a-z0-9-]{2,80}$ ]] || { echo "::error::identifiant invalide"; exit 1; }
+          actual="$(sha256sum "out/$ID.tar.gz" | cut -d' ' -f1)"
+          [ "$actual" = "$EXPECTED" ] || { echo "::error::empreinte différente de celle du build"; exit 1; }
+          gh attestation verify "out/$ID.tar.gz" --repo "$GITHUB_REPOSITORY" \
+            --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/release.yml"
+      - name: Créer la release GitHub en brouillon
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ID: ${{ needs.build.outputs.id }}
+          SHA256: ${{ needs.build.outputs.sha256 }}
+        run: |
+          printf 'Release %s\n\nsha256 : %s\ncommit : %s\n\nAvant tout déploiement :\n  npm run release:verify -- --archive %s.tar.gz --repo %s\nAucun déploiement n a été effectué par ce workflow.\n' \
+            "$ID" "$SHA256" "$GITHUB_SHA" "$ID" "$GITHUB_REPOSITORY" > notes.md
+          gh release create "$ID" "out/$ID.tar.gz" "out/$ID.tar.gz.sha256" "out/release.json" \
+            --repo "$GITHUB_REPOSITORY" --draft --target "$GITHUB_SHA" --title "$ID" --notes-file notes.md

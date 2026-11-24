@@ -1,0 +1,101 @@
+# yaml-language-server: $schema=../../../engine/contracts/brief.schema.json
+#
+# FIXTURE FICTIVE B — « Halvard Fixings » n'existe pas. Sert à prouver que le
+# moteur n'est couplé ni à la démo A ni à un secteur : catalogue, trois
+# langues, pas de formulaire, CTA par e-mail, polices système.
+schemaVersion: 1
+mode: preview
+
+site:
+  id: halvard-fixture
+
+identity:
+  brand: Halvard Fixings
+  fictional: true
+  establishmentCountry: NL
+
+market:
+  audience: Maintenance buyers at small manufacturing plants looking for stainless fasteners.
+  targetCountries: [NL, DE, BE]
+  objectives:
+    - Let buyers check whether a fastener range exists before asking for a quote by email.
+  differentiationFacts: []
+  primaryCta:
+    kind: email
+    label:
+      en: Ask for a quote by email
+      de: Angebot per E-Mail anfragen
+      nl: Offerte per e-mail aanvragen
+
+offer:
+  kind: catalog
+  categories:
+    - id: bolts
+      label: { en: Bolts, de: Schrauben, nl: Bouten }
+    - id: nuts
+      label: { en: Nuts, de: Muttern, nl: Moeren }
+    - id: washers
+      label: { en: Washers, de: Unterlegscheiben, nl: Sluitringen }
+  exclusions:
+    - No retail sales.
+  availabilityFact: catalog.availability
+
+network:
+  canonicalOrigin: https://www.example.org
+  redirectDomains: [example.org, example.net, www.example.net]
+  previewOrigin: null
+
+email:
+  publicContactFact: contact.email
+  transport: none
+
+form:
+  enabled: false
+
+i18n:
+  defaultLocale: en
+  locales: [en, de, nl]
+  missingTranslation: omit
+
+design:
+  references: []
+  antiReferences: [Fake stock counters, invented certifications]
+  brandConstraints: [System fonts only]
+  availableResources: []
+  selectedDirection: null
+  renderApproval: null
+
+hosting:
+  profile: vps-nginx
+
+privacy:
+  processing: []
+  thirdPartyTools: []
+  analytics: none
+
+delivery:
+  scope: [Home, range page, one English-only technical note, 404 — EN/DE/NL]
+  reviewer: null
+  publicationAuthorization: null
+
+facts:
+  contact.email:
+    value: sales@example.org
+    status: confirmed
+    sourceRefs: [fixture:halvard]
+    publication: public
+  catalog.availability:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: internal
+  company.discountPolicy:
+    value: Volume discount of twelve percent above 5000 units
+    status: confirmed
+    sourceRefs: [fixture:halvard]
+    publication: withheld
+  legal.name:
+    value: Halvard Fixings (fictional company)
+    status: confirmed
+    sourceRefs: [fixture:halvard]
+    publication: public

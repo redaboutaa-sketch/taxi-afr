@@ -1,0 +1,101 @@
+---
+import config from 'virtual:factory/config';
+import Site from '../layouts/Site.astro';
+import PriorityMatrix from './PriorityMatrix.astro';
+import { chrome, home, routes, type Locale } from '../content/pages.ts';
+import { servicePath, type ServiceId } from '../content/services.ts';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = home[locale];
+const roman = ['i', 'ii', 'iii', 'iv'];
+/** Durée issue d'un fait : affichée seulement si la configuration la projette. */
+const duration = (s: (typeof t.services)[number]) => {
+  if ('duration' in s) return { text: s.duration, provisional: false };
+  const f = config.facts[s.durationFact];
+  // Le fait n'existe qu'en français dans le brief : en anglais, on n'invente pas de traduction.
+  if (!f || typeof f.value !== 'string') return null;
+  return locale === config.defaultLocale ? { text: f.value, provisional: f.provisional } : null;
+};
+---
+
+<Site title={t.title} description={t.description} locale={locale} alternates={{ fr: routes.home.fr, en: routes.home.en }} current="home">
+  <section class="wrap grid opening" aria-labelledby="h-opening">
+    <p class="note" aria-hidden="true">§ 1</p>
+    <div class="main-col">
+      <p class="kicker">{t.kicker}</p>
+      <h1 id="h-opening">{t.h1.map((l) => ('em' in l ? <span class="line"><em>{l.text}</em></span> : <span class="line">{l.text}</span>))}</h1>
+      <p class="lead">{t.lead}</p>
+      <p class="actions">
+        <a class="button" href={routes.contact[locale]}>{t.cta}</a>
+        <a class="text-link" href="#livrable">{t.secondary}<span aria-hidden="true">&nbsp;→</span></a>
+      </p>
+    </div>
+    <nav class="side-col index" aria-labelledby="h-index">
+      <p id="h-index" class="kicker">{t.indexTitle}</p>
+      <ol>{t.services.map((s, i) => <li><a href={`#${s.id}`}><span class="num">0{i + 1}</span>{s.title}</a></li>)}</ol>
+    </nav>
+  </section>
+
+  <section id="offre" class="wrap grid section" aria-labelledby="h-offer">
+    <p class="note" aria-hidden="true">§ 2</p>
+    <h2 id="h-offer" class="main-col">{t.offerTitle}</h2>
+    <ol class="wide-col register">
+      <li class="register-head" aria-hidden="true">{t.columns.map((c) => <span>{c}</span>)}</li>
+      {t.services.map((s, i) => {
+        const d = duration(s);
+        return (
+          <li id={s.id}>
+            <h3><span class="num">0{i + 1}</span><a href={servicePath(s.id as ServiceId, locale)}>{s.title}</a></h3>
+            <p><span class="label">{t.columns[1]}</span>{s.for}</p>
+            <p><span class="label">{t.columns[2]}</span>{s.get}</p>
+            <p>
+              <span class="label">{t.columns[3]}</span>
+              {d ? d.text : '—'}
+              {d?.provisional && <span class="provisional">{chrome[locale].provisional}</span>}
+            </p>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+
+  <section id="livrable" class="band" aria-labelledby="h-exhibit">
+    <div class="wrap grid section">
+      <p class="note" aria-hidden="true">§ 3</p>
+      <div class="wide-col exhibit">
+        <PriorityMatrix locale={locale} />
+        <div class="exhibit-text">
+          <p class="fictional-tag">{t.exhibitTag}</p>
+          <h2 id="h-exhibit">{t.exhibitTitle}</h2>
+          {t.exhibitText.map((p) => <p>{p}</p>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="methode" class="wrap grid section" aria-labelledby="h-method">
+    <p class="note" aria-hidden="true">§ 4</p>
+    <h2 id="h-method" class="main-col">{t.methodTitle}</h2>
+    <ol class="wide-col steps">
+      {t.steps.map((s, i) => <li><span class="step-n" aria-hidden="true">{roman[i]}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+  </section>
+
+  <section class="wrap grid section" aria-labelledby="h-excl">
+    <p class="note" aria-hidden="true">§ 5</p>
+    <div class="main-col">
+      <h2 id="h-excl">{t.exclusionsTitle}</h2>
+      <ul class="exclusions">{t.exclusions.map((e) => <li>{e}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="h-closing">
+    <div class="wrap grid">
+      <div class="main-col">
+        <h2 id="h-closing">{t.closing}</h2>
+        <p class="actions"><a class="button" href={routes.contact[locale]}>{t.cta}</a></p>
+      </div>
+    </div>
+  </section>
+</Site>

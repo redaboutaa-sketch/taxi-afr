@@ -1,0 +1,87 @@
+---
+/**
+ * Formulaire de contact. Fonctionne SANS JavaScript (POST classique vers
+ * l'endpoint, puis page de résultat). Le script n'ajoute que la validation
+ * immédiate, l'envoi sans rechargement et la prévention du double envoi.
+ */
+import config from 'virtual:factory/config';
+import form from 'virtual:factory/form';
+import Site from '../layouts/Site.astro';
+import { chrome, routes, type Locale } from '../content/pages.ts';
+import { contact } from '../content/contact.ts';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+if (!form) throw new Error('le site de démonstration exige un contrat de formulaire');
+const t = contact[locale];
+const email = config.facts['contact.email'];
+const retention = config.facts['privacy.contactRetention'];
+const clientData = JSON.stringify({ contract: form.server, endpoint: form.endpoint, messages: { errors: t.errors, accepted: t.accepted, unavailable: t.unavailable, network: t.network, summary: t.summary, sending: t.sending, submit: t.submit } });
+---
+
+<Site title={t.title} description={t.description} locale={locale} alternates={{ fr: routes.contact.fr, en: routes.contact.en }} current="contact">
+  <div class="wrap grid contact-layout">
+    <p class="note" aria-hidden="true">§</p>
+    <div class="main-col">
+      <h1>{t.h1}</h1>
+      <p class="lead">{t.intro}</p>
+      <div class="status" data-form-status role="status" aria-live="polite" hidden></div>
+      <form class="form" method="post" action={form.endpoint} novalidate data-contact-form data-client={clientData}>
+        <div class="summary" data-form-summary tabindex="-1" hidden>
+          <h2>{t.summary}</h2>
+          <ul data-form-summary-list></ul>
+        </div>
+        <input type="hidden" name="locale" value={locale} />
+        {form.contract.fields.map((f) => {
+          const hintId = f.hint ? `${f.name}-hint` : undefined;
+          const errId = `${f.name}-error`;
+          const describedBy = [hintId, errId].filter(Boolean).join(' ');
+          return (
+            <div class="field">
+              <label for={f.name}>
+                {f.label[locale]} {!f.required && <span class="optional">{t.optional}</span>}
+              </label>
+              {f.hint?.[locale] && <p class="hint" id={hintId}>{f.hint[locale]}</p>}
+              {f.kind === 'textarea' ? (
+                <textarea id={f.name} name={f.name} required={f.required} maxlength={f.maxLength} aria-describedby={describedBy} />
+              ) : f.kind === 'select' ? (
+                <select id={f.name} name={f.name} required={f.required} aria-describedby={describedBy}>
+                  <option value="">{t.choose}</option>
+                  {f.options?.map((o) => <option value={o.value}>{o.label[locale]}</option>)}
+                </select>
+              ) : (
+                <input id={f.name} name={f.name} type={f.kind === 'tel' ? 'tel' : f.kind === 'email' ? 'email' : 'text'} required={f.required} maxlength={f.maxLength} autocomplete={f.autocomplete} aria-describedby={describedBy} spellcheck={f.kind === 'email' ? 'false' : undefined} />
+              )}
+              <p class="error" id={errId} data-error-for={f.name}></p>
+            </div>
+          );
+        })}
+        <div class="trap" aria-hidden="true">
+          <label for={form.contract.honeypot}>Ne pas remplir</label>
+          <input id={form.contract.honeypot} name={form.contract.honeypot} type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p><button class="button" type="submit" data-submit>{t.submit}</button></p>
+      </form>
+    </div>
+    <aside class="side-col">
+      {typeof email?.value === 'string' && (
+        <div class="aside-block">
+          <h2>{t.directTitle}</h2>
+          <p><a class="text-link" href={`mailto:${email.value}`}>{email.value}</a></p>
+        </div>
+      )}
+      <div class="aside-block">
+        <h2>{t.privacyTitle}</h2>
+        <p>{t.privacy}</p>
+        {locale === config.defaultLocale && typeof retention?.value === 'string' && (
+          <p>{t.retention} {retention.value} {retention.provisional && <span class="provisional">{chrome[locale].provisional}</span>}</p>
+        )}
+      </div>
+    </aside>
+  </div>
+</Site>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form.ts';
+  initContactForm();
+</script>

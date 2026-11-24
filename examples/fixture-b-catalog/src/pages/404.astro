@@ -1,0 +1,8 @@
+---
+import { paths, t } from '../content/catalog.ts';
+import Catalog from '../layouts/Catalog.astro';
+---
+<Catalog title={t.en.notFound} locale="en" page="home">
+  <h1>{t.en.notFound}</h1>
+  <p><a href={paths.range.en}>{t.en.back}</a></p>
+</Catalog>

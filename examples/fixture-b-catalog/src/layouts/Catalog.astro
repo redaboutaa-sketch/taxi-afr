@@ -1,0 +1,62 @@
+---
+/** Gabarit de la fixture B : composition « fiche de catalogue », polices système. */
+import config from 'virtual:factory/config';
+import { locales, paths, t, type Locale } from '../content/catalog.ts';
+
+interface Props { title: string; locale: Locale; page: keyof typeof paths; }
+const { title, locale, page } = Astro.props;
+const available = paths[page] as Partial<Record<Locale, string>>;
+const abs = (p: string) => new URL(p, config.origin).href;
+const cta = config.primaryCta;
+const email = config.facts['contact.email']?.value;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content={config.indexable ? 'index, follow' : 'noindex, nofollow'} />
+    <title>{title} — {config.brand}</title>
+    <link rel="canonical" href={abs(available[locale]!)} />
+    {locales.filter((l) => available[l]).map((l) => <link rel="alternate" hreflang={l} href={abs(available[l]!)} />)}
+    {available.en && <link rel="alternate" hreflang="x-default" href={abs(available.en)} />}
+  </head>
+  <body>
+    {config.fictional && <p class="demo">{t[locale].demo}</p>}
+    <header class="bar">
+      <a class="brand" href={paths.home[locale]}>{config.brand}</a>
+      <nav aria-label="Language">
+        <ul>
+          {locales.filter((l) => available[l]).map((l) => (
+            <li><a href={available[l]} hreflang={l} lang={l} aria-current={l === locale ? 'true' : undefined}>{t[l].lang}</a></li>
+          ))}
+        </ul>
+      </nav>
+    </header>
+    <main><slot /></main>
+    {typeof email === 'string' && cta.kind === 'email' && (
+      <footer class="cta"><a href={`mailto:${email}`}>{cta.label[locale]}</a> <span>{email}</span></footer>
+    )}
+  </body>
+</html>
+
+<style is:global>
+  :root { --green: #0f3d2e; --leaf: #d8eadf; --ink: #101a16; --muted: #445a50; --line: #b9cbc1; --white: #ffffff; --focus: #b3261e; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-size: 1rem; line-height: 1.55; color: var(--ink); background: var(--white); }
+  a { color: var(--green); }
+  :focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+  .demo { margin: 0; padding: 0.5rem 1rem; background: var(--leaf); font-size: 0.9rem; }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem 1rem; padding: 0.5rem clamp(1rem, 4vw, 2.5rem); background: var(--green); }
+  .bar a { color: var(--white); text-decoration: none; display: inline-flex; align-items: center; min-height: 44px; padding-inline: 0.4rem; }
+  .brand { font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  .bar ul { display: flex; gap: 0.25rem; margin: 0; padding: 0; list-style: none; }
+  .bar [aria-current] { text-decoration: underline; text-underline-offset: 0.3em; }
+  main { padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem); max-width: 72rem; }
+  h1 { font-size: clamp(1.7rem, 1.2rem + 2.5vw, 2.8rem); line-height: 1.1; margin: 0 0 0.75rem; max-width: 24ch; }
+  .lead { font-size: 1.125rem; max-width: 60ch; color: var(--muted); }
+  .cta { position: sticky; bottom: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; align-items: center; padding: 0.5rem clamp(1rem, 4vw, 2.5rem); background: var(--leaf); border-top: 2px solid var(--green); }
+  .cta a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; }
+  .cta span { color: var(--muted); }
+</style>
