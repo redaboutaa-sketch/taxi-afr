@@ -1,6 +1,6 @@
 ---
 /**
- * Gabarit AFR TAXI. Lit uniquement la configuration résolue (faits projetés).
+ * Gabarit AFR TAXI — direction B « Bandeau » (choisie le 2026-11-24). Lit uniquement la configuration résolue (faits projetés).
  * Navigation MPA, aucun script global : l'appel et la navigation fonctionnent
  * sans JavaScript et sans traceur.
  */
@@ -8,10 +8,9 @@ import { Font } from 'astro:assets';
 import config from 'virtual:factory/config';
 import { factFor } from '@engine/astro';
 import '../styles/base.css';
-import '../../design/directions/ivoire.css';
 import '../../design/directions/bandeau.css';
 import Icon from '../components/Icon.astro';
-import { DIRECTION, type Direction, nav, routes, phone, telHref, email, footerNote, services } from '../content/site.ts';
+import { nav, routes, phone, telHref, email, footerNote, services } from '../content/site.ts';
 
 interface Props {
   title: string;
@@ -19,11 +18,10 @@ interface Props {
   /** Chemin canonique de la page (avec barre finale). */
   path: string;
   noindex?: boolean;
-  direction?: Direction;
   /** Masque la barre d'action mobile (pages où elle ferait doublon). */
   bar?: boolean;
 }
-const { title, description, path, noindex = false, direction = DIRECTION, bar = true } = Astro.props;
+const { title, description, path, noindex = false, bar = true } = Astro.props;
 const abs = (p: string) => new URL(p, config.origin).href;
 const current = (href: string) => (path === href || (href !== '/' && path.startsWith(href)) ? 'page' : undefined);
 
@@ -45,7 +43,7 @@ const ld = ldName && ldPhone
 ---
 
 <!doctype html>
-<html lang="fr" class={`dir-${direction}`}>
+<html lang="fr" class="dir-bandeau">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,10 +56,9 @@ const ld = ldName && ldPhone
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:url" content={abs(path)} />
     <link rel="canonical" href={abs(path)} />
-    <meta name="theme-color" content={direction === 'bandeau' ? '#15191f' : '#fbf8f1'} />
+    <meta name="theme-color" content="#15191f" />
     <Font cssVariable="--font-public-sans" preload={[{ weight: '100 900', style: 'normal' }]} />
-    {direction === 'bandeau' && <Font cssVariable="--font-plex-condensed" preload />}
-    {direction !== 'bandeau' && <Font cssVariable="--font-plex-condensed" />}
+    <Font cssVariable="--font-plex-condensed" preload />
     {ld && <script type="application/ld+json" is:inline set:html={JSON.stringify(ld)} />}
   </head>
   <body>

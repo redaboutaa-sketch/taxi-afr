@@ -1,6 +1,6 @@
 {
-  "release": "afr-taxi-preview-b7d83c7f00d9",
-  "archiveSha256": "e6a016d352911fc3499163de13d3a134236cb30fe1a7e1aa8aeff767a2581da4",
+  "release": "afr-taxi-preview-7b1c8a709baf",
+  "archiveSha256": "c4ca83076d1cb25434b21c10173b8e23d00e286cb1bc7aabbf2f278fa27bf274",
   "images": {
     "php": "php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826",
     "nginx": "nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a"
@@ -10,7 +10,7 @@
     "nginx": "nginx version: nginx/1.30.8"
   },
   "browsers": "chromium",
-  "date": "2026-11-24T15:32:59.032Z",
+  "date": "2026-11-24T15:59:48.468Z",
   "proves": "acceptation par une boîte SMTP de capture locale",
   "doesNotProve": [
     "TLS",
@@ -23,12 +23,12 @@
     {
       "check": "archive.sha256",
       "ok": true,
-      "detail": "e6a016d352911fc3…"
+      "detail": "c4ca83076d1cb254…"
     },
     {
       "check": "release.files-match-SHA256SUMS",
       "ok": true,
-      "detail": "249 fichiers"
+      "detail": "247 fichiers"
     },
     {
       "check": "nginx.config-test (nginx -t)",
@@ -258,12 +258,12 @@
     {
       "check": "[chromium] nojs.invalid-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=c0ebdf7fce6c"
+      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=1b1305a63e20"
     },
     {
       "check": "[chromium] nojs.accepted-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=8d1dc635cb97"
+      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=fbc00f7d91cb"
     },
     {
       "check": "[chromium] nojs.honest-wording",
@@ -293,7 +293,7 @@
     {
       "check": "[chromium] js.accepted-message-honest",
       "ok": true,
-      "detail": "Demande acceptée par notre serveur d’envoi (référence b626f513433d). Cela ne gar"
+      "detail": "Demande acceptée par notre serveur d’envoi (référence 86978ac29d04). Cela ne gar"
     },
     {
       "check": "[chromium] js.transport-error-keeps-input",

@@ -2,9 +2,8 @@
  * Polices auto-hébergées (SIL OFL 1.1, paquets @fontsource verrouillés dans
  * package-lock.json ; licences copiées dans LICENSES/ de chaque release).
  * Sous-ensemble latin : couvre le français (œ, « », apostrophe typographique).
- *  - Public Sans : texte des deux pistes (lisibilité, chiffres clairs pour un numéro) ;
- *  - IBM Plex Sans Condensed : titres de la piste B « Bandeau » uniquement.
- * Une fois la piste choisie, la famille inutile est retirée.
+ *  - Public Sans : texte (lisibilité, chiffres clairs pour un numéro) ;
+ *  - IBM Plex Sans Condensed : titres (direction B « Bandeau », retenue le 2026-11-24).
  */
 import { fontProviders } from 'astro/config';
 

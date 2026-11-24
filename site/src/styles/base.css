@@ -1,7 +1,7 @@
 /*
  * Socle commun AFR TAXI : structure, composants, accessibilité.
- * Les deux directions (design/directions/*.css) ne redéfinissent que des
- * jetons et des compositions, sous html.dir-ivoire / html.dir-bandeau.
+ * La direction retenue (design/directions/bandeau.css) ne redéfinit que des
+ * jetons et des compositions, sous html.dir-bandeau.
  */
 @layer reset, base, components, direction;
 

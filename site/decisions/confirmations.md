@@ -8,7 +8,7 @@ Registre des faits : `site/brief/brief.yaml` (`facts`). Aucun fait n'est `confir
 3. **Envoi des e-mails** : quel service SMTP authentifié, quelle adresse d'expédition autorisée et quel domaine d'envoi (`email.from`, `email.sendingDomain`, `email.smtp`) ? Gmail ne fixe pas le From ; le domaine du site non plus.
 4. **Mentions légales** : responsable de publication (« M ALI FIGMIR » déclaré sur l'ancien site, à vérifier), forme juridique (entreprise individuelle ?), adresse du siège (Saint-Vallier : adresse complète), SIRET, TVA (ou non-assujettissement justifié), **médiateur de la consommation** (vide sur l'ancien site), futur **hébergeur**.
 5. **Durée de conservation** des demandes reçues (`privacy.requestRetention`).
-6. **Choix de la piste A ou B** puis approbation du rendu.
+6. **Approbation du rendu** de la piste B (choisie le 2026-11-24).
 
 ## Priorité 2 — contenus affichés « à confirmer »
 7. Commune et secteur desservi (`business.locality`, `business.serviceArea`).

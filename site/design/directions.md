@@ -1,10 +1,14 @@
 # AFR TAXI — deux pistes de direction
 
-Prototypes navigateur (hors production, `noindex`) : `/prototypes/piste-a/` et `/prototypes/piste-b/` en preview (`npm run dev` ou release preview). Captures : `captures/prototypes-piste-{a,b}-{390,1440}.png`.
+> **Décision du 2026-11-24 : piste B « Bandeau » retenue** (propriétaire du dépôt, enregistrée dans `design.selectedDirection`). Le site l'applique à toutes les pages ; la piste A et les prototypes ont été retirés (historique Git : commit `2b0a351`). L'**approbation du rendu final** reste une décision distincte, non prise (`design.renderApproval: null`).
+>
+> Captures du rendu B : `captures/{accueil,contact,transport-medical}-{390,1440}.png`.
+
+Comparaison présentée au moment du choix :
 
 Les deux pistes partagent le contenu, les parcours et l'accessibilité ; elles diffèrent par la composition, la densité, la typographie et le traitement des services. **Choisir une piste est une décision du client** (porte G2, `design.selectedDirection` du brief), distincte de l'approbation du rendu final.
 
-| | A « Ivoire » — recommandée | B « Bandeau » |
+| | A « Ivoire » — recommandée, non retenue | B « Bandeau » — **retenue** |
 |---|---|---|
 | Intention | Professionnel local, soigneux, rassurant | Mobilité contemporaine, plus graphique |
 | Origine | Brief de mission (piste A) | Maquette d'accueil transmise le 2026-11-24, corrigée |
@@ -24,4 +28,4 @@ Les deux pistes partagent le contenu, les parcours et l'accessibilité ; elles d
 
 ## Revue qualitative (agent, avant validation humaine)
 Clarté : appel et demande visibles au premier écran sur mobile et bureau ; services séparés (médical ≠ incident). Identité : wordmark typographique **provisoire** (logo original non fourni). Typographie : 1–2 familles locales sous licence OFL, tailles fluides. Composition : rythme hero → services → étapes → chauffeur → réponses → contact. Médias : aucun, faute d'actifs autorisés — c'est le principal manque visuel. Usage : barre d'action mobile qui disparaît pendant la saisie ; formulaire groupé en deux blocs. Crédibilité : chaque fait non confirmé porte « à confirmer ». Finition : focus visibles, cibles ≥ 44 px pour les actions, aucun débordement de 360 à 1440 px ni à 200 % de texte.
-Cette revue n'est pas une validation : elle attend la décision du client.
+Depuis le choix : en-têtes de pages intérieures dans le prolongement du bandeau graphite (titres condensés en capitales) ; police de titres préchargée (accueil 58,7 Ko transférés au lieu de 37,7 Ko). Cette revue n'est pas une approbation du rendu.

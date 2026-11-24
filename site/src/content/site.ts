@@ -8,15 +8,6 @@
  */
 import config from 'virtual:factory/config';
 
-export type Direction = 'ivoire' | 'bandeau';
-
-/**
- * Direction artistique appliquée au site. La décision appartient au client
- * (porte G2, `design.selectedDirection` du brief) ; tant qu'elle n'est pas
- * prise, la piste recommandée A « Ivoire » sert de rendu provisoire.
- */
-export const DIRECTION: Direction = 'ivoire';
-
 export const routes = {
   home: '/',
   prive: '/taxi-prive/',

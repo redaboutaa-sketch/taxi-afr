@@ -2,16 +2,15 @@
 /**
  * Accueil : hero → besoins/services → organisation en trois étapes →
  * chauffeur et véhicule → secteur → réponses utiles → contact.
- * La composition varie selon la direction (prototypes A/B), le contenu non.
  */
 import Site from '../layouts/Site.astro';
 import Icon from './Icon.astro';
 import Fact from './Fact.astro';
 import RouteArt from './RouteArt.astro';
-import { type Direction, DIRECTION, routes, services, phone, telHref, locality, hours, fact, PROVISIONAL } from '../content/site.ts';
+import { routes, services, phone, telHref, locality, hours, fact, PROVISIONAL } from '../content/site.ts';
 
-interface Props { direction?: Direction; path?: string; }
-const { direction = DIRECTION, path = '/' } = Astro.props;
+interface Props { path?: string; }
+const { path = '/' } = Astro.props;
 const town = locality?.text.split(' (')[0] ?? null;
 const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
@@ -22,7 +21,6 @@ const languages = fact('driver.languages');
   title={town ? `AFR TAXI — Votre taxi à ${town}` : 'AFR TAXI — Taxi local'}
   description="Taxi privé, transferts vers les gares et aéroports, transport de patients conventionné et déplacement après un incident. Appel direct ou demande de trajet en ligne."
   path={path}
-  direction={direction}
   noindex={path !== '/'}
 >
   <section class="hero" aria-labelledby="hero-title">
@@ -69,19 +67,11 @@ const languages = fact('driver.languages');
         <h2 id="services-title">Quel est votre besoin ?</h2>
         <p class="lead">Chaque service a sa page : ce qui est proposé, comment l’organiser, ce qui n’est pas promis.</p>
       </div>
-      {direction === 'bandeau' ? (
-        <ul class="services-cards" role="list">
-          {visible.map((s) => (
-            <li><a href={s.href}><span class="badge"><Icon name={s.icon} /></span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></a></li>
-          ))}
-        </ul>
-      ) : (
-        <ul class="service-list" role="list">
-          {visible.map((s) => (
-            <li><a href={s.href}><Icon name={s.icon} /><span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></span><span class="go"><Icon name="arrow" /></span></a></li>
-          ))}
-        </ul>
-      )}
+      <ul class="services-cards" role="list">
+        {visible.map((s) => (
+          <li><a href={s.href}><span class="badge"><Icon name={s.icon} /></span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></a></li>
+        ))}
+      </ul>
     </div>
   </section>
 
