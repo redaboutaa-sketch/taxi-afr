@@ -1,0 +1,152 @@
+/*
+ * Mouvement AFR TAXI — CSS uniquement (aucune bibliothèque, aucun script,
+ * compatible CSP sans unsafe-inline).
+ *
+ * Principes :
+ *  - le contenu est VISIBLE sans animation : tout est déclaré sous
+ *    `prefers-reduced-motion: no-preference`, et les effets liés au défilement
+ *    seulement si le navigateur les gère (`@supports (animation-timeline: view())`
+ *    — Chrome, Edge, Safari récents ; Firefox affiche la page sans ces effets) ;
+ *  - seuls `transform`, `opacity` et `clip-path` sont animés (pas de recalcul
+ *    de mise en page, pas de décalage CLS) ;
+ *  - l'image principale n'est jamais masquée (opacité intacte : LCP préservé).
+ */
+@layer motion {
+  /* Hors animation : la barre de progression n'existe pas. */
+  .scroll-progress { display: none; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes afr-rise {
+      from { opacity: 0; transform: translateY(1.25rem); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes afr-settle {
+      from { transform: scale(1.08); }
+      to { transform: scale(1); }
+    }
+    @keyframes afr-reveal {
+      from { opacity: 0; transform: translateY(2.5rem) scale(0.98); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes afr-draw {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+    @keyframes afr-parallax {
+      from { transform: translateY(-6%); }
+      to { transform: translateY(8%); }
+    }
+    @keyframes afr-progress {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes afr-header {
+      to { box-shadow: 0 10px 30px -12px rgb(0 0 0 / 0.6); }
+    }
+    @keyframes afr-pop {
+      0% { transform: scale(0.6) rotate(-12deg); }
+      70% { transform: scale(1.08) rotate(3deg); }
+      100% { transform: none; }
+    }
+
+    /* ── Au chargement : hero et en-têtes de page ───────────────────────── */
+    .hero-text > *,
+    .page-head > * { animation: afr-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .hero-text > :nth-child(2), .page-head > :nth-child(2) { animation-delay: 0.08s; }
+    .hero-text > :nth-child(3), .page-head > :nth-child(3) { animation-delay: 0.16s; }
+    .hero-text > :nth-child(4), .page-head > :nth-child(4) { animation-delay: 0.24s; }
+    .hero-text > :nth-child(5), .page-head > :nth-child(5) { animation-delay: 0.32s; }
+    .checklist li { animation: afr-rise 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .checklist li:nth-child(1) { animation-delay: 0.3s; }
+    .checklist li:nth-child(2) { animation-delay: 0.38s; }
+    .checklist li:nth-child(3) { animation-delay: 0.46s; }
+    .checklist li:nth-child(4) { animation-delay: 0.54s; }
+    .checklist .icon { animation: afr-pop 0.5s 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .hero-form { animation: afr-rise 0.8s 0.2s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    .hero-photo { animation: afr-settle 1.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+    /* ── Micro-interactions au survol ───────────────────────────────────── */
+    .btn { transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 18px -10px rgb(0 0 0 / 0.55); }
+    .btn:active { transform: translateY(0); }
+    .services-cards a { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+    .services-cards a:hover { transform: translateY(-6px); box-shadow: 0 22px 40px -24px rgb(0 0 0 / 0.45); }
+    .services-cards .badge { transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .services-cards a:hover .badge { transform: rotate(-8deg) scale(1.1); }
+    .orient-card { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .orient-card:hover { transform: translateY(-4px); box-shadow: 0 18px 36px -24px rgb(0 0 0 / 0.4); }
+    .faq summary { transition: color 0.2s ease; }
+    .faq summary:hover { color: #8a6a00; }
+
+    /* ── Au défilement (navigateurs compatibles) ────────────────────────── */
+    @supports (animation-timeline: view()) {
+      /* Apparition des blocs à leur entrée dans l'écran. */
+      main .section h2,
+      main .section .lead,
+      .facts-strip li,
+      .services-cards li,
+      .steps li,
+      .callout,
+      .faq details,
+      .orient-card,
+      .prose > *,
+      .request:not(.hero-form .request) {
+        animation-name: afr-reveal;
+        animation-duration: auto;
+        animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 70%;
+      }
+      /* Cascade : les cartes d'une même rangée arrivent l'une après l'autre. */
+      .services-cards li:nth-child(2), .facts-strip li:nth-child(2), .steps li:nth-child(2) { animation-range: entry 8% entry 78%; }
+      .services-cards li:nth-child(3), .facts-strip li:nth-child(3), .steps li:nth-child(3) { animation-range: entry 16% entry 86%; }
+      .services-cards li:nth-child(4), .facts-strip li:nth-child(4) { animation-range: entry 24% entry 94%; }
+
+      /* Le tracé du trajet se dessine en défilant. */
+      .route-art {
+        animation-name: afr-draw;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 20% cover 45%;
+      }
+
+      /* Barre de progression de lecture. */
+      .scroll-progress {
+        display: block; position: fixed; inset: 0 0 auto 0; z-index: 20; height: 3px;
+        background: var(--accent); transform-origin: 0 50%;
+        animation-name: afr-progress;
+        animation-duration: auto;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: scroll(root);
+      }
+
+      @media (min-width: 62rem) {
+        /* Effet de profondeur : la photo défile plus lentement que la page. */
+        .hero-media {
+          inset: -10% 0 -10% 28%;
+          animation-name: afr-parallax;
+          animation-duration: auto;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: scroll(root);
+          animation-range: 0 100vh;
+        }
+        /* En-tête qui reste visible, avec une ombre dès qu'on défile. */
+        .masthead {
+          position: sticky; top: 0; z-index: 10;
+          animation-name: afr-header;
+          animation-duration: auto;
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: scroll(root);
+          animation-range: 0 120px;
+        }
+        html { scroll-padding-top: 5.5rem; }
+      }
+    }
+  }
+}

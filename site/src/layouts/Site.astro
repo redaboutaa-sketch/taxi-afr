@@ -9,6 +9,7 @@ import config from 'virtual:factory/config';
 import { factFor } from '@engine/astro';
 import '../styles/base.css';
 import '../../design/directions/bandeau.css';
+import '../styles/motion.css';
 import Icon from '../components/Icon.astro';
 import { nav, routes, phone, telHref, email, footerNote, services, whatsappDigits } from '../content/site.ts';
 
@@ -62,6 +63,7 @@ const ld = ldName && ldPhone
     {ld && <script type="application/ld+json" is:inline set:html={JSON.stringify(ld)} />}
   </head>
   <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <a class="skip" href="#contenu">Aller au contenu</a>
     {config.target === 'preview' && (
       <p class="preview-banner">Préversion non publiée : les mentions « à confirmer » attendent la validation d’AFR TAXI.</p>

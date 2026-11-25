@@ -1,6 +1,6 @@
 # Recette AFR TAXI — résultats observés (2026-11-24)
 
-Environnement : conteneur Linux de la session, Node 26.13.1, PHP CLI 8.3.6, Docker 29.9.3 (nginx 1.30.8 + PHP-FPM 8.4.28, images épinglées), **Chromium 158 hors révision Playwright** (`PW_CHROMIUM_PATH`). Firefox et WebKit : non exécutés ici. Usine 0.2.0. Release `afr-taxi-preview-3166410a9d35` : direction B, photo du véhicule en accueil, formulaire simplifié (7 champs) dans le hero, WhatsApp actif (numéro transmis le 2026-11-24).
+Environnement : conteneur Linux de la session, Node 26.13.1, PHP CLI 8.3.6, Docker 29.9.3 (nginx 1.30.8 + PHP-FPM 8.4.28, images épinglées), **Chromium 158 hors révision Playwright** (`PW_CHROMIUM_PATH`). Firefox et WebKit : non exécutés ici. Usine 0.2.0. Release `afr-taxi-preview-8e2becc7a8c8` (avec animations, 2026-11-25) : direction B, photo du véhicule en accueil, formulaire simplifié (7 champs) dans le hero, WhatsApp actif (numéro transmis le 2026-11-24).
 
 | Contrôle | Commande | Résultat |
 |---|---|---|
@@ -13,8 +13,9 @@ Environnement : conteneur Linux de la session, Node 26.13.1, PHP CLI 8.3.6, Dock
 | Recette nginx + PHP-FPM | `node qa/afr/recipe.ts --release <dir>` | **61/61** (rapport : `recette-local.json`) |
 | Parcours WhatsApp, accueil et contact (aucun message envoyé, lien non suivi) | `node qa/afr/whatsapp-flow.ts` | 16/16 |
 | Revue outillée 360/390/768/1440 | `node tests/visual/review.ts --pages …` (13 pages, rendu B) | 0 problème après corrections (cibles de liens isolés, débordements) |
+| Animations | contrôle navigateur à 1440 et 390 px (entrée, défilement 500/1100/1700 px) ; `reducedMotion: reduce` → opacité 1 partout | conforme |
 | Texte 200 % | `node tests/visual/text-zoom.ts --pages …` | 0 débordement après corrections |
-| Lighthouse 13.6.0 mobile, médiane de 3, release servie par nginx (`afr-taxi-preview-5469eff25a2b`, mêmes gabarits avant la correction de 4 phrases) | `npm run qa:perf -- --release <dir> --runs 3 --pages /,/contact/,/transport-medical/` | budgets respectés : perf 100, a11y 100 sur les 3 pages ; accueil 124,9 Ko (photo AVIF responsive, LCP simulé 1,8 s), contact 63,3 Ko, JS 3,9 Ko (`lighthouse-local.json`) |
+| Lighthouse 13.6.0 mobile, médiane de 3, release servie par nginx | `npm run qa:perf -- --release <dir> --runs 3 --pages /,/contact/,/transport-medical/` | budgets respectés : perf 100, a11y 100, CLS 0, TBT 0 ms sur les 3 pages ; accueil 125,9 Ko (LCP simulé 1,65 s), JS 3,9 Ko (`lighthouse-local.json`) |
 
 Couverture des cas AFR TAXI (recette 60/60) : lien `tel:` sans JS ; anciennes routes avec et sans barre finale + canonicals ; vraie 404 ; surfaces internes non servies ; aucune adresse interne ni identité non confirmée servie ; aucun champ médical ; mention « ne vaut pas confirmation » ; date passée, date impossible, heure ambiguë (changement d'heure), injection d'en-tête, champ inattendu, 20 Ko, origine étrangère, panne SMTP → rejetés sans envoi ; demande valide acceptée par la capture (destinataire, From, pas de Reply-To sans e-mail, trajet lisible, « Horaire interprété … Europe/Paris ») ; formulaire minimal (champ supplémentaire refusé, voyageurs facultatif) ; parcours sans JS vers des pages de résultat honnêtes ; aucune donnée de formulaire dans l'URL ; avec JS : message « acceptée par notre serveur d'envoi… pas une confirmation de course », saisie conservée en panne, aucune violation CSP, aucune requête externe ; limitation de débit ; journaux sans contenu de demande.
 

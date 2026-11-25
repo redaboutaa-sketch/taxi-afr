@@ -1,6 +1,6 @@
 {
-  "release": "afr-taxi-preview-3166410a9d35",
-  "archiveSha256": "7559c8ed83199b0421f06753bf1c740379752be87db18fbca6f3948cf5e661fc",
+  "release": "afr-taxi-preview-8e2becc7a8c8",
+  "archiveSha256": "e65d630bb6e434a527b5aee5bdeb0f4568b0fc4335a186eeb1b3357887993f32",
   "images": {
     "php": "php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826",
     "nginx": "nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a"
@@ -10,7 +10,7 @@
     "nginx": "nginx version: nginx/1.30.8"
   },
   "browsers": "chromium",
-  "date": "2026-11-24T18:26:48.749Z",
+  "date": "2026-11-25T10:45:09.944Z",
   "proves": "acceptation par une boîte SMTP de capture locale",
   "doesNotProve": [
     "TLS",
@@ -23,7 +23,7 @@
     {
       "check": "archive.sha256",
       "ok": true,
-      "detail": "7559c8ed83199b04…"
+      "detail": "e65d630bb6e434a5…"
     },
     {
       "check": "release.files-match-SHA256SUMS",
@@ -263,12 +263,12 @@
     {
       "check": "[chromium] nojs.invalid-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=b47b16d02522"
+      "detail": "http://127.0.0.1:8088/contact/a-corriger/?ref=d134c2146e11"
     },
     {
       "check": "[chromium] nojs.accepted-to-result-page",
       "ok": true,
-      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=08cd049eab0a"
+      "detail": "http://127.0.0.1:8088/contact/envoyee/?ref=dede1be8550b"
     },
     {
       "check": "[chromium] nojs.honest-wording",
@@ -298,7 +298,7 @@
     {
       "check": "[chromium] js.accepted-message-honest",
       "ok": true,
-      "detail": "Demande acceptée par notre serveur d’envoi (référence 71e84f976a61). Cela ne gar"
+      "detail": "Demande acceptée par notre serveur d’envoi (référence 37ee712f3d69). Cela ne gar"
     },
     {
       "check": "[chromium] js.transport-error-keeps-input",

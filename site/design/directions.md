@@ -6,6 +6,8 @@
 >
 > Mise à jour du 2026-11-24 : la photo réelle du véhicule devant la gare (transmise par le propriétaire) occupe le hero de l'accueil comme sur la maquette — texte à gauche, voiture au centre, carte « Demander un trajet » à droite ; sur mobile, la photo précède le texte puis la carte. Toujours retirés : logo Assurance Maladie, badge CPAM, mentions non confirmées (paiement, « toutes destinations »), photos générées des cartes de services.
 
+> Mouvement (2026-11-25, demande du propriétaire : « un aperçu d'un site moderne ») : `site/src/styles/motion.css`, CSS uniquement. Entrée en douceur du hero et des en-têtes de page, léger zoom de la photo au chargement, profondeur (parallaxe) de la photo au défilement, révélation en cascade des blocs, tracé du trajet qui se dessine, en-tête collant avec ombre et barre de progression (bureau), soulèvement des cartes et boutons au survol. Désactivé si « réduire les animations » est demandé ; effets de défilement seulement dans les navigateurs compatibles (Chrome, Edge, Safari récents — Firefox affiche la page sans eux) ; seuls transform/opacity/clip-path sont animés, l'image principale n'est jamais masquée.
+
 Comparaison présentée au moment du choix :
 
 Les deux pistes partagent le contenu, les parcours et l'accessibilité ; elles diffèrent par la composition, la densité, la typographie et le traitement des services. **Choisir une piste est une décision du client** (porte G2, `design.selectedDirection` du brief), distincte de l'approbation du rendu final.
