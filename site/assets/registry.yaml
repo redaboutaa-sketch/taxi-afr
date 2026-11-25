@@ -53,4 +53,177 @@ assets:
         xmp: false
         c2paMarker: false
         digitalSourceType: null
-      scannedOn: 2026-11-24
+      scannedOn: 2026-11-25
+  service-prive:
+    file: files/illustration-prive.jpg
+    kind: illustration
+    depicts: none
+    decorative: false
+    alt:
+      fr: 'Illustration : route de campagne entre les vignes, en fin d’après-midi'
+    declared:
+      source: ai-generated
+      author: Higgsfield, modèle z_image (job 678a28ae-d423-4f7a-ae07-b68bdbcc73fd)
+      statement: Illustration d’ambiance générée le 2026-11-25 à la demande du
+        propriétaire du dépôt ; ne montre ni le véhicule, ni le chauffeur, ni un
+        lieu précis du client.
+      date: '2026-11-25'
+    rights:
+      status: unknown
+      scope: null
+      evidenceRef: null
+      restrictions:
+        - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
+          l’usage commercial.
+      expires: null
+    transformations:
+      - { op: resize, note: '2048×1152 vers 1600×900.' }
+      - {
+          op: format-conversion,
+          note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
+        }
+    status: candidate
+    decision: null
+    observed:
+      sha256: 3aa109111f9b6b70e6da4a49bd599baf5ebbdaa9c4c6d4194028e6ce27256613
+      bytes: 313804
+      format: jpeg
+      width: 1600
+      height: 900
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-25
+  service-transferts:
+    file: files/illustration-transferts.jpg
+    kind: illustration
+    depicts: none
+    decorative: false
+    alt:
+      fr: 'Illustration : avion de ligne au décollage au crépuscule'
+    declared:
+      source: ai-generated
+      author: Higgsfield, modèle z_image (job 33c1c212-bba3-4a37-a09a-2d01370b55ac)
+      statement: Illustration d’ambiance générée le 2026-11-25 à la demande du
+        propriétaire du dépôt ; ne montre ni le véhicule, ni le chauffeur, ni un
+        lieu précis du client.
+      date: '2026-11-25'
+    rights:
+      status: unknown
+      scope: null
+      evidenceRef: null
+      restrictions:
+        - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
+          l’usage commercial.
+      expires: null
+    transformations:
+      - { op: resize, note: '2048×1152 vers 1600×900.' }
+      - {
+          op: format-conversion,
+          note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
+        }
+    status: candidate
+    decision: null
+    observed:
+      sha256: bcd7add523f92091ececd868c2b6277ead945726931be9059ffb28cacfe020ae
+      bytes: 121381
+      format: jpeg
+      width: 1600
+      height: 900
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-25
+  service-medical:
+    file: files/illustration-medical.jpg
+    kind: illustration
+    depicts: none
+    decorative: false
+    alt:
+      fr: 'Illustration : stéthoscope et dossier posés sur une table'
+    declared:
+      source: ai-generated
+      author: Higgsfield, modèle z_image (job bd8f7887-d3d2-4bb0-978a-925c1ef38ad4)
+      statement: Illustration d’ambiance générée le 2026-11-25 à la demande du
+        propriétaire du dépôt ; ne montre ni le véhicule, ni le chauffeur, ni un
+        lieu précis du client.
+      date: '2026-11-25'
+    rights:
+      status: unknown
+      scope: null
+      evidenceRef: null
+      restrictions:
+        - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
+          l’usage commercial.
+      expires: null
+    transformations:
+      - { op: resize, note: '2048×1152 vers 1600×900.' }
+      - {
+          op: format-conversion,
+          note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
+        }
+    status: candidate
+    decision: null
+    observed:
+      sha256: 53cb344450c60f86417912b2e0de47c9484d8549d9b6b83d3516fdbbef6a03ee
+      bytes: 94986
+      format: jpeg
+      width: 1600
+      height: 900
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-25
+  service-assistance:
+    file: files/illustration-assistance.jpg
+    kind: illustration
+    depicts: none
+    decorative: false
+    alt:
+      fr: 'Illustration : triangle de signalisation sur le bord d’une route au
+        crépuscule'
+    declared:
+      source: ai-generated
+      author: Higgsfield, modèle z_image (job 0c18b126-04fd-4f50-b848-76c4e42fe8e9)
+      statement: Illustration d’ambiance générée le 2026-11-25 à la demande du
+        propriétaire du dépôt ; ne montre ni le véhicule, ni le chauffeur, ni un
+        lieu précis du client.
+      date: '2026-11-25'
+    rights:
+      status: unknown
+      scope: null
+      evidenceRef: null
+      restrictions:
+        - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
+          l’usage commercial.
+      expires: null
+    transformations:
+      - { op: resize, note: '2048×1152 vers 1600×900.' }
+      - {
+          op: format-conversion,
+          note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
+        }
+    status: candidate
+    decision: null
+    observed:
+      sha256: faa42f75cdb6593f4f6eca362b5f18410d41974c2b26c30f1a5349e1fbb52121
+      bytes: 142618
+      format: jpeg
+      width: 1600
+      height: 900
+      alpha: false
+      metadata:
+        exif: false
+        xmp: false
+        c2paMarker: false
+        digitalSourceType: null
+      scannedOn: 2026-11-25

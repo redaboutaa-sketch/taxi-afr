@@ -158,3 +158,10 @@
     .services-cards a.has-media:hover .card-media img { transform: scale(1.06); }
   }
 }
+@layer direction {
+  .dir-bandeau .services-cards .card-media { position: relative; }
+  .dir-bandeau .services-cards .media-label {
+    position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.1rem 0.45rem; border-radius: 0.25rem;
+    background: rgb(21 25 31 / 0.72); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+  }
+}

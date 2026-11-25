@@ -81,6 +81,7 @@ const photo = assets['taxi-gare'];
               {assets[s.image] && (
                 <span class="card-media">
                   <Picture src={assets[s.image]!.src} alt={assets[s.image]!.decorative ? '' : (assets[s.image]!.alt.fr ?? '')} widths={[320, 480, 640, 900]} sizes="(min-width: 62rem) 25vw, (min-width: 40rem) 50vw, 100vw" formats={['avif', 'webp']} loading="lazy" decoding="async" />
+                  {assets[s.image]!.kind === 'illustration' && <span class="media-label" aria-hidden="true">Illustration</span>}
                 </span>
               )}
               <span class="card-body">
