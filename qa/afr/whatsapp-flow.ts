@@ -29,7 +29,7 @@ const browser = await launchChromium();
 try {
   const html = readFileSync(join(out, 'contact', 'index.html'), 'utf8');
   check('html.no-prefilled-link-in-initial-html', !/wa\.me\/[0-9]+\?text=/.test(html));
-  check('html.noscript-generic-link', html.includes('https://wa.me/33659855704"'));
+  check('html.noscript-generic-link', html.includes('https://wa.me/33614339341"'));
   const ctx = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'] });
   const page = await ctx.newPage();
   const posts: string[] = [];
@@ -53,7 +53,7 @@ try {
   const href = (await page.getAttribute('[data-recap-open]', 'href')) ?? '';
   const text = new URL(href).searchParams.get('text') ?? '';
   check('js.recap-shown-and-focused', await page.evaluate(() => document.activeElement?.hasAttribute('data-recap') ?? false));
-  check('link.official-format', href.startsWith('https://wa.me/33659855704?text='), href.slice(0, 50));
+  check('link.official-format', href.startsWith('https://wa.me/33614339341?text='), href.slice(0, 50));
   check('link.encoding-roundtrip', text.includes("Destination : L'aéroport \"T1\"") && text.includes('Départ : Gare de Saint-Rambert-d’Albon') && text.includes('\n'));
   check('link.minimized', text.split('\n').length <= 8 && text.includes('Voyageurs : 2') && text.includes('Téléphone : +33 6 39 98 00 01'));
   check('js.no-server-request-on-whatsapp', posts.length === 0 && external.length === 0, [...posts, ...external].join(' '));

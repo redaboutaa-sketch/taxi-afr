@@ -144,10 +144,10 @@ facts:
     publication: public
   contact.whatsapp:
     # Numéro et accord du chauffeur pour ce canal transmis par le propriétaire
-    # du dépôt (message du 2026-11-24). Distinct du numéro d'appel.
-    value: '+33659855704'
+    # du dépôt (messages du 2026-11-24 et 2026-11-25). Identique au numéro d'appel.
+    value: '+33614339341'
     status: confirmed
-    sourceRefs: ['propriétaire du dépôt, message du 2026-11-24 : numéro WhatsApp et accord du chauffeur']
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-24 : accord du chauffeur', 'propriétaire du dépôt, message du 2026-11-25 : numéro WhatsApp corrigé en +33614339341']
     publication: public
   business.locality:
     value: Saint-Rambert-d’Albon (Drôme)

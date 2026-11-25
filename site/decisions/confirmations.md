@@ -20,7 +20,7 @@ Registre des faits : `site/brief/brief.yaml` (`facts`). Aucun fait n'est `confir
 9. Chaque service séparément : taxi privé/professionnel, transferts (gares et aéroports desservis), déplacement après incident, **transport conventionné** (convention en vigueur ?).
 10. Expérience (« depuis 2016, à son compte depuis 2020 ») et langues (français, anglais, arabe).
 11. Véhicule : modèle actuel, places, équipement (siège enfant ?).
-12. ~~WhatsApp~~ : numéro +33 6 59 85 57 04 et accord transmis le 2026-11-24 (`contact.whatsapp` confirmé). Reste à tester l'ouverture réelle sur téléphone et WhatsApp Web avec ce compte.
+12. ~~WhatsApp~~ : numéro +33 6 14 33 93 41 (corrigé le 2026-11-25) et accord transmis le 2026-11-24 (`contact.whatsapp` confirmé). Reste à tester l'ouverture réelle sur téléphone et WhatsApp Web avec ce compte.
 13. Délai minimal d'une demande en ligne (proposé : 60 min, sinon « appelez ») et horizon (365 jours) — `site/content/form.yaml`.
 
 ## Actifs

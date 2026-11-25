@@ -13,6 +13,7 @@
 | 2026-11-25 | Animations au chargement, au défilement et au survol (CSS seul) | propriétaire du dépôt (message) | — |
 | 2026-11-25 | Illustrations générées autorisées (`allowGeneratedIllustrations: true`) et 4 illustrations de services approuvées, mention « Illustration » visible | propriétaire du dépôt (accord écrit) | — |
 | 2026-11-25 | Les 14 faits « proposés » passent « confirmés » (« Tout est ok ») ; mentions « à confirmer » retirées | propriétaire du dépôt (message) | — |
+| 2026-11-25 | Numéro WhatsApp corrigé : +33 6 14 33 93 41 (même numéro que l'appel) | propriétaire du dépôt (message) | — |
 | — | Approbation du rendu final (après revue des captures et du site en preview) | client | G2 — rendu |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
