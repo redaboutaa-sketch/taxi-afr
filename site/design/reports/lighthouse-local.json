@@ -1,5 +1,5 @@
 {
-  "release": "afr-taxi-preview-8e2becc7a8c8",
+  "release": "afr-taxi-preview-dbf0d5c384fd",
   "protocol": {
     "version": "Lighthouse 13.6.0 · HeadlessChrome/158.0.0.0 · mobile, throttling simulate",
     "runsPerPage": 3,
@@ -21,75 +21,75 @@
       "runs": [
         {
           "score": {
-            "performance": 1,
+            "performance": 0.99,
             "accessibility": 1,
             "best-practices": 0.96,
             "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 750.637,
-            "lcpMs": 1800.637,
-            "tbtMs": 13,
+            "fcpMs": 751.451,
+            "lcpMs": 2026.452,
+            "tbtMs": 3,
             "cls": 0,
-            "siMs": 771.685
+            "siMs": 751.451
           },
           "bytes": {
-            "total": 128969,
-            "script": 3981,
+            "total": 220111,
+            "script": 3968,
             "font": 47896,
-            "image": 60601,
-            "stylesheet": 7377,
-            "document": 9114,
+            "image": 150596,
+            "stylesheet": 7634,
+            "document": 10017,
             "inlineScript": 0
           },
           "failedA11y": []
         },
         {
           "score": {
-            "performance": 1,
+            "performance": 0.99,
             "accessibility": 1,
             "best-practices": 0.96,
             "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 750.965,
-            "lcpMs": 1650.965,
+            "fcpMs": 751.762,
+            "lcpMs": 2026.762,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 750.965
+            "siMs": 751.762
           },
           "bytes": {
-            "total": 128969,
-            "script": 3981,
+            "total": 220111,
+            "script": 3968,
             "font": 47896,
-            "image": 60601,
-            "stylesheet": 7377,
-            "document": 9114,
+            "image": 150596,
+            "stylesheet": 7634,
+            "document": 10017,
             "inlineScript": 0
           },
           "failedA11y": []
         },
         {
           "score": {
-            "performance": 1,
+            "performance": 0.99,
             "accessibility": 1,
             "best-practices": 0.96,
             "seo": 0.69
           },
           "metrics": {
-            "fcpMs": 751.35,
-            "lcpMs": 1801.35,
+            "fcpMs": 751.792,
+            "lcpMs": 2026.792,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 751.35
+            "siMs": 751.792
           },
           "bytes": {
-            "total": 128969,
-            "script": 3981,
+            "total": 220111,
+            "script": 3968,
             "font": 47896,
-            "image": 60601,
-            "stylesheet": 7377,
-            "document": 9114,
+            "image": 150596,
+            "stylesheet": 7634,
+            "document": 10017,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -97,25 +97,25 @@
       ],
       "median": {
         "score": {
-          "performance": 1,
+          "performance": 0.99,
           "accessibility": 1,
           "best-practices": 0.96,
           "seo": 0.69
         },
         "metrics": {
-          "fcpMs": 750.965,
-          "lcpMs": 1650.965,
+          "fcpMs": 751.762,
+          "lcpMs": 2026.762,
           "tbtMs": 0,
           "cls": 0,
-          "siMs": 750.965
+          "siMs": 751.762
         },
         "bytes": {
-          "total": 128969,
-          "script": 3981,
+          "total": 220111,
+          "script": 3968,
           "font": 47896,
-          "image": 60601,
-          "stylesheet": 7377,
-          "document": 9114,
+          "image": 150596,
+          "stylesheet": 7634,
+          "document": 10017,
           "inlineScript": 0
         },
         "failedA11y": []
@@ -132,19 +132,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 751.751,
-            "lcpMs": 751.751,
+            "fcpMs": 752.587,
+            "lcpMs": 752.587,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 751.751
+            "siMs": 752.587
           },
           "bytes": {
-            "total": 65868,
-            "script": 3981,
+            "total": 66102,
+            "script": 3968,
             "font": 47896,
             "image": 0,
-            "stylesheet": 7377,
-            "document": 6614,
+            "stylesheet": 7634,
+            "document": 6604,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -157,19 +157,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 753.577,
-            "lcpMs": 753.577,
+            "fcpMs": 751.788,
+            "lcpMs": 751.788,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 753.577
+            "siMs": 751.788
           },
           "bytes": {
-            "total": 65868,
-            "script": 3981,
+            "total": 66102,
+            "script": 3968,
             "font": 47896,
             "image": 0,
-            "stylesheet": 7377,
-            "document": 6614,
+            "stylesheet": 7634,
+            "document": 6604,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -182,19 +182,19 @@
             "seo": 0.66
           },
           "metrics": {
-            "fcpMs": 753.118,
-            "lcpMs": 753.118,
+            "fcpMs": 751.628,
+            "lcpMs": 751.628,
             "tbtMs": 0,
             "cls": 0,
-            "siMs": 753.118
+            "siMs": 751.628
           },
           "bytes": {
-            "total": 65868,
-            "script": 3981,
+            "total": 66102,
+            "script": 3968,
             "font": 47896,
             "image": 0,
-            "stylesheet": 7377,
-            "document": 6614,
+            "stylesheet": 7634,
+            "document": 6604,
             "inlineScript": 0
           },
           "failedA11y": []
@@ -208,124 +208,19 @@
           "seo": 0.66
         },
         "metrics": {
-          "fcpMs": 753.577,
-          "lcpMs": 753.577,
+          "fcpMs": 751.788,
+          "lcpMs": 751.788,
           "tbtMs": 0,
           "cls": 0,
-          "siMs": 753.577
+          "siMs": 751.788
         },
         "bytes": {
-          "total": 65868,
-          "script": 3981,
+          "total": 66102,
+          "script": 3968,
           "font": 47896,
           "image": 0,
-          "stylesheet": 7377,
-          "document": 6614,
-          "inlineScript": 0
-        },
-        "failedA11y": []
-      }
-    },
-    {
-      "page": "/transport-medical/",
-      "runs": [
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 752.093,
-            "lcpMs": 752.093,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 752.093
-          },
-          "bytes": {
-            "total": 59293,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 7377,
-            "document": 4020,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        },
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 751.165,
-            "lcpMs": 751.165,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 751.165
-          },
-          "bytes": {
-            "total": 59293,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 7377,
-            "document": 4020,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        },
-        {
-          "score": {
-            "performance": 1,
-            "accessibility": 1,
-            "best-practices": 0.96,
-            "seo": 0.66
-          },
-          "metrics": {
-            "fcpMs": 751.233,
-            "lcpMs": 751.233,
-            "tbtMs": 0,
-            "cls": 0,
-            "siMs": 751.233
-          },
-          "bytes": {
-            "total": 59293,
-            "script": 0,
-            "font": 47896,
-            "image": 0,
-            "stylesheet": 7377,
-            "document": 4020,
-            "inlineScript": 0
-          },
-          "failedA11y": []
-        }
-      ],
-      "median": {
-        "score": {
-          "performance": 1,
-          "accessibility": 1,
-          "best-practices": 0.96,
-          "seo": 0.66
-        },
-        "metrics": {
-          "fcpMs": 751.165,
-          "lcpMs": 751.165,
-          "tbtMs": 0,
-          "cls": 0,
-          "siMs": 751.165
-        },
-        "bytes": {
-          "total": 59293,
-          "script": 0,
-          "font": 47896,
-          "image": 0,
-          "stylesheet": 7377,
-          "document": 4020,
+          "stylesheet": 7634,
+          "document": 6604,
           "inlineScript": 0
         },
         "failedA11y": []

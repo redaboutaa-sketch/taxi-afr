@@ -44,7 +44,7 @@ const clip = (s: string, n: number) => ([...s].length > n ? `${[...s].slice(0, n
  */
 export function tripSummary(t: TripInput, opts: { forThirdParty: boolean }): string {
   const lines = [
-    'Demande de trajet (à confirmer par le chauffeur)',
+    'Bonjour, voici ma demande de trajet :',
     `Départ : ${clip(oneLine(t.pickup), 160)}`,
     `Destination : ${clip(oneLine(t.dropoff), 160)}`,
     `Le ${frenchDate(t.date)} à ${t.time.replace(':', ' h ')} (heure de Paris)`,

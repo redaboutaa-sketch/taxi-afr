@@ -30,7 +30,7 @@ describe('récapitulatif', () => {
     expect(s).not.toContain('cardiologue');
     expect(s).toContain("Destination : L'aéroport \"T1\" & co porte 2");
     expect(s).toContain('Le lundi 1er mars 2027 à 07 h 05 (heure de Paris)');
-    expect(s.startsWith('Demande de trajet (à confirmer par le chauffeur)')).toBe(true);
+    expect(s.startsWith('Bonjour, voici ma demande de trajet :')).toBe(true);
   });
   it('version complète (e-mail / copie) : contient les précisions', () => {
     expect(tripSummary(trip, { forThirdParty: false })).toContain('zoe@example.org');

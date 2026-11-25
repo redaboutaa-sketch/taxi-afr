@@ -69,9 +69,9 @@ assets:
         lieu précis du client.
       date: '2026-11-25'
     rights:
-      status: unknown
-      scope: null
-      evidenceRef: null
+      status: granted
+      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
           l’usage commercial.
@@ -82,8 +82,11 @@ assets:
           op: format-conversion,
           note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
         }
-    status: candidate
-    decision: null
+    status: approved
+    decision:
+      by: propriétaire du dépôt (accord écrit du 2026-11-25)
+      on: '2026-11-25'
+      note: « Je te donne l'accord de le faire » — activation des 4 illustrations de services.
     observed:
       sha256: 3aa109111f9b6b70e6da4a49bd599baf5ebbdaa9c4c6d4194028e6ce27256613
       bytes: 313804
@@ -112,9 +115,9 @@ assets:
         lieu précis du client.
       date: '2026-11-25'
     rights:
-      status: unknown
-      scope: null
-      evidenceRef: null
+      status: granted
+      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
           l’usage commercial.
@@ -125,8 +128,11 @@ assets:
           op: format-conversion,
           note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
         }
-    status: candidate
-    decision: null
+    status: approved
+    decision:
+      by: propriétaire du dépôt (accord écrit du 2026-11-25)
+      on: '2026-11-25'
+      note: « Je te donne l'accord de le faire » — activation des 4 illustrations de services.
     observed:
       sha256: bcd7add523f92091ececd868c2b6277ead945726931be9059ffb28cacfe020ae
       bytes: 121381
@@ -155,9 +161,9 @@ assets:
         lieu précis du client.
       date: '2026-11-25'
     rights:
-      status: unknown
-      scope: null
-      evidenceRef: null
+      status: granted
+      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
           l’usage commercial.
@@ -168,8 +174,11 @@ assets:
           op: format-conversion,
           note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
         }
-    status: candidate
-    decision: null
+    status: approved
+    decision:
+      by: propriétaire du dépôt (accord écrit du 2026-11-25)
+      on: '2026-11-25'
+      note: « Je te donne l'accord de le faire » — activation des 4 illustrations de services.
     observed:
       sha256: 53cb344450c60f86417912b2e0de47c9484d8549d9b6b83d3516fdbbef6a03ee
       bytes: 94986
@@ -199,9 +208,9 @@ assets:
         lieu précis du client.
       date: '2026-11-25'
     rights:
-      status: unknown
-      scope: null
-      evidenceRef: null
+      status: granted
+      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
           l’usage commercial.
@@ -212,8 +221,11 @@ assets:
           op: format-conversion,
           note: 'PNG vers JPEG (qualité 82), puis AVIF/WebP par Astro.'
         }
-    status: candidate
-    decision: null
+    status: approved
+    decision:
+      by: propriétaire du dépôt (accord écrit du 2026-11-25)
+      on: '2026-11-25'
+      note: « Je te donne l'accord de le faire » — activation des 4 illustrations de services.
     observed:
       sha256: faa42f75cdb6593f4f6eca362b5f18410d41974c2b26c30f1a5349e1fbb52121
       bytes: 142618

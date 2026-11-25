@@ -95,7 +95,9 @@ design:
   availableResources:
     - "Photo du véhicule réel devant la gare de Saint-Rambert-d’Albon, transmise le 2026-11-24 (registre d’actifs, id taxi-gare). Logo original non fourni."
     - Maquette d'accueil transmise par le propriétaire le 2026-11-24 (provenance des images inconnue, référence de composition seulement).
-  allowGeneratedIllustrations: false
+  # Décision du propriétaire du dépôt (accord écrit du 2026-11-25) : illustrations
+  # d'ambiance des cartes de services, sans personne ni véhicule du client, marquées « Illustration ».
+  allowGeneratedIllustrations: true
   selectedDirection:
     id: b-bandeau
     decidedBy: propriétaire du dépôt (message du 2026-11-24)
@@ -127,18 +129,18 @@ delivery:
 facts:
   contact.phone:
     value: 06 14 33 93 41
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   contact.phoneE164:
     value: '+33614339341'
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   contact.email:
     value: afr.taxi26@gmail.com
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   contact.whatsapp:
     # Numéro et accord du chauffeur pour ce canal transmis par le propriétaire
@@ -149,8 +151,8 @@ facts:
     publication: public
   business.locality:
     value: Saint-Rambert-d’Albon (Drôme)
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   business.serviceArea:
     value: null
@@ -159,18 +161,18 @@ facts:
     publication: public
   business.hours:
     value: 24 h/24, 7 j/7, sur réservation
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   service.privateAndBusiness:
     value: Taxi privé et professionnel
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   service.transfers:
     value: Transferts vers les gares et aéroports
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   service.transferDestinations:
     value: null
@@ -179,23 +181,23 @@ facts:
     publication: public
   service.assistance:
     value: Transport de personnes après une panne ou un accident
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   service.medicalConventionne:
     value: Taxi conventionné pour le transport de patients sur prescription
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   driver.experience:
     value: Chauffeur de taxi depuis 2016, à son compte depuis 2020
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   driver.languages:
     value: français, anglais, arabe
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   vehicle.description:
     value: null
@@ -224,19 +226,19 @@ facts:
     publication: public
   legal.name:
     value: AFR TAXI
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   legal.publisher:
     # Identité déclarée sur l'ancien site, à vérifier : non publiée tant qu'elle n'est pas confirmée.
     value: M ALI FIGMIR
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: internal
   legal.form:
     value: Entreprise individuelle
-    status: proposed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel]
+    status: confirmed
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: internal
   legal.address:
     # Seule la commune du siège est connue (Saint-Vallier) ; adresse complète à fournir.

@@ -11,7 +11,7 @@ import '../styles/base.css';
 import '../../design/directions/bandeau.css';
 import '../styles/motion.css';
 import Icon from '../components/Icon.astro';
-import { nav, routes, phone, telHref, email, footerNote, services, whatsappDigits } from '../content/site.ts';
+import { nav, routes, phone, telHref, email, services, whatsappDigits, PROVISIONAL } from '../content/site.ts';
 
 interface Props {
   title: string;
@@ -66,7 +66,7 @@ const ld = ldName && ldPhone
     <div class="scroll-progress" aria-hidden="true"></div>
     <a class="skip" href="#contenu">Aller au contenu</a>
     {config.target === 'preview' && (
-      <p class="preview-banner">Préversion non publiée : les mentions « à confirmer » attendent la validation d’AFR TAXI.</p>
+      <p class="preview-banner">Préversion non publiée, réservée à AFR TAXI.</p>
     )}
     <header class="masthead">
       <div class="wrap masthead-inner">
@@ -101,8 +101,8 @@ const ld = ldName && ldPhone
       <div class="wrap footer-grid">
         <div>
           <p class="footer-brand">AFR TAXI</p>
-          {telHref && phone && <p><a href={telHref}>{phone.text}</a>{phone.provisional && <span class="provisional">à confirmer</span>}</p>}
-          {email && <p><a href={`mailto:${email.text}`}>{email.text}</a>{email.provisional && <span class="provisional">à confirmer</span>}</p>}
+          {telHref && phone && <p><a href={telHref}>{phone.text}</a>{phone.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>}
+          {email && <p><a href={`mailto:${email.text}`}>{email.text}</a>{email.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>}
         </div>
         <nav aria-label="Services">
           <p class="footer-title">Services</p>
@@ -118,7 +118,7 @@ const ld = ldName && ldPhone
           </ul>
         </nav>
       </div>
-      {config.target === 'preview' && <p class="wrap footer-note">{footerNote}</p>}
+      
     </footer>
 
     {bar && (

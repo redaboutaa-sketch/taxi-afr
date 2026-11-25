@@ -19,7 +19,7 @@ import { phone, telHref, email, hours, routes, PROVISIONAL } from '../../content
         <h2>Appeler</h2>
         {telHref && phone ? (
           <p><a class="btn btn-call" href={telHref}><Icon name="phone" /><span>{phone.text}</span></a>{phone.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>
-        ) : <p class="unknown">Numéro à confirmer.</p>}
+        ) : null}
         <p>Recommandé pour un départ dans moins d’une heure.</p>
         {hours && <p>Disponibilité annoncée : {hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}. Le site n’indique pas la disponibilité en temps réel.</p>}
       </div>

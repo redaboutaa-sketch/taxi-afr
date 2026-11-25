@@ -1,5 +1,9 @@
 # Confirmations à obtenir d'AFR TAXI
 
+> **Mise à jour du 2026-11-25** : le propriétaire du dépôt a confirmé toutes les informations proposées (« Tout est ok ») : téléphone, e-mail, commune, disponibilité, services (dont le transport conventionné), expérience, langues, nom commercial, responsable de publication, forme juridique. Les mentions « à confirmer » sont retirées du site.
+>
+> **Restent inconnus (aucune valeur fournie, bloquants pour la mise en production)** : adresse complète du siège, SIRET, TVA (ou justification de non-assujettissement), hébergeur, médiateur de la consommation, durée de conservation des demandes, secteur desservi, destinations de transfert, modèle et capacité du véhicule ; boîte de réception et service d'envoi des e-mails ; approbation du rendu ; responsable de revue. Également : le responsable de publication est confirmé mais non publié (publication `internal`) — à rendre public dans les mentions légales si le propriétaire le décide ; vérifier les conditions d'usage commercial de l'offre Higgsfield utilisée pour les illustrations.
+
 Registre des faits : `site/brief/brief.yaml` (`facts`). Aucun fait n'est `confirmed` : seul le client peut le décider. `npm run factory:validate -- --mode release` liste les 33 points bloquants actuels.
 
 ## Priorité 1 — sans quoi le site ne peut pas être publié

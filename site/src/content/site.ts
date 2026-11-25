@@ -95,4 +95,3 @@ export const services = [
 /** Mention affichée à côté d'un fait non confirmé (preview uniquement). */
 export const PROVISIONAL = 'à confirmer';
 
-export const footerNote = 'Site en préparation : contenus et coordonnées à confirmer par AFR TAXI avant publication.';
