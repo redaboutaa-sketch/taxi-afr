@@ -22,6 +22,12 @@ Registre des faits : `site/brief/brief.yaml` (`facts`). Aucun fait n'est `confir
 ## Actifs
 14. Logo original et autorisation d'usage. Photo du véhicule devant la gare : publiée sur instruction du 2026-11-24 — **plaque visible : la masquer ?** ; conserver l'autorisation écrite de l'auteur hors dépôt. Photo du chauffeur : facultative.
 
+## Photos des cartes de services (demandées le 2026-11-25)
+Quatre photos, une par carte : `service-prive` (taxi privé et pro), `service-transferts` (gare ou aéroport), `service-medical` (transport de patients), `service-assistance` (après panne ou accident). Les cartes les affichent automatiquement dès qu'elles sont enregistrées et approuvées dans `site/assets/registry.yaml`.
+- Format : JPEG ou WebP, paysage, au moins 1200 px de large (recadrage 16:9).
+- Pour chacune : source (photo du client, ou banque d'images avec sa licence et le lien), auteur si connu.
+- Pas de personne reconnaissable sans son accord ; pas d'autre véhicule présenté comme celui d'AFR TAXI ; pas de logo d'organisme (Assurance Maladie, SNCF…) mis en avant.
+
 ## Hébergement et publication (externe)
 15. Hébergement cible réel (VPS ? mutualisé Apache ? proxy ?), accès, PHP disponible ; domaine et DNS (www / apex).
 16. Search Console de l'ancien site si disponible (décision sur les anciennes URL).

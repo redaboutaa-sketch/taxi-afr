@@ -60,6 +60,8 @@ export const services = [
     title: 'Taxi privé et professionnel',
     text: 'Trajets du quotidien, rendez-vous, déplacements professionnels, courte ou longue distance.',
     icon: 'car',
+    /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
+    image: 'service-prive',
   },
   {
     key: 'service.transfers',
@@ -67,6 +69,8 @@ export const services = [
     title: 'Gares et aéroports',
     text: 'Départ ou arrivée en train ou en avion : indiquez l’horaire et la référence, le chauffeur organise la prise en charge.',
     icon: 'plane',
+    /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
+    image: 'service-transferts',
   },
   {
     key: 'service.medicalConventionne',
@@ -74,6 +78,8 @@ export const services = [
     title: 'Transport de patients',
     text: 'Taxi conventionné sur prescription médicale : conditions et prise en charge expliquées sans promesse.',
     icon: 'cross',
+    /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
+    image: 'service-medical',
   },
   {
     key: 'service.assistance',
@@ -81,6 +87,8 @@ export const services = [
     title: 'Après une panne ou un accident',
     text: 'Transport des personnes quand le véhicule est immobilisé. Pas de remorquage ni de secours.',
     icon: 'road',
+    /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
+    image: 'service-assistance',
   },
 ] as const;
 

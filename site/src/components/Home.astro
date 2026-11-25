@@ -76,7 +76,20 @@ const photo = assets['taxi-gare'];
       </div>
       <ul class="services-cards" role="list">
         {visible.map((s) => (
-          <li><a href={s.href}><span class="badge"><Icon name={s.icon} /></span><h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3><p>{s.text}</p></a></li>
+          <li>
+            <a href={s.href} class:list={{ 'has-media': Boolean(assets[s.image]) }}>
+              {assets[s.image] && (
+                <span class="card-media">
+                  <Picture src={assets[s.image]!.src} alt={assets[s.image]!.decorative ? '' : (assets[s.image]!.alt.fr ?? '')} widths={[320, 480, 640, 900]} sizes="(min-width: 62rem) 25vw, (min-width: 40rem) 50vw, 100vw" formats={['avif', 'webp']} loading="lazy" decoding="async" />
+                </span>
+              )}
+              <span class="card-body">
+                <span class="badge"><Icon name={s.icon} /></span>
+                <h3>{s.title}{fact(s.key)?.provisional && <span class="provisional">{PROVISIONAL}</span>}</h3>
+                <p>{s.text}</p>
+              </span>
+            </a>
+          </li>
         ))}
       </ul>
     </div>
