@@ -24,5 +24,6 @@
 | 2026-11-26 | Mentions légales : responsable de publication, forme juridique et adresse du siège rendus publics | propriétaire du dépôt (message) | — |
 | 2026-11-26 | Mentions légales complétées : SIRET 881 553 051 00015 et siège 6 rue Camille Claudel, 26240 Saint-Vallier (repris des mentions de www.afr-taxi.fr, sur instruction) ; TVA non applicable (art. 293 B, déclaration du propriétaire — l'ancien site affichait un n° de TVA FR46 881 553 051, écart signalé) ; médiateur CM2C ; conservation 12 mois | propriétaire du dépôt (messages) | — |
 | 2026-11-26 | Brief passé en `mode: release` ; autorisation de publication inscrite (empreinte des pages autorisées) | Reda Boutaa | publication |
+| 2026-11-27 | Envoi des demandes par Brevo (`smtp-relay.brevo.com:587`, expéditeur contact@afr-taxi.com, domaine authentifié par DKIM/DMARC), livraison sur afr.taxi26@gmail.com ; remplace Gmail + mot de passe d'application (trop complexe pour le client) | propriétaire du dépôt (message) | — |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).

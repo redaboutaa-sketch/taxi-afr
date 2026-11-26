@@ -1,4 +1,20 @@
-# Préversion complète sur le VPS (pages + envoi d'e-mails par Gmail)
+# Site AFR TAXI sur le VPS (pages + envoi d'e-mails)
+
+## Envoi des e-mails : Brevo (depuis le 2026-11-27)
+Expéditeur `contact@afr-taxi.com` via `smtp-relay.brevo.com:587` (STARTTLS) ; les demandes arrivent directement sur `afr.taxi26@gmail.com`. Mise en place, une seule fois, par le propriétaire (le client n'a rien à faire) :
+1. Compte Brevo (offre gratuite : 300 e-mails/jour). **Expéditeurs, domaines et IP dédiées → Domaines → Ajouter `afr-taxi.com` → Authentifier.**
+2. Chez Hostinger (DNS de afr-taxi.com), ajouter **exactement** les enregistrements affichés par Brevo (code de vérification TXT, DKIM, DMARC), puis cliquer sur « Vérifier » dans Brevo.
+3. **Expéditeurs → Ajouter** `contact@afr-taxi.com` (nom : AFR TAXI).
+4. **SMTP et API → onglet SMTP → Générer une clé SMTP.** Noter le **login SMTP** affiché (forme `xxxx@smtp-brevo.com`) et la **clé** (affichée une seule fois).
+5. Sur le VPS (remplacer les deux valeurs ; rien n'est versionné) :
+   ```
+   printf 'AFR_SMTP_USER=%s\nAFR_SMTP_PASSWORD=%s\n' 'LOGIN_SMTP_BREVO' 'CLE_SMTP_BREVO' > /opt/afr-taxi-prod/smtp.env && chmod 600 /opt/afr-taxi-prod/smtp.env
+   cd /opt/afr-taxi-prod && docker compose up -d --force-recreate php
+   ```
+Redirection de `contact@afr-taxi.com` vers la boîte Gmail (pour les réponses écrites à cette adresse) : à configurer chez Hostinger (transfert d'e-mail), indépendamment du site.
+
+---
+Historique — préversion complète (Gmail, abandonné le 2026-11-27 au profit de Brevo) :
 
 Architecture : Traefik (existant, `/opt/traefik`) → `afr-taxi-nginx` (configuration générée par le moteur) → `afr-taxi-php` (PHP-FPM 8.4, endpoint du formulaire) → `smtp.gmail.com:465` avec le compte `afr.taxi26@gmail.com`.
 Adresse : `https://76-13-44-177.sslip.io/`, protégée par mot de passe (Traefik), `noindex`.
@@ -38,7 +54,7 @@ Le script vérifie l'empreinte de l'archive et de chaque fichier, bascule `/srv/
 ## Vérifier
 
 - `docker logs afr-taxi-php 2>&1 | grep factory-form | tail` : `outcome=accepted` après un envoi (le contenu des demandes n'est jamais journalisé).
-- Un envoi depuis le formulaire doit arriver dans la boîte afr.taxi26@gmail.com. `outcome=transport_error` : identifiants refusés par Google (mot de passe d'application, validation en 2 étapes).
+- Un envoi depuis le formulaire doit arriver dans la boîte afr.taxi26@gmail.com. `outcome=transport_error` : identifiants refusés (login/clé SMTP Brevo) ou domaine non authentifié chez Brevo.
 
 ## Mise en production sur www.afr-taxi.com
 

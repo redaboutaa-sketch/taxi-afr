@@ -65,20 +65,20 @@ network:
   previewOrigin: null
 
 email:
-  # Option A choisie par le propriétaire (message du 2026-11-26) : envoi par le
-  # compte Gmail du taxi (SMTP authentifié, mot de passe d'application), qui est
-  # aussi la boîte de réception. Les identifiants ne sont JAMAIS ici : seulement
-  # les noms des variables d'environnement du conteneur PHP-FPM.
+  # Décision du propriétaire (2026-11-27) : envoi par Brevo (relais SMTP authentifié)
+  # avec l'adresse contact@afr-taxi.com, domaine afr-taxi.com authentifié chez Brevo
+  # (DKIM/DMARC). Les demandes sont livrées directement dans la boîte Gmail du taxi.
+  # Identifiants (login SMTP Brevo + clé SMTP) : variables d'environnement seulement.
   publicContactFact: contact.email
   recipient: afr.taxi26@gmail.com
-  from: afr.taxi26@gmail.com
-  sendingDomain: gmail.com
+  from: contact@afr-taxi.com
+  sendingDomain: afr-taxi.com
   replyTo: submitter
   transport: smtp
   smtp:
-    host: smtp.gmail.com
-    port: 465
-    security: tls
+    host: smtp-relay.brevo.com
+    port: 587
+    security: starttls
     username: env:AFR_SMTP_USER
     password: env:AFR_SMTP_PASSWORD
 
