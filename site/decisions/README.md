@@ -31,5 +31,6 @@
 | 2026-11-27 | Mention visible « Illustration » retirée des 4 cartes de services (images d'ambiance génériques, ne montrant ni le véhicule ni le chauffeur) ; texte alternatif « Illustration : … » conservé | Reda Boutaa (message) | — |
 | 2026-11-27 | **Publication de la version `cc6a9eaf…c4c8` autorisée** (« J'autorise la publication de la version cc6a9eaf sur www.afr-taxi.com ») | Reda Boutaa | publication |
 | 2026-11-27 | « Taxi conventionné CPAM » affiché (accueil, carte de service, page transport de patients), en texte sans logo d'organisme ; haut de l'accueil resserré pour tenir sur un écran d'ordinateur | Reda Boutaa (message) | — |
+| 2026-11-27 | **Publication de la version `ba3c12c7…09b7` autorisée** (« J'autorise la publication de la version ba3c12c7 sur www.afr-taxi.com ») | Reda Boutaa | publication |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).

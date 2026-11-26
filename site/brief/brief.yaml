@@ -141,11 +141,11 @@ delivery:
   # sur www.afr-taxi.com »). scopeDigest = empreinte des pages de production
   # autorisées (site/deploy/pages-digest.sh sur le dossier public/ de la release).
   publicationAuthorization:
-    # 2026-11-27 : « J'autorise la publication de la version cc6a9eaf sur
-    # www.afr-taxi.com » (Reda Boutaa) — mention « Illustration » retirée.
+    # 2026-11-27 : « J'autorise la publication de la version ba3c12c7 sur
+    # www.afr-taxi.com » (Reda Boutaa) — mention CPAM, accueil sur un écran.
     grantedBy: Reda Boutaa
     grantedOn: '2026-11-27'
-    scopeDigest: cc6a9eaf136ec0855b5e8f0b426b37954f945a1912036de2ee279bc77e43c4c8
+    scopeDigest: ba3c12c70f41aac3f301bf9da7cfc7238fba9895e0b49dd2eb3f4cf9376209b7
 
 facts:
   contact.phone:
