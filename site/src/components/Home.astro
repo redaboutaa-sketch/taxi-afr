@@ -17,6 +17,7 @@ const { path = '/' } = Astro.props;
 const town = locality?.text.split(' (')[0] ?? null;
 const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
+const conventionne = fact('service.medicalConventionne');
 const languages = fact('driver.languages');
 const reviewsUrl = fact('reviews.googleUrl')?.text ?? null;
 // Note Google : affichée seulement si note, nombre et date du relevé sont tous connus.
@@ -49,6 +50,9 @@ const photo = assets['taxi-gare'];
         )}
         <h1 id="hero-title">{town ? <>Votre taxi à <em>{town}</em></> : 'Votre taxi local'}</h1>
         <p class="lead">Déplacements privés et professionnels, transferts gares et aéroports, transport de patients sur prescription et longue distance.</p>
+        {conventionne && (
+          <p><a class="badge-cpam" href={routes.medical}><Icon name="cross" /><span><strong>Taxi conventionné CPAM</strong> · transport de patients sur prescription</span></a></p>
+        )}
         <ul class="checklist" role="list">
           {experience && <li><Icon name="check" /><span>{experience.text}{experience.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
           {hours && <li><Icon name="check" /><span>{hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}

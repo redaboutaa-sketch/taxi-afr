@@ -206,9 +206,9 @@ facts:
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   service.medicalConventionne:
-    value: Taxi conventionné pour le transport de patients sur prescription
+    value: Taxi conventionné CPAM pour le transport de patients sur prescription
     status: confirmed
-    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
+    sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)', 'propriétaire du dépôt, message du 2026-11-27 : « le taxi est conventionné CPAM »']
     publication: public
   driver.experience:
     value: Chauffeur de taxi depuis 2016, à son compte depuis 2020

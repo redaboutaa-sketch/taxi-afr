@@ -76,7 +76,7 @@ export const services = [
     key: 'service.medicalConventionne',
     href: routes.medical,
     title: 'Transport de patients',
-    text: 'Taxi conventionné sur prescription médicale : conditions et prise en charge expliquées sans promesse.',
+    text: 'Taxi conventionné CPAM, sur prescription médicale : conditions et prise en charge expliquées sans promesse.',
     icon: 'cross',
     /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
     image: 'service-medical',
