@@ -25,5 +25,8 @@ Topologie de `site/deploy/` exercée en conteneurs (Traefik simulé par le rése
 ## Release de production (2026-11-26)
 `npm run factory:validate -- --mode release --production` : prérequis internes réunis. `npm run release -- --target production --profile-json site/deploy/production-traefik.json` : `afr-taxi-production-acbd5a4ce46c`, audit 31/31, `qa:release` 312 fichiers conformes ; empreinte des pages `84dc0d36…65da` = `publicationAuthorization.scopeDigest`. En conteneurs : accueil 200 indexable, apex → 301 www, sitemap 200, formulaire `transport_not_configured` sans identifiants. `qa:perf` ne sait pas servir une release de production (outil limité au profil de recette) : performance mesurée sur les mêmes gabarits en preview (perf 99-100).
 
+## Mise en ligne (2026-11-27)
+Publication sur `www.afr-taxi.com` faite par le propriétaire sur le VPS (Traefik + nginx + PHP-FPM 8.4), après `qa:release` et vérification de l'empreinte des pages (`713d7d5c…0781`). Constat de mise en ligne : déclaré par le propriétaire ; l'agent n'a pas d'accès réseau à ce domaine.
+
 ## Non couvert / externe (`pending_external`)
 Réception réelle par le chauffeur, SMTP réel, SPF/DKIM/DMARC, TLS, DNS, hébergement cible, ouverture réelle de WhatsApp sur téléphone et WhatsApp Web avec le compte du chauffeur, Firefox/WebKit, lecteur d'écran, revue humaine du design, relecture juridique, inventaire complet des anciennes URL, performance terrain.

@@ -26,5 +26,6 @@
 | 2026-11-26 | Brief passé en `mode: release` ; autorisation de publication inscrite (empreinte des pages autorisées) | Reda Boutaa | publication |
 | 2026-11-27 | Envoi des demandes par Brevo (`smtp-relay.brevo.com:587`, expéditeur contact@afr-taxi.com, domaine authentifié par DKIM/DMARC), livraison sur afr.taxi26@gmail.com ; remplace Gmail + mot de passe d'application (trop complexe pour le client) | propriétaire du dépôt (message) | — |
 | 2026-11-27 | Carte « Demander un trajet » semi-transparente (ordinateur) ; **publication de la version `713d7d5c…0781` autorisée** (« J'autorise la publication de la version 713d7d5c sur www.afr-taxi.com ») | Reda Boutaa | publication |
+| 2026-11-27 | **Site publié sur www.afr-taxi.com** (version `713d7d5c…0781`, release de production construite et déployée sur le VPS par le propriétaire ; mise en ligne constatée par lui, non observée depuis la session de l'agent) | Reda Boutaa | publication |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
