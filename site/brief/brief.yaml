@@ -218,20 +218,20 @@ facts:
     publication: public
   reviews.rating:
     # Note moyenne Google relevée par le propriétaire, ex. '4,9'. Datée par reviews.asOf.
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: '4,9'
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « 4,9 sur 37 avis, novembre 2026 » (fiche Google)']
     publication: public
   reviews.count:
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: '37'
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « 4,9 sur 37 avis, novembre 2026 » (fiche Google)']
     publication: public
   reviews.asOf:
     # Mois du relevé, ex. 'novembre 2026' (la note évolue : à mettre à jour).
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: novembre 2026
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « 4,9 sur 37 avis, novembre 2026 » (fiche Google)']
     publication: public
   vehicle.description:
     value: null
