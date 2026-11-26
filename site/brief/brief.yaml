@@ -288,9 +288,9 @@ facts:
     sourceRefs: []
     publication: public
   legal.vatId:
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: TVA non applicable, art. 293 B du CGI
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : franchise en base de TVA']
     publication: public
   legal.hostingProvider:
     # Les mentions légales doivent aussi indiquer l'adresse et le téléphone de
