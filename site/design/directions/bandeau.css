@@ -232,7 +232,6 @@
     .dir-bandeau .hero-form .field label { font-size: 0.8rem; }
     .dir-bandeau .hero-form .field .error:empty { display: none; }
     .dir-bandeau .hero-form .notice { margin-block-start: var(--space-2); padding: 0.4rem 0.6rem; }
-    .dir-bandeau .hero-form .notice-detail { display: none; }
     .dir-bandeau .hero-form .actions { margin-block-start: var(--space-2); gap: 0.35rem; }
     .dir-bandeau .hero-form .actions .btn { min-height: 2.75rem; padding-block: 0.45rem; }
     .dir-bandeau .hero-form .action-help { font-size: 0.75rem; margin: 0.15rem 0 0; }

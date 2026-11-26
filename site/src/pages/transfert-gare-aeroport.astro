@@ -4,21 +4,21 @@ import Fact from '../components/Fact.astro';
 ---
 <ServicePage
   title="Transferts gares et aéroports — AFR TAXI"
-  description="Taxi vers ou depuis une gare ou un aéroport : indiquez l’horaire et le numéro de train ou de vol, le chauffeur organise la prise en charge."
+  description="Taxi vers ou depuis une gare ou un aéroport : indiquez l’horaire de votre train ou de votre vol, le chauffeur organise la prise en charge."
   path="/transfert-gare-aeroport/"
   h1="Transferts gares et aéroports"
-  lead="Un train ou un avion à prendre, ou quelqu’un à aller chercher : donnez l’horaire et la référence, le chauffeur prévoit la marge utile."
+  lead="Un train ou un avion à prendre, ou quelqu’un à aller chercher : indiquez l’horaire, le chauffeur prévoit la marge utile."
   factKey="service.transfers"
 >
   <h2>Destinations</h2>
-  <p><Fact k="service.transferDestinations" fallback="Gares et aéroports de la région et au-delà : indiquez votre destination dans la demande, le chauffeur vous confirme le trajet." /></p>
+  <p><Fact k="service.transferDestinations" fallback="Indiquez votre gare ou votre aéroport dans la demande : le chauffeur vous confirme le trajet et le tarif." /></p>
   <h2>Ce qu’il faut indiquer</h2>
   <ul>
     <li>L’adresse de départ et la gare ou l’aéroport.</li>
     <li>La date et l’heure souhaitées de départ (heure de Paris).</li>
-    <li>Le numéro de train ou de vol, pour suivre un éventuel retard à l’arrivée.</li>
-    <li>Le nombre de voyageurs et les bagages encombrants.</li>
+    <li>Le nombre de voyageurs.</li>
+    <li>Votre numéro de train ou de vol et vos bagages encombrants : communiquez-les au chauffeur quand il vous recontacte, il pourra suivre un éventuel retard.</li>
   </ul>
   <h2>Retard de train ou de vol</h2>
-  <p>Les conditions en cas de retard (attente, report) se conviennent avec le chauffeur lors de la confirmation.</p>
+  <p>En cas de retard de votre train ou de votre vol, l’attente se convient avec le chauffeur lors de la confirmation.</p>
 </ServicePage>

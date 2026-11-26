@@ -67,7 +67,7 @@ export const services = [
     key: 'service.transfers',
     href: routes.transferts,
     title: 'Gares et aéroports',
-    text: 'Départ ou arrivée en train ou en avion : indiquez l’horaire et la référence, le chauffeur organise la prise en charge.',
+    text: 'Un train ou un avion à prendre, ou quelqu’un à aller chercher : le chauffeur organise la prise en charge à l’heure voulue.',
     icon: 'plane',
     /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
     image: 'service-transferts',
@@ -76,7 +76,7 @@ export const services = [
     key: 'service.medicalConventionne',
     href: routes.medical,
     title: 'Transport de patients',
-    text: 'Taxi conventionné CPAM, sur prescription médicale : conditions et prise en charge expliquées sans promesse.',
+    text: 'Taxi conventionné CPAM pour vos rendez-vous médicaux, hospitalisations et soins, sur prescription.',
     icon: 'cross',
     /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
     image: 'service-medical',
@@ -85,7 +85,7 @@ export const services = [
     key: 'service.assistance',
     href: routes.incident,
     title: 'Après une panne ou un accident',
-    text: 'Transport des personnes quand le véhicule est immobilisé. Pas de remorquage ni de secours.',
+    text: 'Votre véhicule est immobilisé ? Le taxi vous emmène, vous et vos passagers, à destination.',
     icon: 'road',
     /** Photo de la carte (registre d'actifs) : affichée seulement si publiable. */
     image: 'service-assistance',

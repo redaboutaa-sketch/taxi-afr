@@ -18,6 +18,7 @@ const town = locality?.text.split(' (')[0] ?? null;
 const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
 const conventionne = fact('service.medicalConventionne');
+const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 const languages = fact('driver.languages');
 const reviewsUrl = fact('reviews.googleUrl')?.text ?? null;
 // Note Google : affichée seulement si note, nombre et date du relevé sont tous connus.
@@ -51,7 +52,7 @@ const photo = assets['taxi-gare'];
         <h1 id="hero-title">{town ? <>Votre taxi à <em>{town}</em></> : 'Votre taxi local'}</h1>
         <p class="lead">Déplacements privés et professionnels, transferts gares et aéroports, transport de patients sur prescription et longue distance.</p>
         {conventionne && (
-          <p><a class="badge-cpam" href={routes.medical}><Icon name="cross" /><span><strong>Taxi conventionné CPAM</strong> · transport de patients sur prescription</span></a></p>
+          <p><a class="badge-cpam" href={routes.medical}><Icon name="cross" /><strong>Taxi conventionné CPAM</strong></a></p>
         )}
         <ul class="checklist" role="list">
           {experience && <li><Icon name="check" /><span>{experience.text}{experience.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
@@ -73,18 +74,18 @@ const photo = assets['taxi-gare'];
 
   <section class="facts-strip" aria-label="Repères">
     <ul class="wrap" role="list">
-      {hours && <li><Icon name="clock" /><span><strong>Disponibilité annoncée</strong><br />{hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+      {hours && <li><Icon name="clock" /><span><strong>Disponibilité</strong><br />{hours.text}{hours.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
       <li><Icon name="phone" /><span><strong>Appel direct</strong><br />pour un départ imminent</span></li>
       <li><Icon name="route" /><span><strong>Demande en ligne</strong><br />pour un trajet planifié</span></li>
-      {languages && <li><Icon name="chat" /><span><strong>Langues parlées</strong><br />{languages.text}{languages.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
+      {languages && <li><Icon name="chat" /><span><strong>Langues parlées</strong><br />{cap(languages.text)}{languages.provisional && <span class="provisional">{PROVISIONAL}</span>}</span></li>}
     </ul>
   </section>
 
   <section class="section" aria-labelledby="services-title">
     <div class="wrap stack-lg">
       <div class="stack">
-        <h2 id="services-title">Quel est votre besoin ?</h2>
-        <p class="lead">Chaque service a sa page : ce qui est proposé, comment l’organiser, ce qui n’est pas promis.</p>
+        <h2 id="services-title">Nos services de transport</h2>
+        <p class="lead">Trajets du quotidien, gares et aéroports, transport de patients ou retour après une panne : choisissez votre service.</p>
       </div>
       <ul class="services-cards" role="list">
         {visible.map((s) => (
@@ -114,9 +115,9 @@ const photo = assets['taxi-gare'];
         <RouteArt />
       </div>
       <ol class="steps" role="list">
-        <li><h3>Décrivez le trajet</h3><p>Départ, destination, date et heure : rien d’autre n’est obligatoire.</p></li>
+        <li><h3>Décrivez le trajet</h3><p>Départ, destination, date et heure, avec votre nom et votre téléphone.</p></li>
         <li><h3>Envoyez par WhatsApp ou par e-mail</h3><p>Ou appelez pour un départ dans moins d’une heure.</p></li>
-        <li><h3>Le chauffeur vous recontacte</h3><p>Il confirme, ou non, la possibilité du trajet et vous indique le tarif.</p></li>
+        <li><h3>Le chauffeur vous recontacte</h3><p>Il vous confirme le trajet et vous indique le tarif.</p></li>
       </ol>
     </div>
   </section>
@@ -131,7 +132,7 @@ const photo = assets['taxi-gare'];
       </div>
       <div class="callout">
         <p><strong>Véhicule</strong></p>
-        <p>La photo de l’accueil montre le véhicule réel, devant la gare de Saint-Rambert-d’Albon.</p>
+        <p>C’est la berline que vous voyez en haut de cette page, devant la gare de Saint-Rambert-d’Albon.</p>
       </div>
     </div>
   </section>
@@ -149,7 +150,7 @@ const photo = assets['taxi-gare'];
             <p class="reviews-stars" aria-hidden="true"><Icon name="star" /></p>
           )}
           <h2 id="avis-title">Avis clients</h2>
-          <p class="lead">Les avis des clients d’AFR TAXI sont publiés sur Google, là où chacun peut les lire et en laisser un.</p>
+          <p class="lead">Lisez ce que les clients disent d’AFR TAXI sur Google, ou laissez votre propre avis.</p>
           {reviews.length > 0 && (
             <ul class="reviews-list" role="list">
               {reviews.map((r) => <li><blockquote><p>« {r.text} »</p><footer>{r.author} · <time datetime={r.date}>{new Date(r.date).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}</time> · avis Google</footer></blockquote></li>)}
@@ -168,12 +169,12 @@ const photo = assets['taxi-gare'];
     <div class="wrap faq stack">
       <h2 id="faq-title">Réponses utiles</h2>
       <details>
-        <summary>Ma demande en ligne vaut-elle réservation ?</summary>
-        <p>Non. Elle transmet votre trajet au chauffeur, qui vous rappelle pour confirmer ou non sa possibilité. Pour un départ imminent, appelez directement.</p>
+        <summary>Quand mon trajet est-il réservé ?</summary>
+        <p>Votre trajet est réservé une fois que le chauffeur vous l’a confirmé, par téléphone ou par message. Pour un départ dans moins d’une heure, appelez directement.</p>
       </details>
       <details>
         <summary>Quel est le prix d’un trajet ?</summary>
-        <p>Le tarif dépend du trajet et de l’horaire. Demandez-le au chauffeur lors de l’appel ou de sa réponse ; aucun tarif n’est affiché tant qu’il n’a pas été validé.</p>
+        <p>Le tarif dépend de la distance et de l’horaire. Le chauffeur vous l’indique au téléphone ou en réponse à votre demande, avant le départ.</p>
       </details>
       <details>
         <summary>Le transport de patients est-il pris en charge ?</summary>

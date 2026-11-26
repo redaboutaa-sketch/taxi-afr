@@ -248,3 +248,7 @@
 @layer components {
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+@layer components {
+  .cap::first-letter { text-transform: uppercase; }
+}

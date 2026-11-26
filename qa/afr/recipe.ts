@@ -126,7 +126,7 @@ try {
   check('http.no-internal-data-served', !served.includes('recette.afr-taxi.test'));
   const contactHtml = await (await fetch(`${BASE}/contact/`)).text();
   check('form.no-medical-field', !/diagnostic"|ordonnance"|securite|s[ée]curit[ée]_sociale|name="motif"/i.test(contactHtml.replace(/<p[^>]*>[^<]*<\/p>/g, '')));
-  check('form.not-a-booking-notice', contactHtml.includes('ne vaut pas confirmation de réservation'));
+  check('form.not-a-booking-notice', contactHtml.includes('ne vaut pas réservation'));
 
   // 4 — endpoint : rejets
   const paris = (d: Date) => new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Paris', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
@@ -216,7 +216,7 @@ try {
     check(`[${name}] nojs.accepted-to-result-page`, new URL(page.url()).pathname === '/contact/envoyee/' && mails().length === before + 1, page.url());
     const h1 = (await page.textContent('h1')) ?? '';
     const txt = (await page.textContent('main')) ?? '';
-    check(`[${name}] nojs.honest-wording`, h1.includes('serveur d’envoi') && txt.includes('pas une confirmation de course') && !/course (réservée|confirmée)/i.test(txt));
+    check(`[${name}] nojs.honest-wording`, h1.includes('bien été envoyée') && txt.includes('recontacte pour confirmer') && !/(course|trajet) (réservée?|confirmée?)/i.test(txt));
     check(`[${name}] nojs.no-form-data-in-url`, !page.url().includes('pickup') && !page.url().includes('Camille'));
     await ctx.close();
 
@@ -240,7 +240,7 @@ try {
     await page.click('button[type=submit]');
     await page.waitForSelector('[data-form-status]:not([hidden])');
     const msg = (await page.textContent('[data-form-status]')) ?? '';
-    check(`[${name}] js.accepted-message-honest`, msg.includes('acceptée par notre serveur d’envoi') && msg.includes('pas une confirmation de course') && mails().length === before + 1, msg.slice(0, 80));
+    check(`[${name}] js.accepted-message-honest`, msg.includes('bien été envoyée') && msg.includes('recontacte pour confirmer') && !/(course|trajet) (réservée?|confirmée?)/i.test(msg) && mails().length === before + 1, msg.slice(0, 80));
     capture.setFailMode('data');
     await page.goto(`${BASE}/contact/`);
     await fill(page, valid);
