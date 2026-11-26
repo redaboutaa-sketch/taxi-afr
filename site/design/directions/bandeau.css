@@ -180,3 +180,10 @@
   .dir-bandeau .reviews-list footer { font-size: 0.85rem; color: #cfcbc2; margin-block-start: var(--space-2); }
   .dir-bandeau .reviews-band :focus-visible { outline-color: #8ab4ff; }
 }
+@layer direction {
+  .dir-bandeau .reviews-score { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.8rem; font-size: var(--step-1); }
+  .dir-bandeau .reviews-score .star { display: inline-flex; }
+  .dir-bandeau .reviews-score .star.off { color: #59606b; }
+  .dir-bandeau .reviews-value { color: #fff; font-size: var(--step-2); }
+  .dir-bandeau .reviews-asof { font-size: 0.85rem; color: #cfcbc2; }
+}

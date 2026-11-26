@@ -19,6 +19,13 @@ const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
 const languages = fact('driver.languages');
 const reviewsUrl = fact('reviews.googleUrl')?.text ?? null;
+// Note Google : affichée seulement si note, nombre et date du relevé sont tous connus.
+const rating = fact('reviews.rating');
+const ratingCount = fact('reviews.count');
+const ratingAsOf = fact('reviews.asOf');
+const ratingValue = rating ? Number(rating.text.replace(',', '.')) : NaN;
+const showRating = Boolean(rating && ratingCount && ratingAsOf) && ratingValue > 0 && ratingValue <= 5;
+const fullStars = showRating ? Math.round(ratingValue) : 0;
 // Photo du véhicule réel : seulement si l'actif est publiable (registre).
 const photo = assets['taxi-gare'];
 ---
@@ -130,7 +137,14 @@ const photo = assets['taxi-gare'];
     <section class="section section-tight reviews-band" id="avis" aria-labelledby="avis-title">
       <div class="wrap reviews-inner">
         <div class="stack">
-          <p class="reviews-stars" aria-hidden="true"><Icon name="star" /></p>
+          {showRating ? (
+            <p class="reviews-score">
+              <span class="reviews-stars" aria-hidden="true">{[1, 2, 3, 4, 5].map((i) => <span class:list={['star', { off: i > fullStars }]}><Icon name="star" /></span>)}</span>
+              <span><strong class="reviews-value">{rating!.text}/5</strong> sur Google · {ratingCount!.text} avis <span class="reviews-asof">(relevé de {ratingAsOf!.text})</span></span>
+            </p>
+          ) : (
+            <p class="reviews-stars" aria-hidden="true"><Icon name="star" /></p>
+          )}
           <h2 id="avis-title">Avis clients</h2>
           <p class="lead">Les avis des clients d’AFR TAXI sont publiés sur Google, là où chacun peut les lire et en laisser un.</p>
           {reviews.length > 0 && (

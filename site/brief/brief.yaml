@@ -216,6 +216,23 @@ facts:
     status: confirmed
     sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : lien des avis Google']
     publication: public
+  reviews.rating:
+    # Note moyenne Google relevée par le propriétaire, ex. '4,9'. Datée par reviews.asOf.
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  reviews.count:
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
+  reviews.asOf:
+    # Mois du relevé, ex. 'novembre 2026' (la note évolue : à mettre à jour).
+    value: null
+    status: unknown
+    sourceRefs: []
+    publication: public
   vehicle.description:
     value: null
     status: unknown
