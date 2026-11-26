@@ -2,8 +2,7 @@
 
 | Date | Décision | Par | Porte |
 |---|---|---|---|
-| 2026-11-24 | Site français seul en V1 (EN/AR non générés) | brief de mission | 2026-11-26 | Mentions légales : responsable de publication, forme juridique et adresse du siège rendus publics | propriétaire du dépôt (message) | — |
-| — |
+| 2026-11-24 | Site français seul en V1 (EN/AR non générés) | brief de mission | — |
 | 2026-11-24 | Deux canaux de demande : e-mail par le serveur, ou brouillon WhatsApp envoyé par le visiteur ; appel direct partout | brief de mission | — |
 | 2026-11-24 | Profil `vps-nginx` retenu **pour la preview et la recette locale seulement** : seul profil implémenté ; la cible réelle n'est pas constatée | agent (technique) | — |
 | 2026-11-24 | Rendu provisoire en piste A « Ivoire » en attendant le choix | agent (provisoire) | — |
@@ -22,5 +21,6 @@
 | 2026-11-26 | **Autorisation de publication sur www.afr-taxi.com** (« J'autorise la publication sur www.afr-taxi.com »). En attente des mentions légales, de la durée de conservation, de l'approbation du rendu et d'un envoi Gmail réussi : la release de production reste refusée par le moteur d'ici là. | propriétaire du dépôt (message) | publication |
 | 2026-11-26 | **Rendu final approuvé** (« J'approuve le rendu ») ; responsable de revue : Reda Boutaa | Reda Boutaa | G2 — rendu |
 | 2026-11-26 | Faits facultatifs inconnus (secteur, destinations, véhicule) non affichés (publication interne) | agent, annoncé au propriétaire | — |
+| 2026-11-26 | Mentions légales : responsable de publication, forme juridique et adresse du siège rendus publics | propriétaire du dépôt (message) | — |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
