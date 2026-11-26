@@ -1,0 +1,7 @@
+{
+  "releaseRoot": "/srv/site/current",
+  "varDir": "/srv/site/var",
+  "fastcgiPass": "afr-taxi-prod-php:9000",
+  "listen": 80,
+  "tls": null
+}

@@ -4,8 +4,8 @@
 # Vérifie l'empreinte de l'archive et chaque fichier (SHA256SUMS) avant de basculer.
 set -eu
 ARCHIVE="$1"
-ROOT=/srv/afr-taxi
-APP=/opt/afr-taxi-site
+ROOT=${AFR_ROOT:-/srv/afr-taxi}
+APP=${AFR_APP:-/opt/afr-taxi-site}
 ID=$(basename "$ARCHIVE" .tar.gz)
 
 ( cd "$(dirname "$ARCHIVE")" && sha256sum -c "$ID.tar.gz.sha256" )

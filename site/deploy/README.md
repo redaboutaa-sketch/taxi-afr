@@ -40,13 +40,22 @@ Le script vérifie l'empreinte de l'archive et de chaque fichier, bascule `/srv/
 - `docker logs afr-taxi-php 2>&1 | grep factory-form | tail` : `outcome=accepted` après un envoi (le contenu des demandes n'est jamais journalisé).
 - Un envoi depuis le formulaire doit arriver dans la boîte afr.taxi26@gmail.com. `outcome=transport_error` : identifiants refusés par Google (mot de passe d'application, validation en 2 étapes).
 
-## Mise en production sur afr-taxi.com (plus tard, sur autorisation explicite)
+## Mise en production sur www.afr-taxi.com
 
-DNS chez Hostinger (zone `afr-taxi.com`) :
-- `A  @  76.13.44.177` (remplace `2.57.91.91`, la page par défaut d'Hostinger) ;
-- `CNAME  www  afr-taxi.com` (déjà en place) ;
-- supprimer tout enregistrement `AAAA` sur `@` ou `www` qui ne pointerait pas vers ce VPS.
+DNS (fait le 2026-11-26) : `A @ 76.13.44.177`, `CNAME www afr-taxi.com`.
 
-Faire ce changement DNS ne publie rien tant qu'aucun conteneur ne répond à ces noms (Traefik renvoie 404).
+Chaîne testée sur une copie (valeurs légales fictives, 2026-11-26) : brief `release` valide, release `production` assemblée, audit 31/31, redirection `afr-taxi.com` → `https://www.afr-taxi.com` (nginx généré), robots/sitemap/canonicals en `www.afr-taxi.com`, origine du formulaire `https://www.afr-taxi.com`.
 
-Bloquants avant la release de production (`npm run factory:validate -- --mode release`) : mentions légales (siège, SIRET, TVA, hébergeur, médiateur), durée de conservation, approbation du rendu, responsable de revue, `mode: release`, puis autorisation de publication. La production utilisera `--target production` (indexable, sitemap, redirection `afr-taxi.com` → `www.afr-taxi.com` générée par le moteur) avec les règles Traefik `Host(`www.afr-taxi.com`) || Host(`afr-taxi.com`)`, sans mot de passe.
+Une fois le brief complet (`npm run factory:validate -- --mode release` sans erreur) et l'autorisation de publication donnée :
+```
+mkdir -p /opt/afr-taxi-prod && cd /opt/afr-taxi-prod
+cp /opt/taxi-afr/site/deploy/docker-compose.production.yml docker-compose.yml
+cp /opt/taxi-afr/site/deploy/realip.conf .
+cp /opt/afr-taxi-site/smtp.env . && chmod 600 smtp.env      # mêmes identifiants Gmail
+cd /opt/taxi-afr && export PATH=/opt/node26/bin:$PATH && git pull
+npm run release -- --profile vps-nginx --target production --profile-json site/deploy/production-traefik.json
+npm run qa:release -- --release "$(ls -dt .generated/releases/afr-taxi-production-*/ | head -1)"
+AFR_ROOT=/srv/afr-taxi-prod AFR_APP=/opt/afr-taxi-prod sh site/deploy/deploy-preview.sh "$(ls -t .generated/releases/afr-taxi-production-*.tar.gz | head -1)"
+```
+Vérifier ensuite : `https://www.afr-taxi.com/` (200), `https://afr-taxi.com/` (301 vers www), un envoi du formulaire reçu sur afr.taxi26@gmail.com. Retour arrière : relancer le script avec l'archive précédente, ou `cd /opt/afr-taxi-prod && docker compose down` (Traefik renvoie alors 404).
+Après mise en ligne : adresse du site dans la fiche Google Business Profile, déclaration dans Google Search Console (sitemap `https://www.afr-taxi.com/sitemap.xml`), arrêt de la préversion.

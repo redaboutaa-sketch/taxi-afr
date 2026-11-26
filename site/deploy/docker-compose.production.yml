@@ -1,0 +1,42 @@
+# Site AFR TAXI en PRODUCTION derrière le Traefik du VPS : www.afr-taxi.com
+# (canonique) et afr-taxi.com (redirection 301 vers www, faite par la
+# configuration nginx générée par le moteur). Pas de mot de passe ; indexable.
+# À copier dans /opt/afr-taxi-prod/docker-compose.yml (voir site/deploy/README.md).
+# Secrets SMTP : ./smtp.env (droits 600), jamais dans la release ni dans Git.
+services:
+  php:
+    image: php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826
+    container_name: afr-taxi-prod-php
+    restart: unless-stopped
+    env_file: ./smtp.env
+    volumes:
+      - /srv/afr-taxi-prod:/srv/site:ro
+      - /srv/afr-taxi-prod/var:/srv/site/var
+      - /srv/afr-taxi-prod/current/config/php-fpm/pool.conf:/usr/local/etc/php-fpm.d/zz-factory.conf:ro
+    networks: [afr-prod-internal]
+
+  nginx:
+    image: nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a
+    container_name: afr-taxi-prod-nginx
+    restart: unless-stopped
+    depends_on: [php]
+    volumes:
+      - /srv/afr-taxi-prod:/srv/site:ro
+      - /srv/afr-taxi-prod/current/config/nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./realip.conf:/etc/nginx/conf.d/00-realip.conf:ro
+    networks: [afr-prod-internal, traefik-public]
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.afr-taxi-prod.rule=Host(`www.afr-taxi.com`) || Host(`afr-taxi.com`)
+      - traefik.http.routers.afr-taxi-prod.entrypoints=websecure
+      - traefik.http.routers.afr-taxi-prod.tls=true
+      - traefik.http.routers.afr-taxi-prod.tls.certresolver=letsencrypt
+      - traefik.http.routers.afr-taxi-prod.tls.domains[0].main=www.afr-taxi.com
+      - traefik.http.routers.afr-taxi-prod.tls.domains[0].sans=afr-taxi.com
+      - traefik.http.services.afr-taxi-prod.loadbalancer.server.port=80
+
+networks:
+  afr-prod-internal: {}
+  traefik-public:
+    external: true
