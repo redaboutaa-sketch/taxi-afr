@@ -9,6 +9,7 @@ import RouteArt from './RouteArt.astro';
 import RequestForm from './RequestForm.astro';
 import { Picture } from 'astro:assets';
 import assets from 'virtual:factory/assets';
+import { reviews } from '../content/reviews.ts';
 import { routes, services, phone, telHref, locality, hours, fact, whatsappDigits, PROVISIONAL } from '../content/site.ts';
 
 interface Props { path?: string; }
@@ -17,6 +18,7 @@ const town = locality?.text.split(' (')[0] ?? null;
 const visible = services.filter((s) => fact(s.key));
 const experience = fact('driver.experience');
 const languages = fact('driver.languages');
+const reviewsUrl = fact('reviews.googleUrl')?.text ?? null;
 // Photo du véhicule réel : seulement si l'actif est publiable (registre).
 const photo = assets['taxi-gare'];
 ---
@@ -123,6 +125,27 @@ const photo = assets['taxi-gare'];
       </div>
     </div>
   </section>
+
+  {reviewsUrl && (
+    <section class="section section-tight reviews-band" id="avis" aria-labelledby="avis-title">
+      <div class="wrap reviews-inner">
+        <div class="stack">
+          <p class="reviews-stars" aria-hidden="true"><Icon name="star" /></p>
+          <h2 id="avis-title">Avis clients</h2>
+          <p class="lead">Les avis des clients d’AFR TAXI sont publiés sur Google, là où chacun peut les lire et en laisser un.</p>
+          {reviews.length > 0 && (
+            <ul class="reviews-list" role="list">
+              {reviews.map((r) => <li><blockquote><p>« {r.text} »</p><footer>{r.author} · <time datetime={r.date}>{new Date(r.date).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}</time> · avis Google</footer></blockquote></li>)}
+            </ul>
+          )}
+        </div>
+        <div class="cta-row">
+          <a class="btn btn-call" href={reviewsUrl} rel="noopener noreferrer"><Icon name="star" /><span>Lire les avis sur Google</span></a>
+          <a class="btn btn-outline" href={reviewsUrl} rel="noopener noreferrer"><span>Laisser un avis</span></a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section section-tight" aria-labelledby="faq-title">
     <div class="wrap faq stack">

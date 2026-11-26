@@ -165,3 +165,18 @@
     background: rgb(21 25 31 / 0.72); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
   }
 }
+
+/* Avis clients : bandeau graphite, renvoi vers la fiche Google (aucun widget tiers). */
+@layer direction {
+  .dir-bandeau .reviews-band { background: #15191f; color: #f4f2ec; margin-block: var(--space-5); }
+  .dir-bandeau .reviews-band h2 { color: inherit; }
+  .dir-bandeau .reviews-band .lead { color: #cfcbc2; }
+  .dir-bandeau .reviews-inner { display: grid; gap: var(--space-4); align-items: center; }
+  @media (min-width: 56rem) { .dir-bandeau .reviews-inner { grid-template-columns: minmax(0, 1.4fr) auto; } }
+  .dir-bandeau .reviews-stars { display: flex; gap: 0.2rem; color: var(--accent); }
+  .dir-bandeau .reviews-stars .icon { width: 1.6rem; height: 1.6rem; fill: currentColor; }
+  .dir-bandeau .reviews-list { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); }
+  .dir-bandeau .reviews-list blockquote { margin: 0; background: #232831; border-radius: 0.6rem; padding: var(--space-3); }
+  .dir-bandeau .reviews-list footer { font-size: 0.85rem; color: #cfcbc2; margin-block-start: var(--space-2); }
+  .dir-bandeau .reviews-band :focus-visible { outline-color: #8ab4ff; }
+}

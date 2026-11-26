@@ -209,6 +209,13 @@ facts:
     status: confirmed
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
+  reviews.googleUrl:
+    # Lien de partage de la fiche Google du taxi. Aucune note, aucun nombre
+    # d'avis ni aucun extrait n'est recopié sur le site sans vérification.
+    value: https://share.google/OHv9w9GTFVVmJXd5C
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : lien des avis Google']
+    publication: public
   vehicle.description:
     value: null
     status: unknown
