@@ -77,7 +77,7 @@ const inputType = (kind: string): 'tel' | 'email' | 'date' | 'time' | 'number' |
       <input id={form.contract.honeypot} name={form.contract.honeypot} type="text" tabindex="-1" autocomplete="off" />
     </div>
 
-    <p class="notice" id="request-notice"><strong>{t.notice}</strong> {t.noticeDetail}</p>
+    <p class="notice" id="request-notice"><strong>{t.notice}</strong> <span class="notice-detail">{t.noticeDetail}</span></p>
 
     <div class="actions">
       {whatsappDigits && (
@@ -91,7 +91,7 @@ const inputType = (kind: string): 'tel' | 'email' | 'date' | 'time' | 'number' |
       )}
       <div>
         <button class:list={['btn', whatsappDigits ? 'btn-secondary' : 'btn-primary']} type="submit" data-submit><Icon name="mail" /><span data-submit-label>{t.submitEmail}</span></button>
-        <p class="action-help">{t.submitEmailHelp}</p>
+        <p class="action-help action-help-email">{t.submitEmailHelp}</p>
       </div>
       {!whatsappDigits && <p class="action-help" data-whatsapp-unavailable>{t.whatsappUnavailable}</p>}
     </div>

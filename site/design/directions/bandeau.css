@@ -218,3 +218,24 @@
     .dir-bandeau .hero-form .request .fields { gap: var(--space-1) var(--space-2); }
   }
 }
+
+/* Carte de demande de l'accueil encore plus compacte (demande du propriétaire, 2026-11-27). */
+@layer direction {
+  @media (min-width: 62rem) {
+    html.dir-bandeau .hero-grid { grid-template-columns: min(31rem, 42%) minmax(0, 1fr) min(21.5rem, 33%); }
+    .dir-bandeau .hero-form .request { padding: var(--space-3); }
+    .dir-bandeau .hero-form .request-head { align-items: center; margin-block-end: var(--space-1); }
+    .dir-bandeau .hero-form .request-icon { width: 2rem; height: 2rem; }
+    /* Intro masquée dans la carte de l'accueil (la page Contact la conserve). */
+    .dir-bandeau .hero-form .request-intro { display: none; }
+    .dir-bandeau .hero-form .field { gap: 0.15rem; }
+    .dir-bandeau .hero-form .field label { font-size: 0.8rem; }
+    .dir-bandeau .hero-form .field .error:empty { display: none; }
+    .dir-bandeau .hero-form .notice { margin-block-start: var(--space-2); padding: 0.4rem 0.6rem; }
+    .dir-bandeau .hero-form .notice-detail { display: none; }
+    .dir-bandeau .hero-form .actions { margin-block-start: var(--space-2); gap: 0.35rem; }
+    .dir-bandeau .hero-form .actions .btn { min-height: 2.75rem; padding-block: 0.45rem; }
+    .dir-bandeau .hero-form .action-help { font-size: 0.75rem; margin: 0.15rem 0 0; }
+    .dir-bandeau .hero-form .action-help-email { display: none; }
+  }
+}
