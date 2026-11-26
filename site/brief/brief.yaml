@@ -257,9 +257,9 @@ facts:
     sourceRefs: []
     publication: internal
   privacy.requestRetention:
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: 12 mois après la demande
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « Conservation 12 mois »']
     publication: public
   legal.name:
     value: AFR TAXI
