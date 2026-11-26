@@ -187,3 +187,34 @@
   .dir-bandeau .reviews-value { color: #fff; font-size: var(--step-2); }
   .dir-bandeau .reviews-asof { font-size: 0.85rem; color: #cfcbc2; }
 }
+
+/* Carte de demande « verre dépoli » sur ordinateur (demande du propriétaire, 2026-11-27) :
+   plus étroite et semi-transparente pour laisser voir la voiture et la gare.
+   Champs de saisie opaques ; repli plus opaque si backdrop-filter n'est pas géré. */
+@layer direction {
+  @media (min-width: 62rem) {
+    html.dir-bandeau .hero-grid { grid-template-columns: min(31rem, 40%) minmax(0, 1fr) min(23.5rem, 36%); }
+    .dir-bandeau .hero-form .request {
+      background: rgb(255 255 255 / 0.9);
+      border: 1px solid rgb(255 255 255 / 0.55);
+      box-shadow: 0 24px 60px -24px rgb(0 0 0 / 0.65);
+      padding: var(--space-3) var(--space-4);
+    }
+    @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      .dir-bandeau .hero-form .request {
+        background: rgb(255 255 255 / 0.62);
+        -webkit-backdrop-filter: blur(14px) saturate(1.3);
+        backdrop-filter: blur(14px) saturate(1.3);
+      }
+    }
+    .dir-bandeau .hero-form .request-head { margin-block-end: var(--space-2); }
+    .dir-bandeau .hero-form .request-title { font-size: var(--step-1); }
+    .dir-bandeau .hero-form .request-intro { font-size: 0.85rem; color: #2b313a; }
+    .dir-bandeau .hero-form .request-icon { width: 2.2rem; height: 2.2rem; }
+    .dir-bandeau .hero-form .field label { font-size: 0.85rem; }
+    .dir-bandeau .hero-form .field input { min-height: 2.75rem; padding-block: 0.4rem; background: #fff; }
+    .dir-bandeau .hero-form .notice { background: rgb(255 255 255 / 0.7); font-size: 0.82rem; color: #1f252d; }
+    .dir-bandeau .hero-form .action-help { font-size: 0.8rem; color: #2b313a; }
+    .dir-bandeau .hero-form .request .fields { gap: var(--space-1) var(--space-2); }
+  }
+}

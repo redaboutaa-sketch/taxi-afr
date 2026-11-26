@@ -11,7 +11,7 @@ export const request = {
   h1: 'Appeler ou demander un trajet',
   intro: 'Pour un départ dans moins d’une heure, appelez. Pour un trajet planifié, remplissez la demande : le chauffeur vous recontacte.',
   formTitle: 'Demander un trajet',
-  formIntro: 'Remplissez, puis envoyez votre demande par WhatsApp ou par e-mail. Le chauffeur vous confirme la disponibilité et le tarif. Heure de Paris.',
+  formIntro: 'Envoi par WhatsApp ou e-mail ; le chauffeur confirme disponibilité et tarif. Heure de Paris.',
   optional: '(facultatif)',
   notice: 'Votre demande ne vaut pas confirmation de réservation.',
   noticeDetail: 'Le chauffeur vous recontacte pour confirmer, ou non, la possibilité du trajet.',
