@@ -141,9 +141,11 @@ delivery:
   # sur www.afr-taxi.com »). scopeDigest = empreinte des pages de production
   # autorisées (site/deploy/pages-digest.sh sur le dossier public/ de la release).
   publicationAuthorization:
+    # 2026-11-27 : « J'autorise la publication de la version 713d7d5c sur
+    # www.afr-taxi.com » (Reda Boutaa) — carte de demande semi-transparente.
     grantedBy: Reda Boutaa
-    grantedOn: '2026-11-26'
-    scopeDigest: 84dc0d367176e1310a20241b35e20bc006269f1d76cd5f07830fe72df74f65da
+    grantedOn: '2026-11-27'
+    scopeDigest: 713d7d5c54ab55868a12f9e20864a2d981d5e978f02193505b6c756d0ba0d781
 
 facts:
   contact.phone:
