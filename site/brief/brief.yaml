@@ -300,7 +300,7 @@ facts:
     sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « l’hébergeur est Hostinger »']
     publication: public
   legal.mediator:
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: CM2C — Centre de la Médiation de la Consommation de Conciliateurs de Justice, www.cm2c.net
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « Médiateur : CM2C, www.cm2c.net »']
     publication: public
