@@ -6,6 +6,9 @@
  * dans une disposition releases/<id> + lien `current`, puis exerce le site
  * et le formulaire par HTTP et dans un navigateur (avec et sans JavaScript).
  *
+ * Release à recetter : `node qa/afr/capture-release.ts` (transport de CAPTURE ;
+ * la vraie configuration Gmail n'est jamais utilisée en recette).
+ *
  *   node qa/afr/recipe.ts --release .generated/releases/<id> [--browsers chromium,firefox,webkit]
  *
  * Prérequis : Docker, images épinglées ci-dessous, release construite avec

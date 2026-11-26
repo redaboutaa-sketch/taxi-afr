@@ -1,0 +1,8 @@
+{
+  "releaseRoot": "/srv/site/current",
+  "varDir": "/srv/site/var",
+  "fastcgiPass": "afr-taxi-php:9000",
+  "listen": 80,
+  "tls": null,
+  "localPreviewOrigin": "https://76-13-44-177.sslip.io"
+}

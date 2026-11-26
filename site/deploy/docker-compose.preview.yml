@@ -1,0 +1,45 @@
+# Préversion AFR TAXI complète (pages + envoi d'e-mails) derrière le Traefik du VPS.
+# À copier dans /opt/afr-taxi-site/docker-compose.yml (voir site/deploy/README.md).
+#
+#  - afr-taxi-nginx : configuration nginx GÉNÉRÉE par le moteur (release courante),
+#    en-têtes de sécurité, X-Robots-Tag noindex (preview) ;
+#  - afr-taxi-php   : PHP-FPM 8.4, endpoint du formulaire, pool généré par le moteur.
+# Les secrets SMTP viennent de ./smtp.env (droits 600), jamais de la release.
+# Le mot de passe d'accès à la préversion vient de ./.env (AFR_BASIC_AUTH).
+services:
+  php:
+    image: php:8.4-fpm-alpine@sha256:c0e41e0c856bf97b2e749f40a804031ce938d0d496c4c7d91ad416d993172826
+    container_name: afr-taxi-php
+    restart: unless-stopped
+    env_file: ./smtp.env
+    volumes:
+      - /srv/afr-taxi:/srv/site:ro
+      - /srv/afr-taxi/var:/srv/site/var
+      - /srv/afr-taxi/current/config/php-fpm/pool.conf:/usr/local/etc/php-fpm.d/zz-factory.conf:ro
+    networks: [afr-internal]
+
+  nginx:
+    image: nginx:stable-alpine@sha256:8eb2b5540eae779603cc3db84b3986a15ecb5308b54303146eee9837c137b51a
+    container_name: afr-taxi-nginx
+    restart: unless-stopped
+    depends_on: [php]
+    volumes:
+      - /srv/afr-taxi:/srv/site:ro
+      - /srv/afr-taxi/current/config/nginx/site.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./realip.conf:/etc/nginx/conf.d/00-realip.conf:ro
+    networks: [afr-internal, traefik-public]
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.http.routers.afr-taxi.rule=Host(`76-13-44-177.sslip.io`)
+      - traefik.http.routers.afr-taxi.entrypoints=websecure
+      - traefik.http.routers.afr-taxi.tls=true
+      - traefik.http.routers.afr-taxi.tls.certresolver=letsencrypt
+      - traefik.http.routers.afr-taxi.middlewares=afr-taxi-auth
+      - traefik.http.middlewares.afr-taxi-auth.basicauth.users=${AFR_BASIC_AUTH}
+      - traefik.http.services.afr-taxi.loadbalancer.server.port=80
+
+networks:
+  afr-internal: {}
+  traefik-public:
+    external: true

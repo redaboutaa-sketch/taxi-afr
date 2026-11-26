@@ -8,9 +8,7 @@
 # toutes les valeurs sont `proposed` au mieux. Aucun agent ne passe un fait
 # en `confirmed` : c'est une décision du client (AGENTS.md, invariant 4).
 #
-# Identités e-mail : adresses de CAPTURE de recette sur un domaine réservé
-# (.test, RFC 2606). Elles ne désignent aucune boîte réelle ; le transport
-# `capture` est refusé en release pour un site réel (règle email.capture-in-release).
+# Identités e-mail : compte Gmail du taxi (voir section email).
 schemaVersion: 1
 mode: preview
 
@@ -65,12 +63,22 @@ network:
   previewOrigin: null
 
 email:
+  # Option A choisie par le propriétaire (message du 2026-11-26) : envoi par le
+  # compte Gmail du taxi (SMTP authentifié, mot de passe d'application), qui est
+  # aussi la boîte de réception. Les identifiants ne sont JAMAIS ici : seulement
+  # les noms des variables d'environnement du conteneur PHP-FPM.
   publicContactFact: contact.email
-  recipient: chauffeur@recette.afr-taxi.test
-  from: demandes@recette.afr-taxi.test
-  sendingDomain: recette.afr-taxi.test
+  recipient: afr.taxi26@gmail.com
+  from: afr.taxi26@gmail.com
+  sendingDomain: gmail.com
   replyTo: submitter
-  transport: capture
+  transport: smtp
+  smtp:
+    host: smtp.gmail.com
+    port: 465
+    security: tls
+    username: env:AFR_SMTP_USER
+    password: env:AFR_SMTP_PASSWORD
 
 form:
   enabled: true
