@@ -18,6 +18,7 @@
 | 2026-11-26 | Domaine de publication : `afr-taxi.com` (www canonique, apex redirigé) ; `afr-taxi.fr` reste à l'ancien propriétaire | propriétaire du dépôt (message) | — |
 | 2026-11-26 | Avis clients : section renvoyant vers la fiche Google (lien fourni), sans widget tiers ni note recopiée ; extraits possibles plus tard dans `site/src/content/reviews.ts` après vérification | propriétaire du dépôt (message) | — |
 | 2026-11-26 | Note Google affichée : 4,9/5 sur 37 avis, relevé de novembre 2026 (à mettre à jour quand elle change) | propriétaire du dépôt (message) | — |
+| 2026-11-26 | **Autorisation de publication sur www.afr-taxi.com** (« J'autorise la publication sur www.afr-taxi.com »). En attente des mentions légales, de la durée de conservation, de l'approbation du rendu et d'un envoi Gmail réussi : la release de production reste refusée par le moteur d'ici là. | propriétaire du dépôt (message) | publication |
 | — | Approbation du rendu final (après revue des captures et du site en preview) | client | G2 — rendu |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
