@@ -11,7 +11,7 @@
 #
 # Identités e-mail : compte Gmail du taxi (voir section email).
 schemaVersion: 1
-mode: preview
+mode: release
 
 site:
   id: afr-taxi
@@ -137,7 +137,13 @@ delivery:
   scope:
     - "Site français : accueil, taxi privé, transferts, à propos, contact (demande e-mail ou WhatsApp), assistance (orientation), transport médical et assistance déplacement (conditionnels), mentions légales, vie privée, 404."
   reviewer: Reda Boutaa
-  publicationAuthorization: null
+  # Autorisation de Reda Boutaa (message du 2026-11-26 : « J'autorise la publication
+  # sur www.afr-taxi.com »). scopeDigest = empreinte des pages de production
+  # autorisées (site/deploy/pages-digest.sh sur le dossier public/ de la release).
+  publicationAuthorization:
+    grantedBy: Reda Boutaa
+    grantedOn: '2026-11-26'
+    scopeDigest: 84dc0d367176e1310a20241b35e20bc006269f1d76cd5f07830fe72df74f65da
 
 facts:
   contact.phone:
@@ -277,15 +283,14 @@ facts:
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public  # accord d'affichage du propriétaire, message du 2026-11-26
   legal.address:
-    # Seule la commune du siège est connue (Saint-Vallier) ; adresse complète à fournir.
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: 6 rue Camille Claudel, 26240 Saint-Vallier, France
+    status: confirmed
+    sourceRefs: ['mentions légales de www.afr-taxi.fr relues le 2026-11-26', 'propriétaire du dépôt, message du 2026-11-26 : reprendre ces informations de l’ancien site si disponibles']
     publication: public  # accord d'affichage du propriétaire, message du 2026-11-26
   legal.registration:
-    value: null
-    status: unknown
-    sourceRefs: []
+    value: SIRET 881 553 051 00015
+    status: confirmed
+    sourceRefs: ['mentions légales de www.afr-taxi.fr relues le 2026-11-26', 'propriétaire du dépôt, message du 2026-11-26 : reprendre ces informations de l’ancien site si disponibles']
     publication: public
   legal.vatId:
     value: TVA non applicable, art. 293 B du CGI

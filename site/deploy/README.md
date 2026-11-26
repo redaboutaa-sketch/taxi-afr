@@ -44,7 +44,7 @@ Le script vérifie l'empreinte de l'archive et de chaque fichier, bascule `/srv/
 
 DNS (fait le 2026-11-26) : `A @ 76.13.44.177`, `CNAME www afr-taxi.com`.
 
-Chaîne testée sur une copie (valeurs légales fictives, 2026-11-26) : brief `release` valide, release `production` assemblée, audit 31/31, redirection `afr-taxi.com` → `https://www.afr-taxi.com` (nginx généré), robots/sitemap/canonicals en `www.afr-taxi.com`, origine du formulaire `https://www.afr-taxi.com`.
+Release de production réelle testée en conteneurs (2026-11-26, `afr-taxi-production-acbd5a4ce46c`) : audit 31/31, empreintes 312 fichiers, `www.afr-taxi.com/` 200 sans noindex, `afr-taxi.com/taxi-prive/` → 301 `https://www.afr-taxi.com/taxi-prive/`, sitemap 200, formulaire sans identifiants → `transport_not_configured`, empreinte des pages = scopeDigest. Chaîne testée auparavant sur une copie (valeurs légales fictives, 2026-11-26) : brief `release` valide, release `production` assemblée, audit 31/31, redirection `afr-taxi.com` → `https://www.afr-taxi.com` (nginx généré), robots/sitemap/canonicals en `www.afr-taxi.com`, origine du formulaire `https://www.afr-taxi.com`.
 
 Une fois le brief complet (`npm run factory:validate -- --mode release` sans erreur) et l'autorisation de publication donnée :
 ```
@@ -55,6 +55,7 @@ cp /opt/afr-taxi-site/smtp.env . && chmod 600 smtp.env      # mêmes identifiant
 cd /opt/taxi-afr && export PATH=/opt/node26/bin:$PATH && git pull
 npm run release -- --profile vps-nginx --target production --profile-json site/deploy/production-traefik.json
 npm run qa:release -- --release "$(ls -dt .generated/releases/afr-taxi-production-*/ | head -1)"
+sh site/deploy/pages-digest.sh "$(ls -dt .generated/releases/afr-taxi-production-*/ | head -1)"public   # doit afficher le scopeDigest du brief
 AFR_ROOT=/srv/afr-taxi-prod AFR_APP=/opt/afr-taxi-prod sh site/deploy/deploy-preview.sh "$(ls -t .generated/releases/afr-taxi-production-*.tar.gz | head -1)"
 ```
 Vérifier ensuite : `https://www.afr-taxi.com/` (200), `https://afr-taxi.com/` (301 vers www), un envoi du formulaire reçu sur afr.taxi26@gmail.com. Retour arrière : relancer le script avec l'archive précédente, ou `cd /opt/afr-taxi-prod && docker compose down` (Traefik renvoie alors 404).

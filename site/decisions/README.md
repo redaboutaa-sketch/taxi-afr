@@ -22,5 +22,7 @@
 | 2026-11-26 | **Rendu final approuvé** (« J'approuve le rendu ») ; responsable de revue : Reda Boutaa | Reda Boutaa | G2 — rendu |
 | 2026-11-26 | Faits facultatifs inconnus (secteur, destinations, véhicule) non affichés (publication interne) | agent, annoncé au propriétaire | — |
 | 2026-11-26 | Mentions légales : responsable de publication, forme juridique et adresse du siège rendus publics | propriétaire du dépôt (message) | — |
+| 2026-11-26 | Mentions légales complétées : SIRET 881 553 051 00015 et siège 6 rue Camille Claudel, 26240 Saint-Vallier (repris des mentions de www.afr-taxi.fr, sur instruction) ; TVA non applicable (art. 293 B, déclaration du propriétaire — l'ancien site affichait un n° de TVA FR46 881 553 051, écart signalé) ; médiateur CM2C ; conservation 12 mois | propriétaire du dépôt (messages) | — |
+| 2026-11-26 | Brief passé en `mode: release` ; autorisation de publication inscrite (empreinte des pages autorisées) | Reda Boutaa | publication |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).

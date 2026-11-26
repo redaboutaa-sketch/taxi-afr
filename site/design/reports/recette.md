@@ -22,5 +22,8 @@ Couverture des cas AFR TAXI (recette 60/60) : lien `tel:` sans JS ; anciennes ro
 ## Déploiement préversion derrière Traefik (2026-11-26)
 Topologie de `site/deploy/` exercée en conteneurs (Traefik simulé par le réseau `traefik-public`) : page 200 avec CSP et `X-Robots-Tag: noindex`, PHP-FPM 8.4 exécuté, demande valide sans identifiants → `transport_not_configured` (aucune connexion à Gmail), compteur anti-abus distinct par `X-Forwarded-For`. Envoi réel par Gmail : **non testé**.
 
+## Release de production (2026-11-26)
+`npm run factory:validate -- --mode release --production` : prérequis internes réunis. `npm run release -- --target production --profile-json site/deploy/production-traefik.json` : `afr-taxi-production-acbd5a4ce46c`, audit 31/31, `qa:release` 312 fichiers conformes ; empreinte des pages `84dc0d36…65da` = `publicationAuthorization.scopeDigest`. En conteneurs : accueil 200 indexable, apex → 301 www, sitemap 200, formulaire `transport_not_configured` sans identifiants. `qa:perf` ne sait pas servir une release de production (outil limité au profil de recette) : performance mesurée sur les mêmes gabarits en preview (perf 99-100).
+
 ## Non couvert / externe (`pending_external`)
 Réception réelle par le chauffeur, SMTP réel, SPF/DKIM/DMARC, TLS, DNS, hébergement cible, ouverture réelle de WhatsApp sur téléphone et WhatsApp Web avec le compte du chauffeur, Firefox/WebKit, lecteur d'écran, revue humaine du design, relecture juridique, inventaire complet des anciennes URL, performance terrain.
