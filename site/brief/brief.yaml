@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=../../engine/contracts/brief.schema.json
 #
-# AFR TAXI — refonte de https://www.afr-taxi.fr/ (site client RÉEL).
+# AFR TAXI — refonte de https://www.afr-taxi.fr/ (site client RÉEL), publiée sur
+# afr-taxi.com : l'ancien propriétaire conserve afr-taxi.fr (décision du 2026-11-26).
 #
 # Provenance des valeurs : tableau « Faits : préremplir, puis confirmer » du
 # brief de mission du 2026-11-24, lui-même issu du site actuel. Le site actuel
@@ -57,9 +58,10 @@ offer:
   availabilityFact: business.hours
 
 network:
-  canonicalOrigin: https://www.afr-taxi.fr
-  # Domaines secondaires non vérifiés : à constater (DNS) avant de les déclarer.
-  redirectDomains: []
+  # afr-taxi.com acheté par le propriétaire (Hostinger, 2026-11-26) ; www canonique,
+  # l'apex redirige vers www (une seule redirection 301, production uniquement).
+  canonicalOrigin: https://www.afr-taxi.com
+  redirectDomains: [afr-taxi.com]
   previewOrigin: null
 
 email:
@@ -91,7 +93,7 @@ i18n:
 design:
   references:
     - url: https://www.afr-taxi.fr/
-      note: Site actuel à refondre (contenus et URL à préserver ; ambiance sombre et longs titres à ne pas reproduire).
+      note: Ancien site, domaine conservé par l'ancien propriétaire (aucune redirection possible) ; ambiance sombre et longs titres à ne pas reproduire.
   antiReferences:
     - Ambiance sombre, faible hiérarchie et titres longs du site actuel.
     - Faux avis, badges, logos d'organismes ou partenariats non confirmés.

@@ -109,7 +109,7 @@ try {
   check('http.meta-csp-no-unsafe', /http-equiv="content-security-policy"/.test(html) && !/unsafe-inline|unsafe-eval/.test(html));
   check('http.noindex-header', home.headers.get('x-robots-tag') === 'noindex, nofollow');
   check('call.tel-link-without-js', /href="tel:\+33614339341"/.test(html));
-  check('http.no-third-party-request-in-html', !/(src|href)="https?:\/\/(?!www\.afr-taxi\.fr)[^"]+\.(js|css|woff2?)"/.test(html) && !/wa\.me\/[0-9]+\?text=/.test(html));
+  check('http.no-third-party-request-in-html', !/(src|href)="https?:\/\/(?!www\.afr-taxi\.com)[^"]+\.(js|css|woff2?)"/.test(html) && !/wa\.me\/[0-9]+\?text=/.test(html));
   for (const p of ['/taxi-prive/', '/transfert-gare-aeroport/', '/a-propos/', '/contact/', '/assistance/', '/transport-medical/', '/assistance-deplacement/', '/mentions-legales/', '/vie-privee/', '/privacy/', '/taxi-prive', '/contact', '/assistance']) {
     const r = await fetch(`${BASE}${p}`, { redirect: 'manual' });
     const body = await r.text();

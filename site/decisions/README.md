@@ -15,6 +15,7 @@
 | 2026-11-25 | Les 14 faits « proposés » passent « confirmés » (« Tout est ok ») ; mentions « à confirmer » retirées | propriétaire du dépôt (message) | — |
 | 2026-11-25 | Numéro WhatsApp corrigé : +33 6 14 33 93 41 (même numéro que l'appel) | propriétaire du dépôt (message) | — |
 | 2026-11-26 | Envoi des demandes par SMTP Gmail (afr.taxi26@gmail.com, mot de passe d'application) ; préversion complète nginx + PHP-FPM derrière Traefik (`site/deploy/`) | propriétaire du dépôt (option A) | — |
+| 2026-11-26 | Domaine de publication : `afr-taxi.com` (www canonique, apex redirigé) ; `afr-taxi.fr` reste à l'ancien propriétaire | propriétaire du dépôt (message) | — |
 | — | Approbation du rendu final (après revue des captures et du site en preview) | client | G2 — rendu |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).

@@ -1,5 +1,7 @@
 # Plan de migration des URL
 
+> **2026-11-26 : le nouveau site sera publié sur `www.afr-taxi.com`.** L'ancien propriétaire conserve `afr-taxi.fr` : aucune redirection 301 de l'ancien site n'est possible et son ancienneté dans Google est perdue. Les chemins ci-dessous restent identiques sur le nouveau domaine (si l'ancien propriétaire accepte un jour de rediriger, la correspondance est directe). Leviers qui restent : mettre l'adresse du nouveau site dans la fiche Google Business Profile, demander à l'ancien propriétaire de retirer le nom « AFR TAXI » ou de rediriger, déclarer `www.afr-taxi.com` dans Google Search Console à la mise en ligne.
+
 Inventaire de départ : routes listées dans le brief de mission. Le site actuel n'a pas pu être exploré depuis la session (hôte hors réseau autorisé) : **l'inventaire complet (actualités, avis, autres pages) reste à faire** avant publication, idéalement avec la Search Console.
 
 | Ancienne URL | Nouvelle page | Traitement | État |

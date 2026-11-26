@@ -39,3 +39,14 @@ Le script vérifie l'empreinte de l'archive et de chaque fichier, bascule `/srv/
 
 - `docker logs afr-taxi-php 2>&1 | grep factory-form | tail` : `outcome=accepted` après un envoi (le contenu des demandes n'est jamais journalisé).
 - Un envoi depuis le formulaire doit arriver dans la boîte afr.taxi26@gmail.com. `outcome=transport_error` : identifiants refusés par Google (mot de passe d'application, validation en 2 étapes).
+
+## Mise en production sur afr-taxi.com (plus tard, sur autorisation explicite)
+
+DNS chez Hostinger (zone `afr-taxi.com`) :
+- `A  @  76.13.44.177` (remplace `2.57.91.91`, la page par défaut d'Hostinger) ;
+- `CNAME  www  afr-taxi.com` (déjà en place) ;
+- supprimer tout enregistrement `AAAA` sur `@` ou `www` qui ne pointerait pas vers ce VPS.
+
+Faire ce changement DNS ne publie rien tant qu'aucun conteneur ne répond à ces noms (Traefik renvoie 404).
+
+Bloquants avant la release de production (`npm run factory:validate -- --mode release`) : mentions légales (siège, SIRET, TVA, hébergeur, médiateur), durée de conservation, approbation du rendu, responsable de revue, `mode: release`, puis autorisation de publication. La production utilisera `--target production` (indexable, sitemap, redirection `afr-taxi.com` → `www.afr-taxi.com` générée par le moteur) avec les règles Traefik `Host(`www.afr-taxi.com`) || Host(`afr-taxi.com`)`, sans mot de passe.
