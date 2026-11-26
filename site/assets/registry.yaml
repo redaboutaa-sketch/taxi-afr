@@ -70,7 +70,7 @@ assets:
       date: '2026-11-25'
     rights:
       status: granted
-      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      scope: 'Illustration de carte de service sur le site AFR TAXI (mention visible retirée le 2026-11-27 à la demande du propriétaire ; texte alternatif « Illustration … » conservé).'
       evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
@@ -116,7 +116,7 @@ assets:
       date: '2026-11-25'
     rights:
       status: granted
-      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      scope: 'Illustration de carte de service sur le site AFR TAXI (mention visible retirée le 2026-11-27 à la demande du propriétaire ; texte alternatif « Illustration … » conservé).'
       evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
@@ -162,7 +162,7 @@ assets:
       date: '2026-11-25'
     rights:
       status: granted
-      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      scope: 'Illustration de carte de service sur le site AFR TAXI (mention visible retirée le 2026-11-27 à la demande du propriétaire ; texte alternatif « Illustration … » conservé).'
       evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent
@@ -209,7 +209,7 @@ assets:
       date: '2026-11-25'
     rights:
       status: granted
-      scope: Illustration de carte de service sur le site AFR TAXI, mention « Illustration » visible.
+      scope: 'Illustration de carte de service sur le site AFR TAXI (mention visible retirée le 2026-11-27 à la demande du propriétaire ; texte alternatif « Illustration … » conservé).'
       evidenceRef: accord écrit du propriétaire du dépôt (message du 2026-11-25) ; génération sur son compte Higgsfield
       restrictions:
         - Vérifier que les conditions de l’offre Higgsfield utilisée autorisent

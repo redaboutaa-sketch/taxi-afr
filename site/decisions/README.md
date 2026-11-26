@@ -28,5 +28,6 @@
 | 2026-11-27 | Carte « Demander un trajet » semi-transparente (ordinateur) ; **publication de la version `713d7d5c…0781` autorisée** (« J'autorise la publication de la version 713d7d5c sur www.afr-taxi.com ») | Reda Boutaa | publication |
 | 2026-11-27 | **Site publié sur www.afr-taxi.com** (version `713d7d5c…0781`, release de production construite et déployée sur le VPS par le propriétaire ; mise en ligne constatée par lui, non observée depuis la session de l'agent) | Reda Boutaa | publication |
 | 2026-11-27 | Carte de demande de l'accueil compacte ; **publication de la version `7484b277…0bd1` autorisée** (« J'autorise la publication de la version 7484b277 sur www.afr-taxi.com ») | Reda Boutaa | publication |
+| 2026-11-27 | Mention visible « Illustration » retirée des 4 cartes de services (images d'ambiance génériques, ne montrant ni le véhicule ni le chauffeur) ; texte alternatif « Illustration : … » conservé | Reda Boutaa (message) | — |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
