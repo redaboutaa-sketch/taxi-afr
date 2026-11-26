@@ -130,6 +130,7 @@ export async function assembleRelease(opts: {
     mkdirSync(join(app, 'config'), { recursive: true });
     for (const f of ['src', 'bootstrap.php', 'composer.json', 'composer.lock']) cpSync(join(PHP_DIR, f), join(app, f), { recursive: true });
     const composer = spawnSync('composer', ['install', '--no-dev', '--prefer-dist', '--no-interaction', '--no-progress', '--classmap-authoritative', '--no-plugins', '--no-scripts', `--working-dir=${app}`], { encoding: 'utf8' });
+    if (composer.error) throw new Error(`composer introuvable ou non exécutable (${composer.error.message}) — installer Composer (ex. apt-get install -y composer) puis relancer.`);
     if (composer.status !== 0) throw new Error(`composer install a échoué :\n${composer.stderr}`);
     // Si l'archive de distribution est inaccessible, Composer se replie sur un clone git :
     // on retire les métadonnées git (non servies, non déterministes) et on le consigne.

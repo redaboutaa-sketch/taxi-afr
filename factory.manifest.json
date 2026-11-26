@@ -64,7 +64,7 @@
     "engine/qa/release.ts": "3f3cd56af292d9588a18c49c22e3d455c6642afb40108a6c2d59133d814f7b5d",
     "engine/qa/smtp-capture.ts": "7e0fd433502b605fbd872f264c76bc2c5c6684ef8335c29cb417e1a637d595eb",
     "engine/release/files.ts": "5e7c157853040afe0c256d97bdcad22da473bc0eb4ab9178215b893997a3f1ce",
-    "engine/release/index.ts": "20ff8fc78bc328d2b15e4b55dbd827e56f2b8fbf85d7ed57da14ca7cc6bb8437",
+    "engine/release/index.ts": "6fd0f828fd0c1d7ae0d8acbba045f48c1b215250cde357b948e8b3db63584145",
     "engine/security/headers.ts": "7c6304776db2e48387b82aeaae31ead71d78252d3bff6b396c2ea067b823643e",
     "engine/starter/decisions/README.md": "8a0030855041996163e2b53f24ba6c0595d11875556251da803ecc411f65dd6c",
     "engine/starter/src/pages/index.astro": "968f30d13bca0f21af0d44c28cfaa0df1bbeee3e3d885eb23da38f037d9f7f40",
