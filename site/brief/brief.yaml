@@ -267,9 +267,11 @@ facts:
     sourceRefs: []
     publication: public
   legal.hostingProvider:
-    value: null
-    status: unknown
-    sourceRefs: []
+    # Les mentions légales doivent aussi indiquer l'adresse et le téléphone de
+    # l'hébergeur : à compléter depuis les mentions officielles d'Hostinger.
+    value: Hostinger
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : « l’hébergeur est Hostinger »']
     publication: public
   legal.mediator:
     value: null
