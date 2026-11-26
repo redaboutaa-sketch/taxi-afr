@@ -123,7 +123,7 @@ try {
     check(`http.not-served ${p}`, r.status === 404, String(r.status));
   }
   const served = (await Promise.all(['/', '/contact/', '/mentions-legales/'].map(async (p) => (await fetch(`${BASE}${p}`)).text()))).join('');
-  check('http.no-internal-data-served', !served.includes('recette.afr-taxi.test') && !served.includes('FIGMIR'));
+  check('http.no-internal-data-served', !served.includes('recette.afr-taxi.test'));
   const contactHtml = await (await fetch(`${BASE}/contact/`)).text();
   check('form.no-medical-field', !/diagnostic"|ordonnance"|securite|s[ée]curit[ée]_sociale|name="motif"/i.test(contactHtml.replace(/<p[^>]*>[^<]*<\/p>/g, '')));
   check('form.not-a-booking-notice', contactHtml.includes('ne vaut pas confirmation de réservation'));

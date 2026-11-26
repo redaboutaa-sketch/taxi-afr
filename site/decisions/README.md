@@ -2,7 +2,8 @@
 
 | Date | Décision | Par | Porte |
 |---|---|---|---|
-| 2026-11-24 | Site français seul en V1 (EN/AR non générés) | brief de mission | — |
+| 2026-11-24 | Site français seul en V1 (EN/AR non générés) | brief de mission | 2026-11-26 | Mentions légales : responsable de publication, forme juridique et adresse du siège rendus publics | propriétaire du dépôt (message) | — |
+| — |
 | 2026-11-24 | Deux canaux de demande : e-mail par le serveur, ou brouillon WhatsApp envoyé par le visiteur ; appel direct partout | brief de mission | — |
 | 2026-11-24 | Profil `vps-nginx` retenu **pour la preview et la recette locale seulement** : seul profil implémenté ; la cible réelle n'est pas constatée | agent (technique) | — |
 | 2026-11-24 | Rendu provisoire en piste A « Ivoire » en attendant le choix | agent (provisoire) | — |

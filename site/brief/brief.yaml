@@ -267,22 +267,21 @@ facts:
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
     publication: public
   legal.publisher:
-    # Identité déclarée sur l'ancien site, à vérifier : non publiée tant qu'elle n'est pas confirmée.
     value: M ALI FIGMIR
     status: confirmed
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
-    publication: internal
+    publication: public  # accord d'affichage du propriétaire, message du 2026-11-26
   legal.form:
     value: Entreprise individuelle
     status: confirmed
     sourceRefs: [brief-mission-2026-11-24:site-actuel, 'propriétaire du dépôt, message du 2026-11-25 : « Tout est ok » (confirmation des informations proposées)']
-    publication: internal
+    publication: public  # accord d'affichage du propriétaire, message du 2026-11-26
   legal.address:
     # Seule la commune du siège est connue (Saint-Vallier) ; adresse complète à fournir.
     value: null
     status: unknown
     sourceRefs: []
-    publication: internal
+    publication: public  # accord d'affichage du propriétaire, message du 2026-11-26
   legal.registration:
     value: null
     status: unknown
