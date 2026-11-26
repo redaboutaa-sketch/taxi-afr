@@ -113,7 +113,10 @@ design:
     decidedBy: propriétaire du dépôt (message du 2026-11-24)
     decidedOn: '2026-11-24'
     note: Choix de la piste B « Bandeau » (maquette corrigée) ; le rendu final reste à approuver.
-  renderApproval: null
+  renderApproval:
+    approvedBy: Reda Boutaa
+    approvedOn: '2026-11-26'
+    scope: Rendu de la piste B « Bandeau » tel que présenté en préversion (accueil, services, contact, pages légales).
 
 hosting:
   profile: vps-nginx
@@ -133,7 +136,7 @@ privacy:
 delivery:
   scope:
     - "Site français : accueil, taxi privé, transferts, à propos, contact (demande e-mail ou WhatsApp), assistance (orientation), transport médical et assistance déplacement (conditionnels), mentions légales, vie privée, 404."
-  reviewer: null
+  reviewer: Reda Boutaa
   publicationAuthorization: null
 
 facts:
@@ -168,7 +171,7 @@ facts:
     value: null
     status: unknown
     sourceRefs: []
-    publication: public
+    publication: internal  # inconnu : non affiché (2026-11-26)
   business.hours:
     value: 24 h/24, 7 j/7, sur réservation
     status: confirmed
@@ -188,7 +191,7 @@ facts:
     value: null
     status: unknown
     sourceRefs: []
-    publication: public
+    publication: internal  # inconnu : non affiché (2026-11-26)
   service.assistance:
     value: Transport de personnes après une panne ou un accident
     status: confirmed
@@ -237,12 +240,12 @@ facts:
     value: null
     status: unknown
     sourceRefs: []
-    publication: public
+    publication: internal  # inconnu : non affiché (2026-11-26)
   vehicle.capacity:
     value: null
     status: unknown
     sourceRefs: []
-    publication: public
+    publication: internal  # inconnu : non affiché (2026-11-26)
   offer.pricing:
     value: null
     status: unknown
