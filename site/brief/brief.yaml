@@ -227,6 +227,12 @@ facts:
     status: confirmed
     sourceRefs: ['propriétaire du dépôt, message du 2026-11-26 : lien des avis Google']
     publication: public
+  social.facebook:
+    # Compte Facebook d'AFR TAXI (identifiant tiré du lien de publication fourni).
+    value: https://www.facebook.com/100063594862923
+    status: confirmed
+    sourceRefs: ['propriétaire du dépôt, message du 2026-11-27 : lien Facebook du compte']
+    publication: public
   reviews.rating:
     # Note moyenne Google relevée par le propriétaire, ex. '4,9'. Datée par reviews.asOf.
     value: '4,9'

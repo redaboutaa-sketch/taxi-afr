@@ -11,7 +11,7 @@ import '../styles/base.css';
 import '../../design/directions/bandeau.css';
 import '../styles/motion.css';
 import Icon from '../components/Icon.astro';
-import { nav, routes, phone, telHref, email, services, whatsappDigits, PROVISIONAL } from '../content/site.ts';
+import { nav, routes, phone, telHref, email, services, whatsappDigits, fact, PROVISIONAL } from '../content/site.ts';
 
 interface Props {
   title: string;
@@ -30,6 +30,8 @@ const current = (href: string) => (path === href || (href !== '/' && path.starts
 const confirmed = (k: string) => (config.facts[k] && !config.facts[k].provisional ? factFor(config, k, 'jsonld') : undefined);
 const ldPhone = confirmed('contact.phoneE164');
 const ldName = confirmed('legal.name');
+const facebook = fact('social.facebook');
+const ldFacebook = confirmed('social.facebook');
 const ld = ldName && ldPhone
   ? {
       '@context': 'https://schema.org',
@@ -39,6 +41,7 @@ const ld = ldName && ldPhone
       telephone: ldPhone,
       ...(confirmed('contact.email') ? { email: confirmed('contact.email') } : {}),
       ...(confirmed('business.serviceArea') ? { areaServed: confirmed('business.serviceArea') } : {}),
+      ...(ldFacebook ? { sameAs: [ldFacebook] } : {}),
     }
   : null;
 ---
@@ -103,6 +106,7 @@ const ld = ldName && ldPhone
           <p class="footer-brand">AFR TAXI</p>
           {telHref && phone && <p><a href={telHref}>{phone.text}</a>{phone.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>}
           {email && <p><a href={`mailto:${email.text}`}>{email.text}</a>{email.provisional && <span class="provisional">{PROVISIONAL}</span>}</p>}
+          {facebook && <p><a href={facebook.text} rel="noopener noreferrer">AFR TAXI sur Facebook</a></p>}
         </div>
         <nav aria-label="Services">
           <p class="footer-title">Services</p>
