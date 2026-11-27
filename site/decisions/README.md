@@ -35,5 +35,6 @@
 | 2026-11-27 | Relecture de cohérence des contenus : badge réduit à « Taxi conventionné CPAM », formulations prudentes ou techniques reformulées (« ce qui n’est pas promis », « disponibilité annoncée », « serveur d’envoi »…), textes alignés sur le formulaire simplifié, phrase « aucune image générée » corrigée, illustrations signalées dans les mentions légales ; la demande en ligne reste présentée comme non confirmée tant que le chauffeur ne l’a pas confirmée | Reda Boutaa (demande) | — |
 | 2026-11-27 | **Publication de la version `8b3a579e…b8b0` autorisée** (« J'autorise la publication de la version 8b3a579e sur www.afr-taxi.com ») | Reda Boutaa | publication |
 | 2026-11-27 | Lien vers le compte Facebook (https://www.facebook.com/100063594862923) en pied de page et en `sameAs` du JSON-LD ; aucun widget ni script Facebook | Reda Boutaa (message) | — |
+| 2026-11-27 | **Publication de la version `777e317e…62e0` autorisée** (« J'autorise la publication de la version 777e317e sur www.afr-taxi.com ») | Reda Boutaa | publication |
 
 Autres documents : [confirmations.md](confirmations.md) (ce que le client doit confirmer), [migration.md](migration.md) (URL et redirections), [deploiement.md](deploiement.md) (préparation, non exécutée).
